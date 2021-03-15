@@ -135,6 +135,7 @@
     experimental_vector_extract,               // llvm.experimental.vector.extract
     experimental_vector_insert,                // llvm.experimental.vector.insert
     experimental_vector_reverse,               // llvm.experimental.vector.reverse
+    experimental_vector_splice,                // llvm.experimental.vector.splice
     experimental_widenable_condition,          // llvm.experimental.widenable.condition
     fabs,                                      // llvm.fabs
     floor,                                     // llvm.floor
@@ -281,6 +282,7 @@
     strip_invariant_group,                     // llvm.strip.invariant.group
     swift_async_context_addr,                  // llvm.swift.async.context.addr
     test_set_loop_iterations,                  // llvm.test.set.loop.iterations
+    test_start_loop_iterations,                // llvm.test.start.loop.iterations
     thread_pointer,                            // llvm.thread.pointer
     trap,                                      // llvm.trap
     trunc,                                     // llvm.trunc

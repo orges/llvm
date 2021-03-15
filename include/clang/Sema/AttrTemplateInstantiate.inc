@@ -668,6 +668,10 @@ Attr *instantiateTemplateAttribute(const Attr *At, ASTContext &C, Sema &S,
       const auto *A = cast<LoopHintAttr>(At);
       return A->clone(C);
     }
+    case attr::M68kInterrupt: {
+      const auto *A = cast<M68kInterruptAttr>(At);
+      return A->clone(C);
+    }
     case attr::MIGServerRoutine: {
       const auto *A = cast<MIGServerRoutineAttr>(At);
       return A->clone(C);
@@ -1325,6 +1329,10 @@ Attr *instantiateTemplateAttribute(const Attr *At, ASTContext &C, Sema &S,
     }
     case attr::SpeculativeLoadHardening: {
       const auto *A = cast<SpeculativeLoadHardeningAttr>(At);
+      return A->clone(C);
+    }
+    case attr::StandaloneDebug: {
+      const auto *A = cast<StandaloneDebugAttr>(At);
       return A->clone(C);
     }
     case attr::StdCall: {
@@ -1992,6 +2000,9 @@ Attr *instantiateTemplateAttributeForDecl(const Attr *At,
     case attr::LoopHint: {
       return nullptr;
     }
+    case attr::M68kInterrupt: {
+      return nullptr;
+    }
     case attr::MIGServerRoutine: {
       return nullptr;
     }
@@ -2445,6 +2456,9 @@ Attr *instantiateTemplateAttributeForDecl(const Attr *At,
       return nullptr;
     }
     case attr::SpeculativeLoadHardening: {
+      return nullptr;
+    }
+    case attr::StandaloneDebug: {
       return nullptr;
     }
     case attr::StdCall: {
