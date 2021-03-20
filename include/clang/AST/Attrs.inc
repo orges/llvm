@@ -7992,6 +7992,8 @@ public:
   OpenCLUnrollHintAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
               , unsigned UnrollHint
              );
+  OpenCLUnrollHintAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
+             );
 
   OpenCLUnrollHintAttr *clone(ASTContext &C) const;
   void printPretty(raw_ostream &OS,

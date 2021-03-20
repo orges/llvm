@@ -375,7 +375,7 @@ set_target_properties(LLVMDebugInfoMSF PROPERTIES
 add_library(LLVMDebugInfoCodeView STATIC IMPORTED)
 
 set_target_properties(LLVMDebugInfoCodeView PROPERTIES
-  INTERFACE_LINK_LIBRARIES "LLVMSupport;LLVMDebugInfoMSF"
+  INTERFACE_LINK_LIBRARIES "LLVMSupport"
 )
 
 # Create imported target LLVMDebugInfoPDB
