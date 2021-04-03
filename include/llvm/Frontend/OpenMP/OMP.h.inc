@@ -99,10 +99,11 @@ enum class Directive {
   OMPD_tile,
   OMPD_unknown,
   OMPD_workshare,
+  OMPD_dispatch,
   OMPD_interop,
 };
 
-static constexpr std::size_t Directive_enumSize = 90;
+static constexpr std::size_t Directive_enumSize = 91;
 
 constexpr auto OMPD_allocate = llvm::omp::Directive::OMPD_allocate;
 constexpr auto OMPD_assumes = llvm::omp::Directive::OMPD_assumes;
@@ -193,6 +194,7 @@ constexpr auto OMPD_threadprivate = llvm::omp::Directive::OMPD_threadprivate;
 constexpr auto OMPD_tile = llvm::omp::Directive::OMPD_tile;
 constexpr auto OMPD_unknown = llvm::omp::Directive::OMPD_unknown;
 constexpr auto OMPD_workshare = llvm::omp::Directive::OMPD_workshare;
+constexpr auto OMPD_dispatch = llvm::omp::Directive::OMPD_dispatch;
 constexpr auto OMPD_interop = llvm::omp::Directive::OMPD_interop;
 
 enum class Clause {
@@ -240,6 +242,7 @@ enum class Clause {
   OMPC_nowait,
   OMPC_nontemporal,
   OMPC_notinbranch,
+  OMPC_novariants,
   OMPC_num_tasks,
   OMPC_num_teams,
   OMPC_num_threads,
@@ -278,7 +281,7 @@ enum class Clause {
   OMPC_write,
 };
 
-static constexpr std::size_t Clause_enumSize = 80;
+static constexpr std::size_t Clause_enumSize = 81;
 
 constexpr auto OMPC_acq_rel = llvm::omp::Clause::OMPC_acq_rel;
 constexpr auto OMPC_acquire = llvm::omp::Clause::OMPC_acquire;
@@ -324,6 +327,7 @@ constexpr auto OMPC_nogroup = llvm::omp::Clause::OMPC_nogroup;
 constexpr auto OMPC_nowait = llvm::omp::Clause::OMPC_nowait;
 constexpr auto OMPC_nontemporal = llvm::omp::Clause::OMPC_nontemporal;
 constexpr auto OMPC_notinbranch = llvm::omp::Clause::OMPC_notinbranch;
+constexpr auto OMPC_novariants = llvm::omp::Clause::OMPC_novariants;
 constexpr auto OMPC_num_tasks = llvm::omp::Clause::OMPC_num_tasks;
 constexpr auto OMPC_num_teams = llvm::omp::Clause::OMPC_num_teams;
 constexpr auto OMPC_num_threads = llvm::omp::Clause::OMPC_num_threads;
@@ -368,13 +372,15 @@ enum class OrderKind {
 constexpr auto OMP_ORDER_concurrent = llvm::omp::OrderKind::OMP_ORDER_concurrent;
 
 enum class ProcBindKind {
+  OMP_PROC_BIND_primary=5,
   OMP_PROC_BIND_master=2,
   OMP_PROC_BIND_close=3,
   OMP_PROC_BIND_spread=4,
-  OMP_PROC_BIND_default=5,
-  OMP_PROC_BIND_unknown=6,
+  OMP_PROC_BIND_default=6,
+  OMP_PROC_BIND_unknown=7,
 };
 
+constexpr auto OMP_PROC_BIND_primary = llvm::omp::ProcBindKind::OMP_PROC_BIND_primary;
 constexpr auto OMP_PROC_BIND_master = llvm::omp::ProcBindKind::OMP_PROC_BIND_master;
 constexpr auto OMP_PROC_BIND_close = llvm::omp::ProcBindKind::OMP_PROC_BIND_close;
 constexpr auto OMP_PROC_BIND_spread = llvm::omp::ProcBindKind::OMP_PROC_BIND_spread;
