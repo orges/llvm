@@ -2176,6 +2176,7 @@ namespace omp {
     llvm::omp::Clause::OMPC_nowait,
     llvm::omp::Clause::OMPC_depend,
     llvm::omp::Clause::OMPC_novariants,
+    llvm::omp::Clause::OMPC_nocontext,
   };
 
   static OmpClauseSet allowedOnceClauses_OMPD_dispatch {
@@ -2205,6 +2206,21 @@ namespace omp {
   };
 
   static OmpClauseSet requiredClauses_OMPD_interop {
+  };
+
+  // Sets for masked
+
+  static OmpClauseSet allowedClauses_OMPD_masked {
+  };
+
+  static OmpClauseSet allowedOnceClauses_OMPD_masked {
+    llvm::omp::Clause::OMPC_filter,
+  };
+
+  static OmpClauseSet allowedExclusiveClauses_OMPD_masked {
+  };
+
+  static OmpClauseSet requiredClauses_OMPD_masked {
   };
 } // namespace omp
 } // namespace llvm
@@ -2943,6 +2959,14 @@ namespace omp {
       llvm::omp::requiredClauses_OMPD_interop,
     }
   },
+  {llvm::omp::Directive::OMPD_masked,
+    {
+      llvm::omp::allowedClauses_OMPD_masked,
+      llvm::omp::allowedOnceClauses_OMPD_masked,
+      llvm::omp::allowedExclusiveClauses_OMPD_masked,
+      llvm::omp::requiredClauses_OMPD_masked,
+    }
+  },
 }
 
 #endif // GEN_FLANG_DIRECTIVE_CLAUSE_MAP
@@ -2972,6 +2996,7 @@ EMPTY_CLASS(DeviceType);
 WRAPPER_CLASS(DistSchedule, std::optional<ScalarIntExpr>);
 EMPTY_CLASS(DynamicAllocators);
 EMPTY_CLASS(Exclusive);
+WRAPPER_CLASS(Filter, ScalarIntExpr);
 WRAPPER_CLASS(Final, ScalarLogicalExpr);
 WRAPPER_CLASS(Firstprivate, OmpObjectList);
 EMPTY_CLASS(Flush);
@@ -2992,6 +3017,7 @@ EMPTY_CLASS(Match);
 EMPTY_CLASS(Mergeable);
 EMPTY_CLASS(Nogroup);
 EMPTY_CLASS(Nowait);
+WRAPPER_CLASS(Nocontext, ScalarLogicalExpr);
 EMPTY_CLASS(Nontemporal);
 EMPTY_CLASS(Notinbranch);
 WRAPPER_CLASS(Novariants, ScalarLogicalExpr);
@@ -3059,6 +3085,7 @@ AcqRel
 , DistSchedule
 , DynamicAllocators
 , Exclusive
+, Filter
 , Final
 , Firstprivate
 , Flush
@@ -3079,6 +3106,7 @@ AcqRel
 , Mergeable
 , Nogroup
 , Nowait
+, Nocontext
 , Nontemporal
 , Notinbranch
 , Novariants
@@ -3146,6 +3174,7 @@ NODE(OmpClause, DeviceType)
 NODE(OmpClause, DistSchedule)
 NODE(OmpClause, DynamicAllocators)
 NODE(OmpClause, Exclusive)
+NODE(OmpClause, Filter)
 NODE(OmpClause, Final)
 NODE(OmpClause, Firstprivate)
 NODE(OmpClause, Flush)
@@ -3166,6 +3195,7 @@ NODE(OmpClause, Match)
 NODE(OmpClause, Mergeable)
 NODE(OmpClause, Nogroup)
 NODE(OmpClause, Nowait)
+NODE(OmpClause, Nocontext)
 NODE(OmpClause, Nontemporal)
 NODE(OmpClause, Notinbranch)
 NODE(OmpClause, Novariants)
@@ -3286,6 +3316,12 @@ void Unparse(const OmpClause::DistSchedule &x) {
 }
 void Before(const OmpClause::DynamicAllocators &) { Word("DYNAMIC_ALLOCATORS"); }
 void Before(const OmpClause::Exclusive &) { Word("EXCLUSIVE"); }
+void Unparse(const OmpClause::Filter &x) {
+  Word("FILTER");
+  Put("(");
+  Walk(x.v);
+  Put(")");
+}
 void Unparse(const OmpClause::Final &x) {
   Word("FINAL");
   Put("(");
@@ -3361,6 +3397,12 @@ void Before(const OmpClause::Match &) { Word("MATCH"); }
 void Before(const OmpClause::Mergeable &) { Word("MERGEABLE"); }
 void Before(const OmpClause::Nogroup &) { Word("NOGROUP"); }
 void Before(const OmpClause::Nowait &) { Word("NOWAIT"); }
+void Unparse(const OmpClause::Nocontext &x) {
+  Word("NOCONTEXT");
+  Put("(");
+  Walk(x.v);
+  Put(")");
+}
 void Before(const OmpClause::Nontemporal &) { Word("NONTEMPORAL"); }
 void Before(const OmpClause::Notinbranch &) { Word("NOTINBRANCH"); }
 void Unparse(const OmpClause::Novariants &x) {
@@ -3516,6 +3558,7 @@ void Enter(const parser::OmpClause::DeviceType &);
 void Enter(const parser::OmpClause::DistSchedule &);
 void Enter(const parser::OmpClause::DynamicAllocators &);
 void Enter(const parser::OmpClause::Exclusive &);
+void Enter(const parser::OmpClause::Filter &);
 void Enter(const parser::OmpClause::Final &);
 void Enter(const parser::OmpClause::Firstprivate &);
 void Enter(const parser::OmpClause::Flush &);
@@ -3536,6 +3579,7 @@ void Enter(const parser::OmpClause::Match &);
 void Enter(const parser::OmpClause::Mergeable &);
 void Enter(const parser::OmpClause::Nogroup &);
 void Enter(const parser::OmpClause::Nowait &);
+void Enter(const parser::OmpClause::Nocontext &);
 void Enter(const parser::OmpClause::Nontemporal &);
 void Enter(const parser::OmpClause::Notinbranch &);
 void Enter(const parser::OmpClause::Novariants &);
@@ -3625,6 +3669,8 @@ if constexpr (std::is_same_v<A, parser::OmpClause::DynamicAllocators>)
   return llvm::omp::Clause::OMPC_dynamic_allocators;
 if constexpr (std::is_same_v<A, parser::OmpClause::Exclusive>)
   return llvm::omp::Clause::OMPC_exclusive;
+if constexpr (std::is_same_v<A, parser::OmpClause::Filter>)
+  return llvm::omp::Clause::OMPC_filter;
 if constexpr (std::is_same_v<A, parser::OmpClause::Final>)
   return llvm::omp::Clause::OMPC_final;
 if constexpr (std::is_same_v<A, parser::OmpClause::Firstprivate>)
@@ -3665,6 +3711,8 @@ if constexpr (std::is_same_v<A, parser::OmpClause::Nogroup>)
   return llvm::omp::Clause::OMPC_nogroup;
 if constexpr (std::is_same_v<A, parser::OmpClause::Nowait>)
   return llvm::omp::Clause::OMPC_nowait;
+if constexpr (std::is_same_v<A, parser::OmpClause::Nocontext>)
+  return llvm::omp::Clause::OMPC_nocontext;
 if constexpr (std::is_same_v<A, parser::OmpClause::Nontemporal>)
   return llvm::omp::Clause::OMPC_nontemporal;
 if constexpr (std::is_same_v<A, parser::OmpClause::Notinbranch>)
@@ -3795,6 +3843,7 @@ __CLAUSE_NO_CLASS(device_type)
 __CLAUSE(dist_schedule, OMPDistScheduleClause)
 __CLAUSE(dynamic_allocators, OMPDynamicAllocatorsClause)
 __CLAUSE(exclusive, OMPExclusiveClause)
+__CLAUSE(filter, OMPFilterClause)
 __CLAUSE(final, OMPFinalClause)
 __CLAUSE(firstprivate, OMPFirstprivateClause)
 __IMPLICIT_CLAUSE_CLASS(flush, "flush", OMPFlushClause)
@@ -3815,6 +3864,7 @@ __CLAUSE_NO_CLASS(match)
 __CLAUSE(mergeable, OMPMergeableClause)
 __CLAUSE(nogroup, OMPNogroupClause)
 __CLAUSE(nowait, OMPNowaitClause)
+__CLAUSE(nocontext, OMPNocontextClause)
 __CLAUSE(nontemporal, OMPNontemporalClause)
 __CLAUSE_NO_CLASS(notinbranch)
 __CLAUSE(novariants, OMPNovariantsClause)
@@ -3960,6 +4010,7 @@ Directive llvm::omp::getOpenMPDirectiveKind(llvm::StringRef Str) {
     .Case("workshare",OMPD_workshare)
     .Case("dispatch",OMPD_dispatch)
     .Case("interop",OMPD_interop)
+    .Case("masked",OMPD_masked)
     .Default(OMPD_unknown);
 }
 
@@ -4147,6 +4198,8 @@ llvm::StringRef llvm::omp::getOpenMPDirectiveName(Directive Kind) {
       return "dispatch";
     case OMPD_interop:
       return "interop";
+    case OMPD_masked:
+      return "masked";
   }
   llvm_unreachable("Invalid OpenMP Directive kind");
 }
@@ -4175,6 +4228,7 @@ Clause llvm::omp::getOpenMPClauseKind(llvm::StringRef Str) {
     .Case("dist_schedule",OMPC_dist_schedule)
     .Case("dynamic_allocators",OMPC_dynamic_allocators)
     .Case("exclusive",OMPC_exclusive)
+    .Case("filter",OMPC_filter)
     .Case("final",OMPC_final)
     .Case("firstprivate",OMPC_firstprivate)
     .Case("flush",OMPC_unknown)
@@ -4195,6 +4249,7 @@ Clause llvm::omp::getOpenMPClauseKind(llvm::StringRef Str) {
     .Case("mergeable",OMPC_mergeable)
     .Case("nogroup",OMPC_nogroup)
     .Case("nowait",OMPC_nowait)
+    .Case("nocontext",OMPC_nocontext)
     .Case("nontemporal",OMPC_nontemporal)
     .Case("notinbranch",OMPC_notinbranch)
     .Case("novariants",OMPC_novariants)
@@ -4283,6 +4338,8 @@ llvm::StringRef llvm::omp::getOpenMPClauseName(Clause Kind) {
       return "dynamic_allocators";
     case OMPC_exclusive:
       return "exclusive";
+    case OMPC_filter:
+      return "filter";
     case OMPC_final:
       return "final";
     case OMPC_firstprivate:
@@ -4323,6 +4380,8 @@ llvm::StringRef llvm::omp::getOpenMPClauseName(Clause Kind) {
       return "nogroup";
     case OMPC_nowait:
       return "nowait";
+    case OMPC_nocontext:
+      return "nocontext";
     case OMPC_nontemporal:
       return "nontemporal";
     case OMPC_notinbranch:
@@ -6812,6 +6871,8 @@ bool llvm::omp::isAllowedClauseForDirective(Directive D, Clause C, unsigned Vers
           return 1 <= Version && 2147483647 >= Version;
         case OMPC_novariants:
           return 1 <= Version && 2147483647 >= Version;
+        case OMPC_nocontext:
+          return 1 <= Version && 2147483647 >= Version;
         default:
           return false;
       }
@@ -6829,6 +6890,14 @@ bool llvm::omp::isAllowedClauseForDirective(Directive D, Clause C, unsigned Vers
         case OMPC_nowait:
           return 1 <= Version && 2147483647 >= Version;
         case OMPC_use:
+          return 1 <= Version && 2147483647 >= Version;
+        default:
+          return false;
+      }
+      break;
+    case OMPD_masked:
+      switch (C) {
+        case OMPC_filter:
           return 1 <= Version && 2147483647 >= Version;
         default:
           return false;

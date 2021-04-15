@@ -16,9 +16,9 @@
 #include "clang/Serialization/ModuleFileExtension.h"
 #include "llvm/ADT/StringRef.h"
 #include <cassert>
+#include <map>
 #include <memory>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 namespace llvm {
@@ -302,6 +302,7 @@ public:
 
   unsigned IndexIgnoreSystemSymbols : 1;
   unsigned IndexRecordCodegenName : 1;
+  unsigned IndexIgnoreMacros : 1;
 
   /// Output (and read) PCM files regardless of compiler errors.
   unsigned AllowPCMWithCompilerErrors : 1;
@@ -410,7 +411,7 @@ public:
   std::string ActionName;
 
   /// Args to pass to the plugins
-  std::unordered_map<std::string,std::vector<std::string>> PluginArgs;
+  std::map<std::string, std::vector<std::string>> PluginArgs;
 
   /// The list of plugin actions to run in addition to the normal action.
   std::vector<std::string> AddPluginActions;
