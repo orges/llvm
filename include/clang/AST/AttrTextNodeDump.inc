@@ -133,6 +133,12 @@
     const auto *SA = cast<BuiltinAttr>(A); (void)SA;
     OS << " " << SA->getID();
   }
+  void VisitBuiltinAliasAttr(const BuiltinAliasAttr *A) {
+    const auto *SA = cast<BuiltinAliasAttr>(A); (void)SA;
+    OS << " " << A->getSpelling();
+    if (SA->getBuiltinName())
+      OS << " " << SA->getBuiltinName()->getName();
+  }
   void VisitCFGuardAttr(const CFGuardAttr *A) {
     const auto *SA = cast<CFGuardAttr>(A); (void)SA;
     switch(SA->getGuard()) {

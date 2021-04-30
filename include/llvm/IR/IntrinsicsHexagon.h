@@ -980,12 +980,72 @@ enum HEXAGONIntrinsics : unsigned {
     hexagon_V6_v6mpyvubs10_128B,               // llvm.hexagon.V6.v6mpyvubs10.128B
     hexagon_V6_v6mpyvubs10_vxx,                // llvm.hexagon.V6.v6mpyvubs10.vxx
     hexagon_V6_v6mpyvubs10_vxx_128B,           // llvm.hexagon.V6.v6mpyvubs10.vxx.128B
+    hexagon_V6_vL32b_npred_ai,                 // llvm.hexagon.V6.vL32b.npred.ai
+    hexagon_V6_vL32b_npred_ai_128B,            // llvm.hexagon.V6.vL32b.npred.ai.128B
+    hexagon_V6_vL32b_npred_pi,                 // llvm.hexagon.V6.vL32b.npred.pi
+    hexagon_V6_vL32b_npred_pi_128B,            // llvm.hexagon.V6.vL32b.npred.pi.128B
+    hexagon_V6_vL32b_npred_ppu,                // llvm.hexagon.V6.vL32b.npred.ppu
+    hexagon_V6_vL32b_npred_ppu_128B,           // llvm.hexagon.V6.vL32b.npred.ppu.128B
+    hexagon_V6_vL32b_nt_npred_ai,              // llvm.hexagon.V6.vL32b.nt.npred.ai
+    hexagon_V6_vL32b_nt_npred_ai_128B,         // llvm.hexagon.V6.vL32b.nt.npred.ai.128B
+    hexagon_V6_vL32b_nt_npred_pi,              // llvm.hexagon.V6.vL32b.nt.npred.pi
+    hexagon_V6_vL32b_nt_npred_pi_128B,         // llvm.hexagon.V6.vL32b.nt.npred.pi.128B
+    hexagon_V6_vL32b_nt_npred_ppu,             // llvm.hexagon.V6.vL32b.nt.npred.ppu
+    hexagon_V6_vL32b_nt_npred_ppu_128B,        // llvm.hexagon.V6.vL32b.nt.npred.ppu.128B
+    hexagon_V6_vL32b_nt_pred_ai,               // llvm.hexagon.V6.vL32b.nt.pred.ai
+    hexagon_V6_vL32b_nt_pred_ai_128B,          // llvm.hexagon.V6.vL32b.nt.pred.ai.128B
+    hexagon_V6_vL32b_nt_pred_pi,               // llvm.hexagon.V6.vL32b.nt.pred.pi
+    hexagon_V6_vL32b_nt_pred_pi_128B,          // llvm.hexagon.V6.vL32b.nt.pred.pi.128B
+    hexagon_V6_vL32b_nt_pred_ppu,              // llvm.hexagon.V6.vL32b.nt.pred.ppu
+    hexagon_V6_vL32b_nt_pred_ppu_128B,         // llvm.hexagon.V6.vL32b.nt.pred.ppu.128B
+    hexagon_V6_vL32b_pred_ai,                  // llvm.hexagon.V6.vL32b.pred.ai
+    hexagon_V6_vL32b_pred_ai_128B,             // llvm.hexagon.V6.vL32b.pred.ai.128B
+    hexagon_V6_vL32b_pred_pi,                  // llvm.hexagon.V6.vL32b.pred.pi
+    hexagon_V6_vL32b_pred_pi_128B,             // llvm.hexagon.V6.vL32b.pred.pi.128B
+    hexagon_V6_vL32b_pred_ppu,                 // llvm.hexagon.V6.vL32b.pred.ppu
+    hexagon_V6_vL32b_pred_ppu_128B,            // llvm.hexagon.V6.vL32b.pred.ppu.128B
+    hexagon_V6_vS32Ub_npred_ai,                // llvm.hexagon.V6.vS32Ub.npred.ai
+    hexagon_V6_vS32Ub_npred_ai_128B,           // llvm.hexagon.V6.vS32Ub.npred.ai.128B
+    hexagon_V6_vS32Ub_npred_pi,                // llvm.hexagon.V6.vS32Ub.npred.pi
+    hexagon_V6_vS32Ub_npred_pi_128B,           // llvm.hexagon.V6.vS32Ub.npred.pi.128B
+    hexagon_V6_vS32Ub_npred_ppu,               // llvm.hexagon.V6.vS32Ub.npred.ppu
+    hexagon_V6_vS32Ub_npred_ppu_128B,          // llvm.hexagon.V6.vS32Ub.npred.ppu.128B
+    hexagon_V6_vS32Ub_pred_ai,                 // llvm.hexagon.V6.vS32Ub.pred.ai
+    hexagon_V6_vS32Ub_pred_ai_128B,            // llvm.hexagon.V6.vS32Ub.pred.ai.128B
+    hexagon_V6_vS32Ub_pred_pi,                 // llvm.hexagon.V6.vS32Ub.pred.pi
+    hexagon_V6_vS32Ub_pred_pi_128B,            // llvm.hexagon.V6.vS32Ub.pred.pi.128B
+    hexagon_V6_vS32Ub_pred_ppu,                // llvm.hexagon.V6.vS32Ub.pred.ppu
+    hexagon_V6_vS32Ub_pred_ppu_128B,           // llvm.hexagon.V6.vS32Ub.pred.ppu.128B
+    hexagon_V6_vS32b_npred_ai,                 // llvm.hexagon.V6.vS32b.npred.ai
+    hexagon_V6_vS32b_npred_ai_128B,            // llvm.hexagon.V6.vS32b.npred.ai.128B
+    hexagon_V6_vS32b_npred_pi,                 // llvm.hexagon.V6.vS32b.npred.pi
+    hexagon_V6_vS32b_npred_pi_128B,            // llvm.hexagon.V6.vS32b.npred.pi.128B
+    hexagon_V6_vS32b_npred_ppu,                // llvm.hexagon.V6.vS32b.npred.ppu
+    hexagon_V6_vS32b_npred_ppu_128B,           // llvm.hexagon.V6.vS32b.npred.ppu.128B
     hexagon_V6_vS32b_nqpred_ai,                // llvm.hexagon.V6.vS32b.nqpred.ai
     hexagon_V6_vS32b_nqpred_ai_128B,           // llvm.hexagon.V6.vS32b.nqpred.ai.128B
+    hexagon_V6_vS32b_nt_npred_ai,              // llvm.hexagon.V6.vS32b.nt.npred.ai
+    hexagon_V6_vS32b_nt_npred_ai_128B,         // llvm.hexagon.V6.vS32b.nt.npred.ai.128B
+    hexagon_V6_vS32b_nt_npred_pi,              // llvm.hexagon.V6.vS32b.nt.npred.pi
+    hexagon_V6_vS32b_nt_npred_pi_128B,         // llvm.hexagon.V6.vS32b.nt.npred.pi.128B
+    hexagon_V6_vS32b_nt_npred_ppu,             // llvm.hexagon.V6.vS32b.nt.npred.ppu
+    hexagon_V6_vS32b_nt_npred_ppu_128B,        // llvm.hexagon.V6.vS32b.nt.npred.ppu.128B
     hexagon_V6_vS32b_nt_nqpred_ai,             // llvm.hexagon.V6.vS32b.nt.nqpred.ai
     hexagon_V6_vS32b_nt_nqpred_ai_128B,        // llvm.hexagon.V6.vS32b.nt.nqpred.ai.128B
+    hexagon_V6_vS32b_nt_pred_ai,               // llvm.hexagon.V6.vS32b.nt.pred.ai
+    hexagon_V6_vS32b_nt_pred_ai_128B,          // llvm.hexagon.V6.vS32b.nt.pred.ai.128B
+    hexagon_V6_vS32b_nt_pred_pi,               // llvm.hexagon.V6.vS32b.nt.pred.pi
+    hexagon_V6_vS32b_nt_pred_pi_128B,          // llvm.hexagon.V6.vS32b.nt.pred.pi.128B
+    hexagon_V6_vS32b_nt_pred_ppu,              // llvm.hexagon.V6.vS32b.nt.pred.ppu
+    hexagon_V6_vS32b_nt_pred_ppu_128B,         // llvm.hexagon.V6.vS32b.nt.pred.ppu.128B
     hexagon_V6_vS32b_nt_qpred_ai,              // llvm.hexagon.V6.vS32b.nt.qpred.ai
     hexagon_V6_vS32b_nt_qpred_ai_128B,         // llvm.hexagon.V6.vS32b.nt.qpred.ai.128B
+    hexagon_V6_vS32b_pred_ai,                  // llvm.hexagon.V6.vS32b.pred.ai
+    hexagon_V6_vS32b_pred_ai_128B,             // llvm.hexagon.V6.vS32b.pred.ai.128B
+    hexagon_V6_vS32b_pred_pi,                  // llvm.hexagon.V6.vS32b.pred.pi
+    hexagon_V6_vS32b_pred_pi_128B,             // llvm.hexagon.V6.vS32b.pred.pi.128B
+    hexagon_V6_vS32b_pred_ppu,                 // llvm.hexagon.V6.vS32b.pred.ppu
+    hexagon_V6_vS32b_pred_ppu_128B,            // llvm.hexagon.V6.vS32b.pred.ppu.128B
     hexagon_V6_vS32b_qpred_ai,                 // llvm.hexagon.V6.vS32b.qpred.ai
     hexagon_V6_vS32b_qpred_ai_128B,            // llvm.hexagon.V6.vS32b.qpred.ai.128B
     hexagon_V6_vabsb,                          // llvm.hexagon.V6.vabsb

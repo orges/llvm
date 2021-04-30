@@ -42,6 +42,8 @@
 .Case("__clang_arm_builtin_alias", true)
 .Case("availability", true)
 .Case("blocks", true)
+.Case("builtin_alias", true)
+.Case("clang_builtin_alias", true)
 .Case("guard", true)
 .Case("callable_when", true)
 .Case("consumable", true)

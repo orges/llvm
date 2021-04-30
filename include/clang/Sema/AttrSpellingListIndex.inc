@@ -335,6 +335,15 @@
         return 2;
     break;
   }
+  case AT_BuiltinAlias: {
+    if (Name == "builtin_alias" && getSyntax() == AttributeCommonInfo::AS_CXX11 && Scope == "clang")
+        return 0;
+    if (Name == "builtin_alias" && getSyntax() == AttributeCommonInfo::AS_C2x && Scope == "clang")
+        return 1;
+    if (Name == "clang_builtin_alias" && getSyntax() == AttributeCommonInfo::AS_GNU && Scope == "")
+        return 2;
+    break;
+  }
   case AT_CDecl: {
     if (Name == "cdecl" && getSyntax() == AttributeCommonInfo::AS_GNU && Scope == "")
         return 0;
@@ -1144,6 +1153,15 @@
     if (Name == "mode" && getSyntax() == AttributeCommonInfo::AS_CXX11 && Scope == "gnu")
         return 1;
     if (Name == "mode" && getSyntax() == AttributeCommonInfo::AS_C2x && Scope == "gnu")
+        return 2;
+    break;
+  }
+  case AT_MustTail: {
+    if (Name == "musttail" && getSyntax() == AttributeCommonInfo::AS_GNU && Scope == "")
+        return 0;
+    if (Name == "musttail" && getSyntax() == AttributeCommonInfo::AS_CXX11 && Scope == "clang")
+        return 1;
+    if (Name == "musttail" && getSyntax() == AttributeCommonInfo::AS_C2x && Scope == "clang")
         return 2;
     break;
   }

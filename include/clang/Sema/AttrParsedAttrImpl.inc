@@ -1625,6 +1625,64 @@ struct ParsedAttrInfoBlocks final : public ParsedAttrInfo {
 static const ParsedAttrInfoBlocks Instance;
 };
 const ParsedAttrInfoBlocks ParsedAttrInfoBlocks::Instance;
+static constexpr ParsedAttrInfo::Spelling BuiltinAliasSpellings[] = {
+  {AttributeCommonInfo::AS_CXX11, "clang::builtin_alias"},
+  {AttributeCommonInfo::AS_C2x, "clang::builtin_alias"},
+  {AttributeCommonInfo::AS_GNU, "clang_builtin_alias"},
+};
+struct ParsedAttrInfoBuiltinAlias final : public ParsedAttrInfo {
+  ParsedAttrInfoBuiltinAlias() {
+    AttrKind = ParsedAttr::AT_BuiltinAlias;
+    NumArgs = 1;
+    OptArgs = 0;
+    HasCustomParsing = 0;
+    IsTargetSpecific = 0;
+    IsType = 0;
+    IsStmt = 0;
+    IsKnownToGCC = 0;
+    IsSupportedByPragmaAttribute = 1;
+    Spellings = BuiltinAliasSpellings;
+  }
+bool diagAppertainsToDecl(Sema &S, const ParsedAttr &Attr, const Decl *D) const override {
+  if (!isa<FunctionDecl>(D)) {
+    S.Diag(Attr.getLoc(), diag::err_attribute_wrong_decl_type_str)
+      << Attr << "functions";
+    return false;
+  }
+  return true;
+}
+
+bool diagAppertainsToStmt(Sema &S, const ParsedAttr &AL, const Stmt *St) const override {
+  S.Diag(AL.getLoc(), diag::err_decl_attribute_invalid_on_stmt)
+    << AL << St->getBeginLoc();
+  return false;
+}
+
+unsigned spellingIndexToSemanticSpelling(const ParsedAttr &Attr) const override {
+  enum Spelling {
+    CXX11_clang_builtin_alias = 0,
+    C2x_clang_builtin_alias = 1,
+    GNU_clang_builtin_alias = 2,
+  SpellingNotCalculated = 15
+
+  };
+
+  unsigned Idx = Attr.getAttributeSpellingListIndex();
+  switch (Idx) {
+    default: llvm_unreachable("Unknown spelling list index");
+    case 0: return CXX11_clang_builtin_alias;
+    case 1: return C2x_clang_builtin_alias;
+    case 2: return GNU_clang_builtin_alias;
+  }
+}
+
+void getPragmaAttributeMatchRules(llvm::SmallVectorImpl<std::pair<attr::SubjectMatchRule, bool>> &MatchRules, const LangOptions &LangOpts) const override {
+  MatchRules.push_back(std::make_pair(attr::SubjectMatchRule_function, /*IsSupported=*/true));
+}
+
+static const ParsedAttrInfoBuiltinAlias Instance;
+};
+const ParsedAttrInfoBuiltinAlias ParsedAttrInfoBuiltinAlias::Instance;
 static constexpr ParsedAttrInfo::Spelling CDeclSpellings[] = {
   {AttributeCommonInfo::AS_GNU, "cdecl"},
   {AttributeCommonInfo::AS_CXX11, "gnu::cdecl"},
@@ -5904,6 +5962,42 @@ bool diagAppertainsToStmt(Sema &S, const ParsedAttr &AL, const Stmt *St) const o
 static const ParsedAttrInfoMode Instance;
 };
 const ParsedAttrInfoMode ParsedAttrInfoMode::Instance;
+static constexpr ParsedAttrInfo::Spelling MustTailSpellings[] = {
+  {AttributeCommonInfo::AS_GNU, "musttail"},
+  {AttributeCommonInfo::AS_CXX11, "clang::musttail"},
+  {AttributeCommonInfo::AS_C2x, "clang::musttail"},
+};
+struct ParsedAttrInfoMustTail final : public ParsedAttrInfo {
+  ParsedAttrInfoMustTail() {
+    AttrKind = ParsedAttr::AT_MustTail;
+    NumArgs = 0;
+    OptArgs = 0;
+    HasCustomParsing = 0;
+    IsTargetSpecific = 0;
+    IsType = 0;
+    IsStmt = 1;
+    IsKnownToGCC = 0;
+    IsSupportedByPragmaAttribute = 0;
+    Spellings = MustTailSpellings;
+  }
+bool diagAppertainsToDecl(Sema &S, const ParsedAttr &AL, const Decl *D) const override {
+  S.Diag(AL.getLoc(), diag::err_stmt_attribute_invalid_on_decl)
+    << AL << D->getLocation();
+  return false;
+}
+
+bool diagAppertainsToStmt(Sema &S, const ParsedAttr &Attr, const Stmt *St) const override {
+  if (!isa<ReturnStmt>(St)) {
+    S.Diag(Attr.getLoc(), diag::err_attribute_wrong_decl_type_str)
+      << Attr << "return statements";
+    return false;
+  }
+  return true;
+}
+
+static const ParsedAttrInfoMustTail Instance;
+};
+const ParsedAttrInfoMustTail ParsedAttrInfoMustTail::Instance;
 static constexpr ParsedAttrInfo::Spelling NSConsumedSpellings[] = {
   {AttributeCommonInfo::AS_GNU, "ns_consumed"},
   {AttributeCommonInfo::AS_CXX11, "clang::ns_consumed"},
@@ -13052,6 +13146,7 @@ static const ParsedAttrInfo *AttrInfoMap[] = {
 &ParsedAttrInfoAvailability::Instance,
 &ParsedAttrInfoBPFPreserveAccessIndex::Instance,
 &ParsedAttrInfoBlocks::Instance,
+&ParsedAttrInfoBuiltinAlias::Instance,
 &ParsedAttrInfoCDecl::Instance,
 &ParsedAttrInfoCFAuditedTransfer::Instance,
 &ParsedAttrInfoCFConsumed::Instance,
@@ -13150,6 +13245,7 @@ static const ParsedAttrInfo *AttrInfoMap[] = {
 &ParsedAttrInfoMipsLongCall::Instance,
 &ParsedAttrInfoMipsShortCall::Instance,
 &ParsedAttrInfoMode::Instance,
+&ParsedAttrInfoMustTail::Instance,
 &ParsedAttrInfoNSConsumed::Instance,
 &ParsedAttrInfoNSConsumesSelf::Instance,
 &ParsedAttrInfoNSErrorDomain::Instance,

@@ -180,6 +180,10 @@
   bool VisitBuiltinAttr(BuiltinAttr *A) {
     return true; 
   }
+  bool TraverseBuiltinAliasAttr(BuiltinAliasAttr *A);
+  bool VisitBuiltinAliasAttr(BuiltinAliasAttr *A) {
+    return true; 
+  }
   bool TraverseC11NoReturnAttr(C11NoReturnAttr *A);
   bool VisitC11NoReturnAttr(C11NoReturnAttr *A) {
     return true; 
@@ -594,6 +598,10 @@
   }
   bool TraverseModeAttr(ModeAttr *A);
   bool VisitModeAttr(ModeAttr *A) {
+    return true; 
+  }
+  bool TraverseMustTailAttr(MustTailAttr *A);
+  bool VisitMustTailAttr(MustTailAttr *A) {
     return true; 
   }
   bool TraverseNSConsumedAttr(NSConsumedAttr *A);
@@ -1844,6 +1852,15 @@ bool VISITORCLASS<Derived>::TraverseBuiltinAttr(BuiltinAttr *A) {
 }
 
 template <typename Derived>
+bool VISITORCLASS<Derived>::TraverseBuiltinAliasAttr(BuiltinAliasAttr *A) {
+  if (!getDerived().VisitAttr(A))
+    return false;
+  if (!getDerived().VisitBuiltinAliasAttr(A))
+    return false;
+  return true;
+}
+
+template <typename Derived>
 bool VISITORCLASS<Derived>::TraverseC11NoReturnAttr(C11NoReturnAttr *A) {
   if (!getDerived().VisitAttr(A))
     return false;
@@ -2810,6 +2827,15 @@ bool VISITORCLASS<Derived>::TraverseModeAttr(ModeAttr *A) {
   if (!getDerived().VisitAttr(A))
     return false;
   if (!getDerived().VisitModeAttr(A))
+    return false;
+  return true;
+}
+
+template <typename Derived>
+bool VISITORCLASS<Derived>::TraverseMustTailAttr(MustTailAttr *A) {
+  if (!getDerived().VisitAttr(A))
+    return false;
+  if (!getDerived().VisitMustTailAttr(A))
     return false;
   return true;
 }
@@ -4762,6 +4788,8 @@ bool VISITORCLASS<Derived>::TraverseAttr(Attr *A) {
       return getDerived().TraverseBlocksAttr(cast<BlocksAttr>(A));
     case attr::Builtin:
       return getDerived().TraverseBuiltinAttr(cast<BuiltinAttr>(A));
+    case attr::BuiltinAlias:
+      return getDerived().TraverseBuiltinAliasAttr(cast<BuiltinAliasAttr>(A));
     case attr::C11NoReturn:
       return getDerived().TraverseC11NoReturnAttr(cast<C11NoReturnAttr>(A));
     case attr::CDecl:
@@ -4970,6 +4998,8 @@ bool VISITORCLASS<Derived>::TraverseAttr(Attr *A) {
       return getDerived().TraverseMipsShortCallAttr(cast<MipsShortCallAttr>(A));
     case attr::Mode:
       return getDerived().TraverseModeAttr(cast<ModeAttr>(A));
+    case attr::MustTail:
+      return getDerived().TraverseMustTailAttr(cast<MustTailAttr>(A));
     case attr::NSConsumed:
       return getDerived().TraverseNSConsumedAttr(cast<NSConsumedAttr>(A));
     case attr::NSConsumesSelf:

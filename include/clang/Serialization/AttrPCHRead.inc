@@ -513,6 +513,15 @@
     New->setPackExpansion(isPackExpansion);
     break;
   }
+  case attr::BuiltinAlias: {
+    bool isImplicit = Record.readInt();
+    bool isPackExpansion = Record.readInt();
+    IdentifierInfo * builtinName = Record.readIdentifier();
+    New = new (Context) BuiltinAliasAttr(Context, Info, builtinName);
+    New->setImplicit(isImplicit);
+    New->setPackExpansion(isPackExpansion);
+    break;
+  }
   case attr::C11NoReturn: {
     bool isInherited = Record.readInt();
     bool isImplicit = Record.readInt();
@@ -1608,6 +1617,14 @@
     bool isPackExpansion = Record.readInt();
     IdentifierInfo * mode = Record.readIdentifier();
     New = new (Context) ModeAttr(Context, Info, mode);
+    New->setImplicit(isImplicit);
+    New->setPackExpansion(isPackExpansion);
+    break;
+  }
+  case attr::MustTail: {
+    bool isImplicit = Record.readInt();
+    bool isPackExpansion = Record.readInt();
+    New = new (Context) MustTailAttr(Context, Info);
     New->setImplicit(isImplicit);
     New->setPackExpansion(isPackExpansion);
     break;

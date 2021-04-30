@@ -7,10 +7,10 @@ namespace omp {
   // Sets for allocate
 
   static OmpClauseSet allowedClauses_OMPD_allocate {
-    llvm::omp::Clause::OMPC_allocator,
   };
 
   static OmpClauseSet allowedOnceClauses_OMPD_allocate {
+    llvm::omp::Clause::OMPC_allocator,
   };
 
   static OmpClauseSet allowedExclusiveClauses_OMPD_allocate {

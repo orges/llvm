@@ -4344,6 +4344,109 @@ const char *BuiltinAttr::getSpelling() const {
 }
 
 
+// BuiltinAliasAttr implementation
+
+BuiltinAliasAttr *BuiltinAliasAttr::CreateImplicit(ASTContext &Ctx, IdentifierInfo * BuiltinName, const AttributeCommonInfo &CommonInfo) {
+  auto *A = new (Ctx) BuiltinAliasAttr(Ctx, CommonInfo, BuiltinName);
+  A->setImplicit(true);
+  if (!A->isAttributeSpellingListCalculated() && !A->getAttrName())
+    A->setAttributeSpellingListIndex(0);
+  return A;
+}
+
+BuiltinAliasAttr *BuiltinAliasAttr::Create(ASTContext &Ctx, IdentifierInfo * BuiltinName, const AttributeCommonInfo &CommonInfo) {
+  auto *A = new (Ctx) BuiltinAliasAttr(Ctx, CommonInfo, BuiltinName);
+  return A;
+}
+
+BuiltinAliasAttr *BuiltinAliasAttr::CreateImplicit(ASTContext &Ctx, IdentifierInfo * BuiltinName, SourceRange Range, AttributeCommonInfo::Syntax Syntax, BuiltinAliasAttr::Spelling S) {
+  AttributeCommonInfo I(Range, NoSemaHandlerAttribute, Syntax, S);
+  return CreateImplicit(Ctx, BuiltinName, I);
+}
+
+BuiltinAliasAttr *BuiltinAliasAttr::Create(ASTContext &Ctx, IdentifierInfo * BuiltinName, SourceRange Range, AttributeCommonInfo::Syntax Syntax, BuiltinAliasAttr::Spelling S) {
+  AttributeCommonInfo I(Range, NoSemaHandlerAttribute, Syntax, S);
+  return Create(Ctx, BuiltinName, I);
+}
+
+BuiltinAliasAttr::BuiltinAliasAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
+              , IdentifierInfo * BuiltinName
+             )
+  : Attr(Ctx, CommonInfo, attr::BuiltinAlias, false)
+              , builtinName(BuiltinName)
+  {
+}
+
+BuiltinAliasAttr::Spelling BuiltinAliasAttr::getSemanticSpelling() const {
+  switch (getAttributeSpellingListIndex()) {
+    default: llvm_unreachable("Unknown spelling list index");
+    case 0: return CXX11_clang_builtin_alias;
+    case 1: return C2x_clang_builtin_alias;
+    case 2: return GNU_clang_builtin_alias;
+  }
+}
+
+
+BuiltinAliasAttr *BuiltinAliasAttr::clone(ASTContext &C) const {
+  auto *A = new (C) BuiltinAliasAttr(C, *this, builtinName);
+  A->Inherited = Inherited;
+  A->IsPackExpansion = IsPackExpansion;
+  A->setImplicit(Implicit);
+  return A;
+}
+
+void BuiltinAliasAttr::printPretty(raw_ostream &OS, const PrintingPolicy &Policy) const {
+  bool IsFirstArgument = true; (void)IsFirstArgument;
+  unsigned TrailingOmittedArgs = 0; (void)TrailingOmittedArgs;
+  switch (getAttributeSpellingListIndex()) {
+  default:
+    llvm_unreachable("Unknown attribute spelling!");
+    break;
+  case 0 : {
+    OS << " [[clang::builtin_alias";
+    DelimitAttributeArgument(OS, IsFirstArgument);
+    OS << "" << (getBuiltinName() ? getBuiltinName()->getName() : "") << "";
+    if (!IsFirstArgument)
+      OS << ")";
+    OS << "]]";
+    break;
+  }
+  case 1 : {
+    OS << " [[clang::builtin_alias";
+    DelimitAttributeArgument(OS, IsFirstArgument);
+    OS << "" << (getBuiltinName() ? getBuiltinName()->getName() : "") << "";
+    if (!IsFirstArgument)
+      OS << ")";
+    OS << "]]";
+    break;
+  }
+  case 2 : {
+    OS << " __attribute__((clang_builtin_alias";
+    DelimitAttributeArgument(OS, IsFirstArgument);
+    OS << "" << (getBuiltinName() ? getBuiltinName()->getName() : "") << "";
+    if (!IsFirstArgument)
+      OS << ")";
+    OS << "))";
+    break;
+  }
+}
+}
+
+const char *BuiltinAliasAttr::getSpelling() const {
+  switch (getAttributeSpellingListIndex()) {
+  default:
+    llvm_unreachable("Unknown attribute spelling!");
+    return "(No spelling)";
+  case 0:
+    return "builtin_alias";
+  case 1:
+    return "builtin_alias";
+  case 2:
+    return "clang_builtin_alias";
+  }
+}
+
+
 // C11NoReturnAttr implementation
 
 C11NoReturnAttr *C11NoReturnAttr::CreateImplicit(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo) {
@@ -13456,6 +13559,87 @@ const char *ModeAttr::getSpelling() const {
     return "mode";
   case 2:
     return "mode";
+  }
+}
+
+
+// MustTailAttr implementation
+
+MustTailAttr *MustTailAttr::CreateImplicit(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo) {
+  auto *A = new (Ctx) MustTailAttr(Ctx, CommonInfo);
+  A->setImplicit(true);
+  if (!A->isAttributeSpellingListCalculated() && !A->getAttrName())
+    A->setAttributeSpellingListIndex(0);
+  return A;
+}
+
+MustTailAttr *MustTailAttr::Create(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo) {
+  auto *A = new (Ctx) MustTailAttr(Ctx, CommonInfo);
+  if (!A->isAttributeSpellingListCalculated() && !A->getAttrName())
+    A->setAttributeSpellingListIndex(0);
+  return A;
+}
+
+MustTailAttr *MustTailAttr::CreateImplicit(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax) {
+  AttributeCommonInfo I(Range, NoSemaHandlerAttribute, Syntax);
+  return CreateImplicit(Ctx, I);
+}
+
+MustTailAttr *MustTailAttr::Create(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax) {
+  AttributeCommonInfo I(Range, NoSemaHandlerAttribute, Syntax);
+  return Create(Ctx, I);
+}
+
+MustTailAttr::MustTailAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
+             )
+  : StmtAttr(Ctx, CommonInfo, attr::MustTail, false)
+  {
+}
+
+MustTailAttr *MustTailAttr::clone(ASTContext &C) const {
+  auto *A = new (C) MustTailAttr(C, *this);
+  A->Inherited = Inherited;
+  A->IsPackExpansion = IsPackExpansion;
+  A->setImplicit(Implicit);
+  return A;
+}
+
+void MustTailAttr::printPretty(raw_ostream &OS, const PrintingPolicy &Policy) const {
+  bool IsFirstArgument = true; (void)IsFirstArgument;
+  unsigned TrailingOmittedArgs = 0; (void)TrailingOmittedArgs;
+  switch (getAttributeSpellingListIndex()) {
+  default:
+    llvm_unreachable("Unknown attribute spelling!");
+    break;
+  case 0 : {
+    OS << " __attribute__((musttail";
+    OS << "))";
+    break;
+  }
+  case 1 : {
+    OS << " [[clang::musttail";
+    OS << "]]";
+    break;
+  }
+  case 2 : {
+    OS << " [[clang::musttail";
+    OS << "]]";
+    break;
+  }
+}
+}
+
+const char *MustTailAttr::getSpelling() const {
+  switch (getAttributeSpellingListIndex()) {
+  default:
+    llvm_unreachable("Unknown attribute spelling!");
+    return "(No spelling)";
+  case 0:
+    return "musttail";
+  case 1:
+    return "musttail";
+  case 2:
+    return "musttail";
   }
 }
 
@@ -30810,6 +30994,8 @@ const char *Attr::getSpelling() const {
     return cast<BlocksAttr>(this)->getSpelling();
   case attr::Builtin:
     return cast<BuiltinAttr>(this)->getSpelling();
+  case attr::BuiltinAlias:
+    return cast<BuiltinAliasAttr>(this)->getSpelling();
   case attr::C11NoReturn:
     return cast<C11NoReturnAttr>(this)->getSpelling();
   case attr::CDecl:
@@ -31018,6 +31204,8 @@ const char *Attr::getSpelling() const {
     return cast<MipsShortCallAttr>(this)->getSpelling();
   case attr::Mode:
     return cast<ModeAttr>(this)->getSpelling();
+  case attr::MustTail:
+    return cast<MustTailAttr>(this)->getSpelling();
   case attr::NSConsumed:
     return cast<NSConsumedAttr>(this)->getSpelling();
   case attr::NSConsumesSelf:
@@ -31500,6 +31688,8 @@ Attr *Attr::clone(ASTContext &C) const {
     return cast<BlocksAttr>(this)->clone(C);
   case attr::Builtin:
     return cast<BuiltinAttr>(this)->clone(C);
+  case attr::BuiltinAlias:
+    return cast<BuiltinAliasAttr>(this)->clone(C);
   case attr::C11NoReturn:
     return cast<C11NoReturnAttr>(this)->clone(C);
   case attr::CDecl:
@@ -31708,6 +31898,8 @@ Attr *Attr::clone(ASTContext &C) const {
     return cast<MipsShortCallAttr>(this)->clone(C);
   case attr::Mode:
     return cast<ModeAttr>(this)->clone(C);
+  case attr::MustTail:
+    return cast<MustTailAttr>(this)->clone(C);
   case attr::NSConsumed:
     return cast<NSConsumedAttr>(this)->clone(C);
   case attr::NSConsumesSelf:
@@ -32190,6 +32382,8 @@ void Attr::printPretty(raw_ostream &OS, const PrintingPolicy &Policy) const {
     return cast<BlocksAttr>(this)->printPretty(OS, Policy);
   case attr::Builtin:
     return cast<BuiltinAttr>(this)->printPretty(OS, Policy);
+  case attr::BuiltinAlias:
+    return cast<BuiltinAliasAttr>(this)->printPretty(OS, Policy);
   case attr::C11NoReturn:
     return cast<C11NoReturnAttr>(this)->printPretty(OS, Policy);
   case attr::CDecl:
@@ -32398,6 +32592,8 @@ void Attr::printPretty(raw_ostream &OS, const PrintingPolicy &Policy) const {
     return cast<MipsShortCallAttr>(this)->printPretty(OS, Policy);
   case attr::Mode:
     return cast<ModeAttr>(this)->printPretty(OS, Policy);
+  case attr::MustTail:
+    return cast<MustTailAttr>(this)->printPretty(OS, Policy);
   case attr::NSConsumed:
     return cast<NSConsumedAttr>(this)->printPretty(OS, Policy);
   case attr::NSConsumesSelf:

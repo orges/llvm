@@ -367,6 +367,13 @@ Record.push_back(SA->getType());
     Record.push_back(SA->getID());
     break;
   }
+  case attr::BuiltinAlias: {
+    const auto *SA = cast<BuiltinAliasAttr>(A);
+    Record.push_back(A->isImplicit());
+    Record.push_back(A->isPackExpansion());
+    Record.AddIdentifierRef(SA->getBuiltinName());
+    break;
+  }
   case attr::C11NoReturn: {
     const auto *SA = cast<C11NoReturnAttr>(A);
     Record.push_back(SA->isInherited());
@@ -1144,6 +1151,11 @@ Record.push_back(SA->getInterrupt());
     Record.push_back(A->isImplicit());
     Record.push_back(A->isPackExpansion());
     Record.AddIdentifierRef(SA->getMode());
+    break;
+  }
+  case attr::MustTail: {
+    Record.push_back(A->isImplicit());
+    Record.push_back(A->isPackExpansion());
     break;
   }
   case attr::NSConsumed: {
