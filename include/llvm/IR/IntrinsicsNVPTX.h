@@ -13,7 +13,7 @@ namespace llvm {
 namespace Intrinsic {
 enum NVVMIntrinsics : unsigned {
 // Enum values for intrinsics
-    nvvm_add_rm_d = 4908,                             // llvm.nvvm.add.rm.d
+    nvvm_add_rm_d = 4912,                             // llvm.nvvm.add.rm.d
     nvvm_add_rm_f,                             // llvm.nvvm.add.rm.f
     nvvm_add_rm_ftz_f,                         // llvm.nvvm.add.rm.ftz.f
     nvvm_add_rn_d,                             // llvm.nvvm.add.rn.d
@@ -70,6 +70,17 @@ enum NVVMIntrinsics : unsigned {
     nvvm_compiler_warn,                        // llvm.nvvm.compiler.warn
     nvvm_cos_approx_f,                         // llvm.nvvm.cos.approx.f
     nvvm_cos_approx_ftz_f,                     // llvm.nvvm.cos.approx.ftz.f
+    nvvm_cp_async_ca_shared_global_16,         // llvm.nvvm.cp.async.ca.shared.global.16
+    nvvm_cp_async_ca_shared_global_4,          // llvm.nvvm.cp.async.ca.shared.global.4
+    nvvm_cp_async_ca_shared_global_8,          // llvm.nvvm.cp.async.ca.shared.global.8
+    nvvm_cp_async_cg_shared_global_16,         // llvm.nvvm.cp.async.cg.shared.global.16
+    nvvm_cp_async_commit_group,                // llvm.nvvm.cp.async.commit.group
+    nvvm_cp_async_mbarrier_arrive,             // llvm.nvvm.cp.async.mbarrier.arrive
+    nvvm_cp_async_mbarrier_arrive_noinc,       // llvm.nvvm.cp.async.mbarrier.arrive.noinc
+    nvvm_cp_async_mbarrier_arrive_noinc_shared,  // llvm.nvvm.cp.async.mbarrier.arrive.noinc.shared
+    nvvm_cp_async_mbarrier_arrive_shared,      // llvm.nvvm.cp.async.mbarrier.arrive.shared
+    nvvm_cp_async_wait_all,                    // llvm.nvvm.cp.async.wait.all
+    nvvm_cp_async_wait_group,                  // llvm.nvvm.cp.async.wait.group
     nvvm_d2f_rm,                               // llvm.nvvm.d2f.rm
     nvvm_d2f_rm_ftz,                           // llvm.nvvm.d2f.rm.ftz
     nvvm_d2f_rn,                               // llvm.nvvm.d2f.rn
@@ -209,6 +220,21 @@ enum NVVMIntrinsics : unsigned {
     nvvm_match_all_sync_i64p,                  // llvm.nvvm.match.all.sync.i64p
     nvvm_match_any_sync_i32,                   // llvm.nvvm.match.any.sync.i32
     nvvm_match_any_sync_i64,                   // llvm.nvvm.match.any.sync.i64
+    nvvm_mbarrier_arrive,                      // llvm.nvvm.mbarrier.arrive
+    nvvm_mbarrier_arrive_drop,                 // llvm.nvvm.mbarrier.arrive.drop
+    nvvm_mbarrier_arrive_drop_noComplete,      // llvm.nvvm.mbarrier.arrive.drop.noComplete
+    nvvm_mbarrier_arrive_drop_noComplete_shared,  // llvm.nvvm.mbarrier.arrive.drop.noComplete.shared
+    nvvm_mbarrier_arrive_drop_shared,          // llvm.nvvm.mbarrier.arrive.drop.shared
+    nvvm_mbarrier_arrive_noComplete,           // llvm.nvvm.mbarrier.arrive.noComplete
+    nvvm_mbarrier_arrive_noComplete_shared,    // llvm.nvvm.mbarrier.arrive.noComplete.shared
+    nvvm_mbarrier_arrive_shared,               // llvm.nvvm.mbarrier.arrive.shared
+    nvvm_mbarrier_init,                        // llvm.nvvm.mbarrier.init
+    nvvm_mbarrier_init_shared,                 // llvm.nvvm.mbarrier.init.shared
+    nvvm_mbarrier_inval,                       // llvm.nvvm.mbarrier.inval
+    nvvm_mbarrier_inval_shared,                // llvm.nvvm.mbarrier.inval.shared
+    nvvm_mbarrier_pending_count,               // llvm.nvvm.mbarrier.pending.count
+    nvvm_mbarrier_test_wait,                   // llvm.nvvm.mbarrier.test.wait
+    nvvm_mbarrier_test_wait_shared,            // llvm.nvvm.mbarrier.test.wait.shared
     nvvm_membar_cta,                           // llvm.nvvm.membar.cta
     nvvm_membar_gl,                            // llvm.nvvm.membar.gl
     nvvm_membar_sys,                           // llvm.nvvm.membar.sys
@@ -337,6 +363,14 @@ enum NVVMIntrinsics : unsigned {
     nvvm_read_ptx_sreg_tid_z,                  // llvm.nvvm.read.ptx.sreg.tid.z
     nvvm_read_ptx_sreg_warpid,                 // llvm.nvvm.read.ptx.sreg.warpid
     nvvm_read_ptx_sreg_warpsize,               // llvm.nvvm.read.ptx.sreg.warpsize
+    nvvm_redux_sync_add,                       // llvm.nvvm.redux.sync.add
+    nvvm_redux_sync_and,                       // llvm.nvvm.redux.sync.and
+    nvvm_redux_sync_max,                       // llvm.nvvm.redux.sync.max
+    nvvm_redux_sync_min,                       // llvm.nvvm.redux.sync.min
+    nvvm_redux_sync_or,                        // llvm.nvvm.redux.sync.or
+    nvvm_redux_sync_umax,                      // llvm.nvvm.redux.sync.umax
+    nvvm_redux_sync_umin,                      // llvm.nvvm.redux.sync.umin
+    nvvm_redux_sync_xor,                       // llvm.nvvm.redux.sync.xor
     nvvm_reflect,                              // llvm.nvvm.reflect
     nvvm_rotate_b32,                           // llvm.nvvm.rotate.b32
     nvvm_rotate_b64,                           // llvm.nvvm.rotate.b64

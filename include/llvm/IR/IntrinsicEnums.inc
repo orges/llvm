@@ -260,6 +260,10 @@
     sadd_with_overflow,                        // llvm.sadd.with.overflow
     sdiv_fix,                                  // llvm.sdiv.fix
     sdiv_fix_sat,                              // llvm.sdiv.fix.sat
+    seh_scope_begin,                           // llvm.seh.scope.begin
+    seh_scope_end,                             // llvm.seh.scope.end
+    seh_try_begin,                             // llvm.seh.try.begin
+    seh_try_end,                               // llvm.seh.try.end
     set_loop_iterations,                       // llvm.set.loop.iterations
     set_rounding,                              // llvm.set.rounding
     sideeffect,                                // llvm.sideeffect
@@ -336,4 +340,4 @@
     write_register,                            // llvm.write_register
     xray_customevent,                          // llvm.xray.customevent
     xray_typedevent,                           // llvm.xray.typedevent
-    num_intrinsics = 10068
+    num_intrinsics = 10107

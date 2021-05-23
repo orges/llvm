@@ -135,6 +135,11 @@ private:
   JITTargetAddress Address = 0;
   uint64_t IsDefined : 1;
   uint64_t IsAbsolute : 1;
+
+protected:
+  // bitfields for Block, allocated here to improve packing.
+  uint64_t P2Align : 5;
+  uint64_t AlignmentOffset : 57;
 };
 
 using SectionOrdinal = unsigned;
@@ -265,8 +270,6 @@ public:
 private:
   static constexpr uint64_t MaxAlignmentOffset = (1ULL << 57) - 1;
 
-  uint64_t P2Align : 5;
-  uint64_t AlignmentOffset : 57;
   Section &Parent;
   const char *Data = nullptr;
   size_t Size = 0;
@@ -1118,6 +1121,29 @@ public:
     Sym.setLive(IsLive);
     Content.getSection().addSymbol(Sym);
     destroyAddressable(OldBase);
+  }
+
+  /// Transfer a defined symbol from one block to another.
+  ///
+  /// The symbol's offset within DestBlock is set to NewOffset.
+  ///
+  /// If ExplicitNewSize is given as None then the size of the symbol will be
+  /// checked and auto-truncated to at most the size of the remainder (from the
+  /// given offset) of the size of the new block.
+  ///
+  /// All other symbol attributes are unchanged.
+  void transferDefinedSymbol(Symbol &Sym, Block &DestBlock,
+                             JITTargetAddress NewOffset,
+                             Optional<JITTargetAddress> ExplicitNewSize) {
+    Sym.setBlock(DestBlock);
+    Sym.setOffset(NewOffset);
+    if (ExplicitNewSize)
+      Sym.setSize(*ExplicitNewSize);
+    else {
+      JITTargetAddress RemainingBlockSize = DestBlock.getSize() - NewOffset;
+      if (Sym.getSize() > RemainingBlockSize)
+        Sym.setSize(RemainingBlockSize);
+    }
   }
 
   /// Removes an external symbol. Also removes the underlying Addressable.

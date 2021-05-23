@@ -94,14 +94,16 @@ class Value;
 
 namespace Sched {
 
-  enum Preference {
-    None,             // No preference
-    Source,           // Follow source order.
-    RegPressure,      // Scheduling for lowest register pressure.
-    Hybrid,           // Scheduling for both latency and register pressure.
-    ILP,              // Scheduling for ILP in low register pressure mode.
-    VLIW              // Scheduling for VLIW targets.
-  };
+enum Preference {
+  None,        // No preference
+  Source,      // Follow source order.
+  RegPressure, // Scheduling for lowest register pressure.
+  Hybrid,      // Scheduling for both latency and register pressure.
+  ILP,         // Scheduling for ILP in low register pressure mode.
+  VLIW,        // Scheduling for VLIW targets.
+  Fast,        // Fast suboptimal list scheduling
+  Linearize    // Linearize DAG, no scheduling
+};
 
 } // end namespace Sched
 
@@ -288,8 +290,8 @@ public:
     bool IsSwiftError : 1;
     bool IsCFGuardTarget : 1;
     MaybeAlign Alignment = None;
-    Type *ByValType = nullptr;
-    Type *PreallocatedType = nullptr;
+    // Type for byval, inalloca, or preallocated.
+    Type *IndirectType = nullptr;
 
     ArgListEntry()
         : IsSExt(false), IsZExt(false), IsInReg(false), IsSRet(false),
@@ -612,6 +614,10 @@ public:
   /// Return true if instruction generated for equality comparison is folded
   /// with instruction generated for signed comparison.
   virtual bool isEqualityCmpFoldedWithSignedCmp() const { return true; }
+
+  /// Return true if the heuristic to prefer icmp eq zero should be used in code
+  /// gen prepare.
+  virtual bool preferZeroCompareBranch() const { return false; }
 
   /// Return true if it is safe to transform an integer-domain bitwise operation
   /// into the equivalent floating-point operation. This should be set to true
@@ -4374,6 +4380,13 @@ public:
   /// \returns True, if the expansion was successful, false otherwise
   bool expandROT(SDNode *N, bool AllowVectorOps, SDValue &Result,
                  SelectionDAG &DAG) const;
+
+  /// Expand shift-by-parts.
+  /// \param N Node to expand
+  /// \param Lo lower-output-part after conversion
+  /// \param Hi upper-output-part after conversion
+  void expandShiftParts(SDNode *N, SDValue &Lo, SDValue &Hi,
+                        SelectionDAG &DAG) const;
 
   /// Expand float(f32) to SINT(i64) conversion
   /// \param N Node to expand

@@ -4,6 +4,7 @@ __DRIVERSTART = DIAG_START_DRIVER,
 #endif
 
 DIAG(err_aix_default_altivec_abi, CLASS_ERROR, (unsigned)diag::Severity::Error, "The default Altivec ABI on AIX is not yet supported, use '-mabi=vec-extabi' for the extended Altivec ABI", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
+DIAG(err_aix_unsupported_tls_model, CLASS_ERROR, (unsigned)diag::Severity::Error, "TLS model '%0' is not yet supported on AIX", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
 DIAG(err_analyzer_checker_incompatible_analyzer_option, CLASS_ERROR, (unsigned)diag::Severity::Error, "checker cannot be enabled with analyzer option '%0' == %1", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
 DIAG(err_analyzer_checker_option_invalid_input, CLASS_ERROR, (unsigned)diag::Severity::Error, "invalid input for checker option '%0', that expects %1", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
 DIAG(err_analyzer_checker_option_unknown, CLASS_ERROR, (unsigned)diag::Severity::Error, "checker '%0' has no option called '%1'", 0, SFINAE_SubstitutionFailure, false, true, false, 0)

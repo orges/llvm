@@ -94,4 +94,7 @@
 /* Define to 1 to enable the experimental new pass manager by default */
 #define LLVM_ENABLE_NEW_PASS_MANAGER 1
 
+/* Define if the xar_open() function is supported on this platform. */
+/* #undef LLVM_HAVE_LIBXAR */
+
 #endif

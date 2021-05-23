@@ -85,6 +85,23 @@ namespace omp {
   static OmpClauseSet requiredClauses_OMPD_begin_assumes {
   };
 
+  // Sets for begin declare target
+
+  static OmpClauseSet allowedClauses_OMPD_begin_declare_target {
+    llvm::omp::Clause::OMPC_to,
+    llvm::omp::Clause::OMPC_link,
+    llvm::omp::Clause::OMPC_device_type,
+  };
+
+  static OmpClauseSet allowedOnceClauses_OMPD_begin_declare_target {
+  };
+
+  static OmpClauseSet allowedExclusiveClauses_OMPD_begin_declare_target {
+  };
+
+  static OmpClauseSet requiredClauses_OMPD_begin_declare_target {
+  };
+
   // Sets for begin declare variant
 
   static OmpClauseSet allowedClauses_OMPD_begin_declare_variant {
@@ -2271,6 +2288,14 @@ namespace omp {
       llvm::omp::requiredClauses_OMPD_begin_assumes,
     }
   },
+  {llvm::omp::Directive::OMPD_begin_declare_target,
+    {
+      llvm::omp::allowedClauses_OMPD_begin_declare_target,
+      llvm::omp::allowedOnceClauses_OMPD_begin_declare_target,
+      llvm::omp::allowedExclusiveClauses_OMPD_begin_declare_target,
+      llvm::omp::requiredClauses_OMPD_begin_declare_target,
+    }
+  },
   {llvm::omp::Directive::OMPD_begin_declare_variant,
     {
       llvm::omp::allowedClauses_OMPD_begin_declare_variant,
@@ -3924,6 +3949,7 @@ Directive llvm::omp::getOpenMPDirectiveKind(llvm::StringRef Str) {
     .Case("atomic",OMPD_atomic)
     .Case("barrier",OMPD_barrier)
     .Case("begin assumes",OMPD_begin_assumes)
+    .Case("begin declare target",OMPD_begin_declare_target)
     .Case("begin declare variant",OMPD_begin_declare_variant)
     .Case("cancel",OMPD_cancel)
     .Case("cancellation point",OMPD_cancellation_point)
@@ -4026,6 +4052,8 @@ llvm::StringRef llvm::omp::getOpenMPDirectiveName(Directive Kind) {
       return "barrier";
     case OMPD_begin_assumes:
       return "begin assumes";
+    case OMPD_begin_declare_target:
+      return "begin declare target";
     case OMPD_begin_declare_variant:
       return "begin declare variant";
     case OMPD_cancel:
@@ -4582,6 +4610,18 @@ bool llvm::omp::isAllowedClauseForDirective(Directive D, Clause C, unsigned Vers
       break;
     case OMPD_begin_assumes:
       return false;
+      break;
+    case OMPD_begin_declare_target:
+      switch (C) {
+        case OMPC_to:
+          return 1 <= Version && 2147483647 >= Version;
+        case OMPC_link:
+          return 1 <= Version && 2147483647 >= Version;
+        case OMPC_device_type:
+          return 1 <= Version && 2147483647 >= Version;
+        default:
+          return false;
+      }
       break;
     case OMPD_begin_declare_variant:
       return false;

@@ -48,6 +48,7 @@ DIAG(err_mt_message, CLASS_ERROR, (unsigned)diag::Severity::Error, "[rewriter] %
 DIAG(err_nullability_conflicting, CLASS_ERROR, (unsigned)diag::Severity::Error, "nullability specifier %0 conflicts with existing specifier %1", 0, SFINAE_SubstitutionFailure, false, true, false, 25)
 DIAG(err_omp_more_one_clause, CLASS_ERROR, (unsigned)diag::Severity::Error, "directive '#pragma omp %0' cannot contain more than one '%1' clause%select{| with '%3' name modifier| with 'source' dependence}2", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
 DIAG(err_omp_required_clause, CLASS_ERROR, (unsigned)diag::Severity::Error, "directive '#pragma omp %0' requires the '%1' clause", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
+DIAG(err_opencl_extension_and_feature_differs, CLASS_ERROR, (unsigned)diag::Severity::Error, "options %0 and %1 are set to different values", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
 DIAG(err_opencl_unknown_type_specifier, CLASS_ERROR, (unsigned)diag::Severity::Error, "%select{OpenCL C|C++ for OpenCL}0 version %1 does not support the '%2' %select{type qualifier|storage class specifier}3", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
 DIAG(err_openclcxx_not_supported, CLASS_ERROR, (unsigned)diag::Severity::Error, "'%0' is not supported in C++ for OpenCL", 0, SFINAE_SubstitutionFailure, false, true, false, 0)
 DIAG(err_opt_not_valid_on_target, CLASS_ERROR, (unsigned)diag::Severity::Error, "option '%0' cannot be specified on this target", 0, SFINAE_SubstitutionFailure, false, true, false, 0)

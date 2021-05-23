@@ -15,6 +15,7 @@ enum class Directive {
   OMPD_atomic,
   OMPD_barrier,
   OMPD_begin_assumes,
+  OMPD_begin_declare_target,
   OMPD_begin_declare_variant,
   OMPD_cancel,
   OMPD_cancellation_point,
@@ -104,13 +105,14 @@ enum class Directive {
   OMPD_masked,
 };
 
-static constexpr std::size_t Directive_enumSize = 92;
+static constexpr std::size_t Directive_enumSize = 93;
 
 constexpr auto OMPD_allocate = llvm::omp::Directive::OMPD_allocate;
 constexpr auto OMPD_assumes = llvm::omp::Directive::OMPD_assumes;
 constexpr auto OMPD_atomic = llvm::omp::Directive::OMPD_atomic;
 constexpr auto OMPD_barrier = llvm::omp::Directive::OMPD_barrier;
 constexpr auto OMPD_begin_assumes = llvm::omp::Directive::OMPD_begin_assumes;
+constexpr auto OMPD_begin_declare_target = llvm::omp::Directive::OMPD_begin_declare_target;
 constexpr auto OMPD_begin_declare_variant = llvm::omp::Directive::OMPD_begin_declare_variant;
 constexpr auto OMPD_cancel = llvm::omp::Directive::OMPD_cancel;
 constexpr auto OMPD_cancellation_point = llvm::omp::Directive::OMPD_cancellation_point;
