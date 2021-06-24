@@ -124,6 +124,8 @@
     experimental_constrained_trunc,            // llvm.experimental.constrained.trunc
     experimental_constrained_uitofp,           // llvm.experimental.constrained.uitofp
     experimental_deoptimize,                   // llvm.experimental.deoptimize
+    experimental_gc_get_pointer_base,          // llvm.experimental.gc.get.pointer.base
+    experimental_gc_get_pointer_offset,        // llvm.experimental.gc.get.pointer.offset
     experimental_gc_relocate,                  // llvm.experimental.gc.relocate
     experimental_gc_result,                    // llvm.experimental.gc.result
     experimental_gc_statepoint,                // llvm.experimental.gc.statepoint
@@ -326,6 +328,11 @@
     vp_add,                                    // llvm.vp.add
     vp_and,                                    // llvm.vp.and
     vp_ashr,                                   // llvm.vp.ashr
+    vp_fadd,                                   // llvm.vp.fadd
+    vp_fdiv,                                   // llvm.vp.fdiv
+    vp_fmul,                                   // llvm.vp.fmul
+    vp_frem,                                   // llvm.vp.frem
+    vp_fsub,                                   // llvm.vp.fsub
     vp_lshr,                                   // llvm.vp.lshr
     vp_mul,                                    // llvm.vp.mul
     vp_or,                                     // llvm.vp.or
@@ -340,4 +347,4 @@
     write_register,                            // llvm.write_register
     xray_customevent,                          // llvm.xray.customevent
     xray_typedevent,                           // llvm.xray.typedevent
-    num_intrinsics = 10107
+    num_intrinsics = 10119

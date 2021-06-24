@@ -2554,8 +2554,7 @@ case RISCV::BI__builtin_rvv_vcompress_vm_u64m8:
   ID = Intrinsic::riscv_vcompress;
 
       std::rotate(Ops.begin(), Ops.begin() + 1, Ops.begin() + 3);
-      ID = Intrinsic::riscv_vcompress;
-       IntrinsicTypes = {ResultType, Ops[3]->getType()};
+      IntrinsicTypes = {ResultType, Ops[3]->getType()};
     break;
 case RISCV::BI__builtin_rvv_vdiv_vv_i8m1:
 case RISCV::BI__builtin_rvv_vdiv_vv_i8m2:

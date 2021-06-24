@@ -832,6 +832,10 @@ Attr *instantiateTemplateAttribute(const Attr *At, ASTContext &C, Sema &S,
       const auto *A = cast<NoMips16Attr>(At);
       return A->clone(C);
     }
+    case attr::NoProfileFunction: {
+      const auto *A = cast<NoProfileFunctionAttr>(At);
+      return A->clone(C);
+    }
     case attr::NoReturn: {
       const auto *A = cast<NoReturnAttr>(At);
       return A->clone(C);
@@ -1543,6 +1547,10 @@ Attr *instantiateTemplateAttribute(const Attr *At, ASTContext &C, Sema &S,
       const auto *A = cast<UsedAttr>(At);
       return A->clone(C);
     }
+    case attr::UsingIfExists: {
+      const auto *A = cast<UsingIfExistsAttr>(At);
+      return A->clone(C);
+    }
     case attr::Uuid: {
       const auto *A = cast<UuidAttr>(At);
       return A->clone(C);
@@ -2131,6 +2139,9 @@ Attr *instantiateTemplateAttributeForDecl(const Attr *At,
     case attr::NoMips16: {
       return nullptr;
     }
+    case attr::NoProfileFunction: {
+      return nullptr;
+    }
     case attr::NoReturn: {
       return nullptr;
     }
@@ -2608,6 +2619,9 @@ Attr *instantiateTemplateAttributeForDecl(const Attr *At,
       return nullptr;
     }
     case attr::Used: {
+      return nullptr;
+    }
+    case attr::UsingIfExists: {
       return nullptr;
     }
     case attr::Uuid: {

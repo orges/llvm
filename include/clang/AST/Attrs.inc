@@ -5962,6 +5962,35 @@ public:
   static bool classof(const Attr *A) { return A->getKind() == attr::NoMips16; }
 };
 
+class NoProfileFunctionAttr : public InheritableAttr {
+public:
+  enum Spelling {
+    GNU_no_profile_instrument_function = 0,
+    CXX11_gnu_no_profile_instrument_function = 1,
+    C2x_gnu_no_profile_instrument_function = 2,
+  SpellingNotCalculated = 15
+
+  };
+
+  // Factory methods
+  static NoProfileFunctionAttr *CreateImplicit(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo = {SourceRange{}});
+  static NoProfileFunctionAttr *Create(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo);
+  static NoProfileFunctionAttr *CreateImplicit(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax);
+  static NoProfileFunctionAttr *Create(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax);
+
+  // Constructors
+  NoProfileFunctionAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
+             );
+
+  NoProfileFunctionAttr *clone(ASTContext &C) const;
+  void printPretty(raw_ostream &OS,
+                   const PrintingPolicy &Policy) const;
+  const char *getSpelling() const;
+
+
+  static bool classof(const Attr *A) { return A->getKind() == attr::NoProfileFunction; }
+};
+
 class NoReturnAttr : public InheritableAttr {
 public:
   enum Spelling {
@@ -6038,6 +6067,10 @@ public:
         Mask |= expandSanitizerGroups(ParsedMask);
       }
       return Mask;
+    }
+
+    bool hasCoverage() const {
+      return llvm::is_contained(sanitizers(), "coverage");
     }
   
 
@@ -11450,6 +11483,34 @@ public:
 
 
   static bool classof(const Attr *A) { return A->getKind() == attr::Used; }
+};
+
+class UsingIfExistsAttr : public InheritableAttr {
+public:
+  enum Spelling {
+    GNU_using_if_exists = 0,
+    CXX11_clang_using_if_exists = 1,
+  SpellingNotCalculated = 15
+
+  };
+
+  // Factory methods
+  static UsingIfExistsAttr *CreateImplicit(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo = {SourceRange{}});
+  static UsingIfExistsAttr *Create(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo);
+  static UsingIfExistsAttr *CreateImplicit(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax);
+  static UsingIfExistsAttr *Create(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax);
+
+  // Constructors
+  UsingIfExistsAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
+             );
+
+  UsingIfExistsAttr *clone(ASTContext &C) const;
+  void printPretty(raw_ostream &OS,
+                   const PrintingPolicy &Policy) const;
+  const char *getSpelling() const;
+
+
+  static bool classof(const Attr *A) { return A->getKind() == attr::UsingIfExists; }
 };
 
 class UuidAttr : public InheritableAttr {

@@ -17,7 +17,6 @@
 
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
-#include "llvm/Transforms/Scalar/LoopPassManager.h"
 
 namespace llvm {
 
@@ -67,14 +66,9 @@ enum class LoopUnrollResult {
 
 struct UnrollLoopOptions {
   unsigned Count;
-  unsigned TripCount;
   bool Force;
-  bool AllowRuntime;
+  bool Runtime;
   bool AllowExpensiveTripCount;
-  bool PreserveCondBr;
-  bool PreserveOnlyFirst;
-  unsigned TripMultiple;
-  unsigned PeelCount;
   bool UnrollRemainder;
   bool ForgetAllSCEV;
 };
@@ -98,7 +92,7 @@ LoopUnrollResult UnrollAndJamLoop(Loop *L, unsigned Count, unsigned TripCount,
                                   LoopInfo *LI, ScalarEvolution *SE,
                                   DominatorTree *DT, AssumptionCache *AC,
                                   const TargetTransformInfo *TTI,
-                                  OptimizationRemarkEmitter *ORE, LPMUpdater *U,
+                                  OptimizationRemarkEmitter *ORE,
                                   Loop **EpilogueLoop = nullptr);
 
 bool isSafeToUnrollAndJam(Loop *L, ScalarEvolution &SE, DominatorTree &DT,
@@ -107,9 +101,9 @@ bool isSafeToUnrollAndJam(Loop *L, ScalarEvolution &SE, DominatorTree &DT,
 bool computeUnrollCount(Loop *L, const TargetTransformInfo &TTI,
                         DominatorTree &DT, LoopInfo *LI, ScalarEvolution &SE,
                         const SmallPtrSetImpl<const Value *> &EphValues,
-                        OptimizationRemarkEmitter *ORE, unsigned &TripCount,
+                        OptimizationRemarkEmitter *ORE, unsigned TripCount,
                         unsigned MaxTripCount, bool MaxOrZero,
-                        unsigned &TripMultiple, unsigned LoopSize,
+                        unsigned TripMultiple, unsigned LoopSize,
                         TargetTransformInfo::UnrollingPreferences &UP,
                         TargetTransformInfo::PeelingPreferences &PP,
                         bool &UseUpperBound);
