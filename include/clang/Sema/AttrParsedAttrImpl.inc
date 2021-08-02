@@ -11186,6 +11186,27 @@ void getPragmaAttributeMatchRules(llvm::SmallVectorImpl<std::pair<attr::SubjectM
 static const ParsedAttrInfoSwiftAsync Instance;
 };
 const ParsedAttrInfoSwiftAsync ParsedAttrInfoSwiftAsync::Instance;
+static constexpr ParsedAttrInfo::Spelling SwiftAsyncCallSpellings[] = {
+  {AttributeCommonInfo::AS_GNU, "swiftasynccall"},
+  {AttributeCommonInfo::AS_CXX11, "clang::swiftasynccall"},
+  {AttributeCommonInfo::AS_C2x, "clang::swiftasynccall"},
+};
+struct ParsedAttrInfoSwiftAsyncCall final : public ParsedAttrInfo {
+  ParsedAttrInfoSwiftAsyncCall() {
+    AttrKind = ParsedAttr::AT_SwiftAsyncCall;
+    NumArgs = 0;
+    OptArgs = 0;
+    HasCustomParsing = 0;
+    IsTargetSpecific = 0;
+    IsType = 1;
+    IsStmt = 0;
+    IsKnownToGCC = 0;
+    IsSupportedByPragmaAttribute = 0;
+    Spellings = SwiftAsyncCallSpellings;
+  }
+static const ParsedAttrInfoSwiftAsyncCall Instance;
+};
+const ParsedAttrInfoSwiftAsyncCall ParsedAttrInfoSwiftAsyncCall::Instance;
 static constexpr ParsedAttrInfo::Spelling SwiftAsyncContextSpellings[] = {
   {AttributeCommonInfo::AS_GNU, "swift_async_context"},
   {AttributeCommonInfo::AS_CXX11, "clang::swift_async_context"},
@@ -13459,6 +13480,7 @@ static const ParsedAttrInfo *AttrInfoMap[] = {
 &ParsedAttrInfoStrictFP::Instance,
 &ParsedAttrInfoSuppress::Instance,
 &ParsedAttrInfoSwiftAsync::Instance,
+&ParsedAttrInfoSwiftAsyncCall::Instance,
 &ParsedAttrInfoSwiftAsyncContext::Instance,
 &ParsedAttrInfoSwiftAsyncError::Instance,
 &ParsedAttrInfoSwiftAsyncName::Instance,

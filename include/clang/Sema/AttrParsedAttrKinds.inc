@@ -982,7 +982,7 @@ static AttributeCommonInfo::Kind getAttrKind(StringRef Name, AttributeCommonInfo
       return AttributeCommonInfo::AT_XRayLogArgs;	 // "xray_log_args"
     }
     break;
-  case 14:	 // 17 strings to match.
+  case 14:	 // 18 strings to match.
     switch (Name[0]) {
     default: break;
     case 'a':	 // 4 strings to match.
@@ -1085,6 +1085,10 @@ static AttributeCommonInfo::Kind getAttrKind(StringRef Name, AttributeCommonInfo
       if (memcmp(Name.data()+1, "elease_handle", 13) != 0)
         break;
       return AttributeCommonInfo::AT_ReleaseHandle;	 // "release_handle"
+    case 's':	 // 1 string to match.
+      if (memcmp(Name.data()+1, "wiftasynccall", 13) != 0)
+        break;
+      return AttributeCommonInfo::AT_SwiftAsyncCall;	 // "swiftasynccall"
     case 't':	 // 1 string to match.
       if (memcmp(Name.data()+1, "est_typestate", 13) != 0)
         break;
@@ -3166,7 +3170,7 @@ static AttributeCommonInfo::Kind getAttrKind(StringRef Name, AttributeCommonInfo
       return AttributeCommonInfo::AT_ReturnsNonNull;	 // "gnu::returns_nonnull"
     }
     break;
-  case 21:	 // 11 strings to match.
+  case 21:	 // 12 strings to match.
     if (memcmp(Name.data()+0, "clang::", 7) != 0)
       break;
     switch (Name[7]) {
@@ -3240,6 +3244,10 @@ static AttributeCommonInfo::Kind getAttrKind(StringRef Name, AttributeCommonInfo
       if (memcmp(Name.data()+8, "elease_handle", 13) != 0)
         break;
       return AttributeCommonInfo::AT_ReleaseHandle;	 // "clang::release_handle"
+    case 's':	 // 1 string to match.
+      if (memcmp(Name.data()+8, "wiftasynccall", 13) != 0)
+        break;
+      return AttributeCommonInfo::AT_SwiftAsyncCall;	 // "clang::swiftasynccall"
     case 't':	 // 1 string to match.
       if (memcmp(Name.data()+8, "est_typestate", 13) != 0)
         break;
@@ -4848,7 +4856,7 @@ static AttributeCommonInfo::Kind getAttrKind(StringRef Name, AttributeCommonInfo
       return AttributeCommonInfo::AT_ReturnsNonNull;	 // "gnu::returns_nonnull"
     }
     break;
-  case 21:	 // 6 strings to match.
+  case 21:	 // 7 strings to match.
     if (memcmp(Name.data()+0, "clang::", 7) != 0)
       break;
     switch (Name[7]) {
@@ -4896,6 +4904,10 @@ static AttributeCommonInfo::Kind getAttrKind(StringRef Name, AttributeCommonInfo
       if (memcmp(Name.data()+8, "elease_handle", 13) != 0)
         break;
       return AttributeCommonInfo::AT_ReleaseHandle;	 // "clang::release_handle"
+    case 's':	 // 1 string to match.
+      if (memcmp(Name.data()+8, "wiftasynccall", 13) != 0)
+        break;
+      return AttributeCommonInfo::AT_SwiftAsyncCall;	 // "clang::swiftasynccall"
     }
     break;
   case 22:	 // 8 strings to match.

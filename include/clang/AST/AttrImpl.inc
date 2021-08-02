@@ -25831,6 +25831,87 @@ const char *SwiftAsyncAttr::getSpelling() const {
 }
 
 
+// SwiftAsyncCallAttr implementation
+
+SwiftAsyncCallAttr *SwiftAsyncCallAttr::CreateImplicit(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo) {
+  auto *A = new (Ctx) SwiftAsyncCallAttr(Ctx, CommonInfo);
+  A->setImplicit(true);
+  if (!A->isAttributeSpellingListCalculated() && !A->getAttrName())
+    A->setAttributeSpellingListIndex(0);
+  return A;
+}
+
+SwiftAsyncCallAttr *SwiftAsyncCallAttr::Create(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo) {
+  auto *A = new (Ctx) SwiftAsyncCallAttr(Ctx, CommonInfo);
+  if (!A->isAttributeSpellingListCalculated() && !A->getAttrName())
+    A->setAttributeSpellingListIndex(0);
+  return A;
+}
+
+SwiftAsyncCallAttr *SwiftAsyncCallAttr::CreateImplicit(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax) {
+  AttributeCommonInfo I(Range, NoSemaHandlerAttribute, Syntax);
+  return CreateImplicit(Ctx, I);
+}
+
+SwiftAsyncCallAttr *SwiftAsyncCallAttr::Create(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax) {
+  AttributeCommonInfo I(Range, NoSemaHandlerAttribute, Syntax);
+  return Create(Ctx, I);
+}
+
+SwiftAsyncCallAttr::SwiftAsyncCallAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
+             )
+  : InheritableAttr(Ctx, CommonInfo, attr::SwiftAsyncCall, false, false)
+  {
+}
+
+SwiftAsyncCallAttr *SwiftAsyncCallAttr::clone(ASTContext &C) const {
+  auto *A = new (C) SwiftAsyncCallAttr(C, *this);
+  A->Inherited = Inherited;
+  A->IsPackExpansion = IsPackExpansion;
+  A->setImplicit(Implicit);
+  return A;
+}
+
+void SwiftAsyncCallAttr::printPretty(raw_ostream &OS, const PrintingPolicy &Policy) const {
+  bool IsFirstArgument = true; (void)IsFirstArgument;
+  unsigned TrailingOmittedArgs = 0; (void)TrailingOmittedArgs;
+  switch (getAttributeSpellingListIndex()) {
+  default:
+    llvm_unreachable("Unknown attribute spelling!");
+    break;
+  case 0 : {
+    OS << " __attribute__((swiftasynccall";
+    OS << "))";
+    break;
+  }
+  case 1 : {
+    OS << " [[clang::swiftasynccall";
+    OS << "]]";
+    break;
+  }
+  case 2 : {
+    OS << " [[clang::swiftasynccall";
+    OS << "]]";
+    break;
+  }
+}
+}
+
+const char *SwiftAsyncCallAttr::getSpelling() const {
+  switch (getAttributeSpellingListIndex()) {
+  default:
+    llvm_unreachable("Unknown attribute spelling!");
+    return "(No spelling)";
+  case 0:
+    return "swiftasynccall";
+  case 1:
+    return "swiftasynccall";
+  case 2:
+    return "swiftasynccall";
+  }
+}
+
+
 // SwiftAsyncContextAttr implementation
 
 SwiftAsyncContextAttr *SwiftAsyncContextAttr::CreateImplicit(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo) {
@@ -31637,6 +31718,8 @@ const char *Attr::getSpelling() const {
     return cast<SuppressAttr>(this)->getSpelling();
   case attr::SwiftAsync:
     return cast<SwiftAsyncAttr>(this)->getSpelling();
+  case attr::SwiftAsyncCall:
+    return cast<SwiftAsyncCallAttr>(this)->getSpelling();
   case attr::SwiftAsyncContext:
     return cast<SwiftAsyncContextAttr>(this)->getSpelling();
   case attr::SwiftAsyncError:
@@ -32335,6 +32418,8 @@ Attr *Attr::clone(ASTContext &C) const {
     return cast<SuppressAttr>(this)->clone(C);
   case attr::SwiftAsync:
     return cast<SwiftAsyncAttr>(this)->clone(C);
+  case attr::SwiftAsyncCall:
+    return cast<SwiftAsyncCallAttr>(this)->clone(C);
   case attr::SwiftAsyncContext:
     return cast<SwiftAsyncContextAttr>(this)->clone(C);
   case attr::SwiftAsyncError:
@@ -33033,6 +33118,8 @@ void Attr::printPretty(raw_ostream &OS, const PrintingPolicy &Policy) const {
     return cast<SuppressAttr>(this)->printPretty(OS, Policy);
   case attr::SwiftAsync:
     return cast<SwiftAsyncAttr>(this)->printPretty(OS, Policy);
+  case attr::SwiftAsyncCall:
+    return cast<SwiftAsyncCallAttr>(this)->printPretty(OS, Policy);
   case attr::SwiftAsyncContext:
     return cast<SwiftAsyncContextAttr>(this)->printPretty(OS, Policy);
   case attr::SwiftAsyncError:

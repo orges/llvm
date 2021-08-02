@@ -1363,6 +1363,10 @@ Attr *instantiateTemplateAttribute(const Attr *At, ASTContext &C, Sema &S,
       const auto *A = cast<SwiftAsyncAttr>(At);
       return A->clone(C);
     }
+    case attr::SwiftAsyncCall: {
+      const auto *A = cast<SwiftAsyncCallAttr>(At);
+      return A->clone(C);
+    }
     case attr::SwiftAsyncContext: {
       const auto *A = cast<SwiftAsyncContextAttr>(At);
       return A->clone(C);
@@ -2496,6 +2500,9 @@ Attr *instantiateTemplateAttributeForDecl(const Attr *At,
       return nullptr;
     }
     case attr::SwiftAsync: {
+      return nullptr;
+    }
+    case attr::SwiftAsyncCall: {
       return nullptr;
     }
     case attr::SwiftAsyncContext: {

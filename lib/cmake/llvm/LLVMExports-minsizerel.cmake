@@ -1032,15 +1032,6 @@ set_target_properties(llvm-dwp PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS llvm-dwp )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-dwp "${_IMPORT_PREFIX}/bin/llvm-dwp" )
 
-# Import target "llvm-elfabi" for configuration "MinSizeRel"
-set_property(TARGET llvm-elfabi APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(llvm-elfabi PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "${_IMPORT_PREFIX}/bin/llvm-elfabi"
-  )
-
-list(APPEND _IMPORT_CHECK_TARGETS llvm-elfabi )
-list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-elfabi "${_IMPORT_PREFIX}/bin/llvm-elfabi" )
-
 # Import target "llvm-exegesis" for configuration "MinSizeRel"
 set_property(TARGET llvm-exegesis APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
 set_target_properties(llvm-exegesis PROPERTIES
@@ -1276,6 +1267,15 @@ set_target_properties(llvm-rtdyld PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS llvm-rtdyld )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-rtdyld "${_IMPORT_PREFIX}/bin/llvm-rtdyld" )
+
+# Import target "llvm-sim" for configuration "MinSizeRel"
+set_property(TARGET llvm-sim APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
+set_target_properties(llvm-sim PROPERTIES
+  IMPORTED_LOCATION_MINSIZEREL "${_IMPORT_PREFIX}/bin/llvm-sim"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS llvm-sim )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-sim "${_IMPORT_PREFIX}/bin/llvm-sim" )
 
 # Import target "llvm-size" for configuration "MinSizeRel"
 set_property(TARGET llvm-size APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)

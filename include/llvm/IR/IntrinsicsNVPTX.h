@@ -13,7 +13,7 @@ namespace llvm {
 namespace Intrinsic {
 enum NVVMIntrinsics : unsigned {
 // Enum values for intrinsics
-    nvvm_add_rm_d = 4919,                             // llvm.nvvm.add.rm.d
+    nvvm_add_rm_d = 4924,                             // llvm.nvvm.add.rm.d
     nvvm_add_rm_f,                             // llvm.nvvm.add.rm.f
     nvvm_add_rm_ftz_f,                         // llvm.nvvm.add.rm.ftz.f
     nvvm_add_rn_d,                             // llvm.nvvm.add.rn.d
@@ -238,6 +238,67 @@ enum NVVMIntrinsics : unsigned {
     nvvm_membar_cta,                           // llvm.nvvm.membar.cta
     nvvm_membar_gl,                            // llvm.nvvm.membar.gl
     nvvm_membar_sys,                           // llvm.nvvm.membar.sys
+    nvvm_mma_and_popc_m16n8k128_row_col_b1,    // llvm.nvvm.mma.and.popc.m16n8k128.row.col.b1
+    nvvm_mma_and_popc_m16n8k256_row_col_b1,    // llvm.nvvm.mma.and.popc.m16n8k256.row.col.b1
+    nvvm_mma_and_popc_m8n8k128_row_col_b1,     // llvm.nvvm.mma.and.popc.m8n8k128.row.col.b1
+    nvvm_mma_m16n8k16_row_col_bf16,            // llvm.nvvm.mma.m16n8k16.row.col.bf16
+    nvvm_mma_m16n8k16_row_col_f16_f16,         // llvm.nvvm.mma.m16n8k16.row.col.f16.f16
+    nvvm_mma_m16n8k16_row_col_f16_f32,         // llvm.nvvm.mma.m16n8k16.row.col.f16.f32
+    nvvm_mma_m16n8k16_row_col_f32_f16,         // llvm.nvvm.mma.m16n8k16.row.col.f32.f16
+    nvvm_mma_m16n8k16_row_col_f32_f32,         // llvm.nvvm.mma.m16n8k16.row.col.f32.f32
+    nvvm_mma_m16n8k16_row_col_s8,              // llvm.nvvm.mma.m16n8k16.row.col.s8
+    nvvm_mma_m16n8k16_row_col_s8_u8,           // llvm.nvvm.mma.m16n8k16.row.col.s8.u8
+    nvvm_mma_m16n8k16_row_col_satfinite_s8,    // llvm.nvvm.mma.m16n8k16.row.col.satfinite.s8
+    nvvm_mma_m16n8k16_row_col_satfinite_s8_u8,  // llvm.nvvm.mma.m16n8k16.row.col.satfinite.s8.u8
+    nvvm_mma_m16n8k16_row_col_satfinite_u8,    // llvm.nvvm.mma.m16n8k16.row.col.satfinite.u8
+    nvvm_mma_m16n8k16_row_col_satfinite_u8_s8,  // llvm.nvvm.mma.m16n8k16.row.col.satfinite.u8.s8
+    nvvm_mma_m16n8k16_row_col_u8,              // llvm.nvvm.mma.m16n8k16.row.col.u8
+    nvvm_mma_m16n8k16_row_col_u8_s8,           // llvm.nvvm.mma.m16n8k16.row.col.u8.s8
+    nvvm_mma_m16n8k32_row_col_s4,              // llvm.nvvm.mma.m16n8k32.row.col.s4
+    nvvm_mma_m16n8k32_row_col_s4_u4,           // llvm.nvvm.mma.m16n8k32.row.col.s4.u4
+    nvvm_mma_m16n8k32_row_col_s8,              // llvm.nvvm.mma.m16n8k32.row.col.s8
+    nvvm_mma_m16n8k32_row_col_s8_u8,           // llvm.nvvm.mma.m16n8k32.row.col.s8.u8
+    nvvm_mma_m16n8k32_row_col_satfinite_s4,    // llvm.nvvm.mma.m16n8k32.row.col.satfinite.s4
+    nvvm_mma_m16n8k32_row_col_satfinite_s4_u4,  // llvm.nvvm.mma.m16n8k32.row.col.satfinite.s4.u4
+    nvvm_mma_m16n8k32_row_col_satfinite_s8,    // llvm.nvvm.mma.m16n8k32.row.col.satfinite.s8
+    nvvm_mma_m16n8k32_row_col_satfinite_s8_u8,  // llvm.nvvm.mma.m16n8k32.row.col.satfinite.s8.u8
+    nvvm_mma_m16n8k32_row_col_satfinite_u4,    // llvm.nvvm.mma.m16n8k32.row.col.satfinite.u4
+    nvvm_mma_m16n8k32_row_col_satfinite_u4_s4,  // llvm.nvvm.mma.m16n8k32.row.col.satfinite.u4.s4
+    nvvm_mma_m16n8k32_row_col_satfinite_u8,    // llvm.nvvm.mma.m16n8k32.row.col.satfinite.u8
+    nvvm_mma_m16n8k32_row_col_satfinite_u8_s8,  // llvm.nvvm.mma.m16n8k32.row.col.satfinite.u8.s8
+    nvvm_mma_m16n8k32_row_col_u4,              // llvm.nvvm.mma.m16n8k32.row.col.u4
+    nvvm_mma_m16n8k32_row_col_u4_s4,           // llvm.nvvm.mma.m16n8k32.row.col.u4.s4
+    nvvm_mma_m16n8k32_row_col_u8,              // llvm.nvvm.mma.m16n8k32.row.col.u8
+    nvvm_mma_m16n8k32_row_col_u8_s8,           // llvm.nvvm.mma.m16n8k32.row.col.u8.s8
+    nvvm_mma_m16n8k4_row_col_tf32,             // llvm.nvvm.mma.m16n8k4.row.col.tf32
+    nvvm_mma_m16n8k64_row_col_s4,              // llvm.nvvm.mma.m16n8k64.row.col.s4
+    nvvm_mma_m16n8k64_row_col_s4_u4,           // llvm.nvvm.mma.m16n8k64.row.col.s4.u4
+    nvvm_mma_m16n8k64_row_col_satfinite_s4,    // llvm.nvvm.mma.m16n8k64.row.col.satfinite.s4
+    nvvm_mma_m16n8k64_row_col_satfinite_s4_u4,  // llvm.nvvm.mma.m16n8k64.row.col.satfinite.s4.u4
+    nvvm_mma_m16n8k64_row_col_satfinite_u4,    // llvm.nvvm.mma.m16n8k64.row.col.satfinite.u4
+    nvvm_mma_m16n8k64_row_col_satfinite_u4_s4,  // llvm.nvvm.mma.m16n8k64.row.col.satfinite.u4.s4
+    nvvm_mma_m16n8k64_row_col_u4,              // llvm.nvvm.mma.m16n8k64.row.col.u4
+    nvvm_mma_m16n8k64_row_col_u4_s4,           // llvm.nvvm.mma.m16n8k64.row.col.u4.s4
+    nvvm_mma_m16n8k8_row_col_bf16,             // llvm.nvvm.mma.m16n8k8.row.col.bf16
+    nvvm_mma_m16n8k8_row_col_f16_f16,          // llvm.nvvm.mma.m16n8k8.row.col.f16.f16
+    nvvm_mma_m16n8k8_row_col_f32_f32,          // llvm.nvvm.mma.m16n8k8.row.col.f32.f32
+    nvvm_mma_m16n8k8_row_col_tf32,             // llvm.nvvm.mma.m16n8k8.row.col.tf32
+    nvvm_mma_m8n8k16_row_col_s8,               // llvm.nvvm.mma.m8n8k16.row.col.s8
+    nvvm_mma_m8n8k16_row_col_s8_u8,            // llvm.nvvm.mma.m8n8k16.row.col.s8.u8
+    nvvm_mma_m8n8k16_row_col_satfinite_s8,     // llvm.nvvm.mma.m8n8k16.row.col.satfinite.s8
+    nvvm_mma_m8n8k16_row_col_satfinite_s8_u8,  // llvm.nvvm.mma.m8n8k16.row.col.satfinite.s8.u8
+    nvvm_mma_m8n8k16_row_col_satfinite_u8,     // llvm.nvvm.mma.m8n8k16.row.col.satfinite.u8
+    nvvm_mma_m8n8k16_row_col_satfinite_u8_s8,  // llvm.nvvm.mma.m8n8k16.row.col.satfinite.u8.s8
+    nvvm_mma_m8n8k16_row_col_u8,               // llvm.nvvm.mma.m8n8k16.row.col.u8
+    nvvm_mma_m8n8k16_row_col_u8_s8,            // llvm.nvvm.mma.m8n8k16.row.col.u8.s8
+    nvvm_mma_m8n8k32_row_col_s4,               // llvm.nvvm.mma.m8n8k32.row.col.s4
+    nvvm_mma_m8n8k32_row_col_s4_u4,            // llvm.nvvm.mma.m8n8k32.row.col.s4.u4
+    nvvm_mma_m8n8k32_row_col_satfinite_s4,     // llvm.nvvm.mma.m8n8k32.row.col.satfinite.s4
+    nvvm_mma_m8n8k32_row_col_satfinite_s4_u4,  // llvm.nvvm.mma.m8n8k32.row.col.satfinite.s4.u4
+    nvvm_mma_m8n8k32_row_col_satfinite_u4,     // llvm.nvvm.mma.m8n8k32.row.col.satfinite.u4
+    nvvm_mma_m8n8k32_row_col_satfinite_u4_s4,  // llvm.nvvm.mma.m8n8k32.row.col.satfinite.u4.s4
+    nvvm_mma_m8n8k32_row_col_u4,               // llvm.nvvm.mma.m8n8k32.row.col.u4
+    nvvm_mma_m8n8k32_row_col_u4_s4,            // llvm.nvvm.mma.m8n8k32.row.col.u4.s4
     nvvm_mma_m8n8k4_col_col_f16_f16,           // llvm.nvvm.mma.m8n8k4.col.col.f16.f16
     nvvm_mma_m8n8k4_col_col_f32_f16,           // llvm.nvvm.mma.m8n8k4.col.col.f32.f16
     nvvm_mma_m8n8k4_col_col_f32_f32,           // llvm.nvvm.mma.m8n8k4.col.col.f32.f32
@@ -247,9 +308,13 @@ enum NVVMIntrinsics : unsigned {
     nvvm_mma_m8n8k4_row_col_f16_f16,           // llvm.nvvm.mma.m8n8k4.row.col.f16.f16
     nvvm_mma_m8n8k4_row_col_f32_f16,           // llvm.nvvm.mma.m8n8k4.row.col.f32.f16
     nvvm_mma_m8n8k4_row_col_f32_f32,           // llvm.nvvm.mma.m8n8k4.row.col.f32.f32
+    nvvm_mma_m8n8k4_row_col_f64,               // llvm.nvvm.mma.m8n8k4.row.col.f64
     nvvm_mma_m8n8k4_row_row_f16_f16,           // llvm.nvvm.mma.m8n8k4.row.row.f16.f16
     nvvm_mma_m8n8k4_row_row_f32_f16,           // llvm.nvvm.mma.m8n8k4.row.row.f32.f16
     nvvm_mma_m8n8k4_row_row_f32_f32,           // llvm.nvvm.mma.m8n8k4.row.row.f32.f32
+    nvvm_mma_xor_popc_m16n8k128_row_col_b1,    // llvm.nvvm.mma.xor.popc.m16n8k128.row.col.b1
+    nvvm_mma_xor_popc_m16n8k256_row_col_b1,    // llvm.nvvm.mma.xor.popc.m16n8k256.row.col.b1
+    nvvm_mma_xor_popc_m8n8k128_row_col_b1,     // llvm.nvvm.mma.xor.popc.m8n8k128.row.col.b1
     nvvm_move_double,                          // llvm.nvvm.move.double
     nvvm_move_float,                           // llvm.nvvm.move.float
     nvvm_move_i16,                             // llvm.nvvm.move.i16
@@ -1022,26 +1087,34 @@ enum NVVMIntrinsics : unsigned {
     nvvm_vote_ballot_sync,                     // llvm.nvvm.vote.ballot.sync
     nvvm_vote_uni,                             // llvm.nvvm.vote.uni
     nvvm_vote_uni_sync,                        // llvm.nvvm.vote.uni.sync
+    nvvm_wmma_m16n16k16_load_a_bf16_col,       // llvm.nvvm.wmma.m16n16k16.load.a.col.bf16
     nvvm_wmma_m16n16k16_load_a_f16_col,        // llvm.nvvm.wmma.m16n16k16.load.a.col.f16
     nvvm_wmma_m16n16k16_load_a_s8_col,         // llvm.nvvm.wmma.m16n16k16.load.a.col.s8
+    nvvm_wmma_m16n16k16_load_a_bf16_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.col.stride.bf16
     nvvm_wmma_m16n16k16_load_a_f16_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.col.stride.f16
     nvvm_wmma_m16n16k16_load_a_s8_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.col.stride.s8
     nvvm_wmma_m16n16k16_load_a_u8_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.col.stride.u8
     nvvm_wmma_m16n16k16_load_a_u8_col,         // llvm.nvvm.wmma.m16n16k16.load.a.col.u8
+    nvvm_wmma_m16n16k16_load_a_bf16_row,       // llvm.nvvm.wmma.m16n16k16.load.a.row.bf16
     nvvm_wmma_m16n16k16_load_a_f16_row,        // llvm.nvvm.wmma.m16n16k16.load.a.row.f16
     nvvm_wmma_m16n16k16_load_a_s8_row,         // llvm.nvvm.wmma.m16n16k16.load.a.row.s8
+    nvvm_wmma_m16n16k16_load_a_bf16_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.row.stride.bf16
     nvvm_wmma_m16n16k16_load_a_f16_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.row.stride.f16
     nvvm_wmma_m16n16k16_load_a_s8_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.row.stride.s8
     nvvm_wmma_m16n16k16_load_a_u8_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.a.row.stride.u8
     nvvm_wmma_m16n16k16_load_a_u8_row,         // llvm.nvvm.wmma.m16n16k16.load.a.row.u8
+    nvvm_wmma_m16n16k16_load_b_bf16_col,       // llvm.nvvm.wmma.m16n16k16.load.b.col.bf16
     nvvm_wmma_m16n16k16_load_b_f16_col,        // llvm.nvvm.wmma.m16n16k16.load.b.col.f16
     nvvm_wmma_m16n16k16_load_b_s8_col,         // llvm.nvvm.wmma.m16n16k16.load.b.col.s8
+    nvvm_wmma_m16n16k16_load_b_bf16_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.col.stride.bf16
     nvvm_wmma_m16n16k16_load_b_f16_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.col.stride.f16
     nvvm_wmma_m16n16k16_load_b_s8_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.col.stride.s8
     nvvm_wmma_m16n16k16_load_b_u8_col_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.col.stride.u8
     nvvm_wmma_m16n16k16_load_b_u8_col,         // llvm.nvvm.wmma.m16n16k16.load.b.col.u8
+    nvvm_wmma_m16n16k16_load_b_bf16_row,       // llvm.nvvm.wmma.m16n16k16.load.b.row.bf16
     nvvm_wmma_m16n16k16_load_b_f16_row,        // llvm.nvvm.wmma.m16n16k16.load.b.row.f16
     nvvm_wmma_m16n16k16_load_b_s8_row,         // llvm.nvvm.wmma.m16n16k16.load.b.row.s8
+    nvvm_wmma_m16n16k16_load_b_bf16_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.row.stride.bf16
     nvvm_wmma_m16n16k16_load_b_f16_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.row.stride.f16
     nvvm_wmma_m16n16k16_load_b_s8_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.row.stride.s8
     nvvm_wmma_m16n16k16_load_b_u8_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.b.row.stride.u8
@@ -1058,6 +1131,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m16n16k16_load_c_f16_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.c.row.stride.f16
     nvvm_wmma_m16n16k16_load_c_f32_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.c.row.stride.f32
     nvvm_wmma_m16n16k16_load_c_s32_row_stride,  // llvm.nvvm.wmma.m16n16k16.load.c.row.stride.s32
+    nvvm_wmma_m16n16k16_mma_col_col_bf16,      // llvm.nvvm.wmma.m16n16k16.mma.col.col.bf16
     nvvm_wmma_m16n16k16_mma_col_col_f16_f16,   // llvm.nvvm.wmma.m16n16k16.mma.col.col.f16.f16
     nvvm_wmma_m16n16k16_mma_col_col_f16_f16_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.col.col.f16.f16.satfinite
     nvvm_wmma_m16n16k16_mma_col_col_f16_f32,   // llvm.nvvm.wmma.m16n16k16.mma.col.col.f16.f32
@@ -1070,6 +1144,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m16n16k16_mma_col_col_s8_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.col.col.s8.satfinite
     nvvm_wmma_m16n16k16_mma_col_col_u8,        // llvm.nvvm.wmma.m16n16k16.mma.col.col.u8
     nvvm_wmma_m16n16k16_mma_col_col_u8_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.col.col.u8.satfinite
+    nvvm_wmma_m16n16k16_mma_col_row_bf16,      // llvm.nvvm.wmma.m16n16k16.mma.col.row.bf16
     nvvm_wmma_m16n16k16_mma_col_row_f16_f16,   // llvm.nvvm.wmma.m16n16k16.mma.col.row.f16.f16
     nvvm_wmma_m16n16k16_mma_col_row_f16_f16_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.col.row.f16.f16.satfinite
     nvvm_wmma_m16n16k16_mma_col_row_f16_f32,   // llvm.nvvm.wmma.m16n16k16.mma.col.row.f16.f32
@@ -1082,6 +1157,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m16n16k16_mma_col_row_s8_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.col.row.s8.satfinite
     nvvm_wmma_m16n16k16_mma_col_row_u8,        // llvm.nvvm.wmma.m16n16k16.mma.col.row.u8
     nvvm_wmma_m16n16k16_mma_col_row_u8_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.col.row.u8.satfinite
+    nvvm_wmma_m16n16k16_mma_row_col_bf16,      // llvm.nvvm.wmma.m16n16k16.mma.row.col.bf16
     nvvm_wmma_m16n16k16_mma_row_col_f16_f16,   // llvm.nvvm.wmma.m16n16k16.mma.row.col.f16.f16
     nvvm_wmma_m16n16k16_mma_row_col_f16_f16_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.row.col.f16.f16.satfinite
     nvvm_wmma_m16n16k16_mma_row_col_f16_f32,   // llvm.nvvm.wmma.m16n16k16.mma.row.col.f16.f32
@@ -1094,6 +1170,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m16n16k16_mma_row_col_s8_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.row.col.s8.satfinite
     nvvm_wmma_m16n16k16_mma_row_col_u8,        // llvm.nvvm.wmma.m16n16k16.mma.row.col.u8
     nvvm_wmma_m16n16k16_mma_row_col_u8_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.row.col.u8.satfinite
+    nvvm_wmma_m16n16k16_mma_row_row_bf16,      // llvm.nvvm.wmma.m16n16k16.mma.row.row.bf16
     nvvm_wmma_m16n16k16_mma_row_row_f16_f16,   // llvm.nvvm.wmma.m16n16k16.mma.row.row.f16.f16
     nvvm_wmma_m16n16k16_mma_row_row_f16_f16_satfinite,  // llvm.nvvm.wmma.m16n16k16.mma.row.row.f16.f16.satfinite
     nvvm_wmma_m16n16k16_mma_row_row_f16_f32,   // llvm.nvvm.wmma.m16n16k16.mma.row.row.f16.f32
@@ -1118,26 +1195,54 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m16n16k16_store_d_f16_row_stride,  // llvm.nvvm.wmma.m16n16k16.store.d.row.stride.f16
     nvvm_wmma_m16n16k16_store_d_f32_row_stride,  // llvm.nvvm.wmma.m16n16k16.store.d.row.stride.f32
     nvvm_wmma_m16n16k16_store_d_s32_row_stride,  // llvm.nvvm.wmma.m16n16k16.store.d.row.stride.s32
+    nvvm_wmma_m16n16k8_load_a_tf32_col_stride,  // llvm.nvvm.wmma.m16n16k8.load.a.col.stride.tf32
+    nvvm_wmma_m16n16k8_load_a_tf32_col,        // llvm.nvvm.wmma.m16n16k8.load.a.col.tf32
+    nvvm_wmma_m16n16k8_load_a_tf32_row_stride,  // llvm.nvvm.wmma.m16n16k8.load.a.row.stride.tf32
+    nvvm_wmma_m16n16k8_load_a_tf32_row,        // llvm.nvvm.wmma.m16n16k8.load.a.row.tf32
+    nvvm_wmma_m16n16k8_load_b_tf32_col_stride,  // llvm.nvvm.wmma.m16n16k8.load.b.col.stride.tf32
+    nvvm_wmma_m16n16k8_load_b_tf32_col,        // llvm.nvvm.wmma.m16n16k8.load.b.col.tf32
+    nvvm_wmma_m16n16k8_load_b_tf32_row_stride,  // llvm.nvvm.wmma.m16n16k8.load.b.row.stride.tf32
+    nvvm_wmma_m16n16k8_load_b_tf32_row,        // llvm.nvvm.wmma.m16n16k8.load.b.row.tf32
+    nvvm_wmma_m16n16k8_load_c_f32_col,         // llvm.nvvm.wmma.m16n16k8.load.c.col.f32
+    nvvm_wmma_m16n16k8_load_c_f32_col_stride,  // llvm.nvvm.wmma.m16n16k8.load.c.col.stride.f32
+    nvvm_wmma_m16n16k8_load_c_f32_row,         // llvm.nvvm.wmma.m16n16k8.load.c.row.f32
+    nvvm_wmma_m16n16k8_load_c_f32_row_stride,  // llvm.nvvm.wmma.m16n16k8.load.c.row.stride.f32
+    nvvm_wmma_m16n16k8_mma_col_col_tf32,       // llvm.nvvm.wmma.m16n16k8.mma.col.col.tf32
+    nvvm_wmma_m16n16k8_mma_col_row_tf32,       // llvm.nvvm.wmma.m16n16k8.mma.col.row.tf32
+    nvvm_wmma_m16n16k8_mma_row_col_tf32,       // llvm.nvvm.wmma.m16n16k8.mma.row.col.tf32
+    nvvm_wmma_m16n16k8_mma_row_row_tf32,       // llvm.nvvm.wmma.m16n16k8.mma.row.row.tf32
+    nvvm_wmma_m16n16k8_store_d_f32_col,        // llvm.nvvm.wmma.m16n16k8.store.d.col.f32
+    nvvm_wmma_m16n16k8_store_d_f32_col_stride,  // llvm.nvvm.wmma.m16n16k8.store.d.col.stride.f32
+    nvvm_wmma_m16n16k8_store_d_f32_row,        // llvm.nvvm.wmma.m16n16k8.store.d.row.f32
+    nvvm_wmma_m16n16k8_store_d_f32_row_stride,  // llvm.nvvm.wmma.m16n16k8.store.d.row.stride.f32
+    nvvm_wmma_m32n8k16_load_a_bf16_col,        // llvm.nvvm.wmma.m32n8k16.load.a.col.bf16
     nvvm_wmma_m32n8k16_load_a_f16_col,         // llvm.nvvm.wmma.m32n8k16.load.a.col.f16
     nvvm_wmma_m32n8k16_load_a_s8_col,          // llvm.nvvm.wmma.m32n8k16.load.a.col.s8
+    nvvm_wmma_m32n8k16_load_a_bf16_col_stride,  // llvm.nvvm.wmma.m32n8k16.load.a.col.stride.bf16
     nvvm_wmma_m32n8k16_load_a_f16_col_stride,  // llvm.nvvm.wmma.m32n8k16.load.a.col.stride.f16
     nvvm_wmma_m32n8k16_load_a_s8_col_stride,   // llvm.nvvm.wmma.m32n8k16.load.a.col.stride.s8
     nvvm_wmma_m32n8k16_load_a_u8_col_stride,   // llvm.nvvm.wmma.m32n8k16.load.a.col.stride.u8
     nvvm_wmma_m32n8k16_load_a_u8_col,          // llvm.nvvm.wmma.m32n8k16.load.a.col.u8
+    nvvm_wmma_m32n8k16_load_a_bf16_row,        // llvm.nvvm.wmma.m32n8k16.load.a.row.bf16
     nvvm_wmma_m32n8k16_load_a_f16_row,         // llvm.nvvm.wmma.m32n8k16.load.a.row.f16
     nvvm_wmma_m32n8k16_load_a_s8_row,          // llvm.nvvm.wmma.m32n8k16.load.a.row.s8
+    nvvm_wmma_m32n8k16_load_a_bf16_row_stride,  // llvm.nvvm.wmma.m32n8k16.load.a.row.stride.bf16
     nvvm_wmma_m32n8k16_load_a_f16_row_stride,  // llvm.nvvm.wmma.m32n8k16.load.a.row.stride.f16
     nvvm_wmma_m32n8k16_load_a_s8_row_stride,   // llvm.nvvm.wmma.m32n8k16.load.a.row.stride.s8
     nvvm_wmma_m32n8k16_load_a_u8_row_stride,   // llvm.nvvm.wmma.m32n8k16.load.a.row.stride.u8
     nvvm_wmma_m32n8k16_load_a_u8_row,          // llvm.nvvm.wmma.m32n8k16.load.a.row.u8
+    nvvm_wmma_m32n8k16_load_b_bf16_col,        // llvm.nvvm.wmma.m32n8k16.load.b.col.bf16
     nvvm_wmma_m32n8k16_load_b_f16_col,         // llvm.nvvm.wmma.m32n8k16.load.b.col.f16
     nvvm_wmma_m32n8k16_load_b_s8_col,          // llvm.nvvm.wmma.m32n8k16.load.b.col.s8
+    nvvm_wmma_m32n8k16_load_b_bf16_col_stride,  // llvm.nvvm.wmma.m32n8k16.load.b.col.stride.bf16
     nvvm_wmma_m32n8k16_load_b_f16_col_stride,  // llvm.nvvm.wmma.m32n8k16.load.b.col.stride.f16
     nvvm_wmma_m32n8k16_load_b_s8_col_stride,   // llvm.nvvm.wmma.m32n8k16.load.b.col.stride.s8
     nvvm_wmma_m32n8k16_load_b_u8_col_stride,   // llvm.nvvm.wmma.m32n8k16.load.b.col.stride.u8
     nvvm_wmma_m32n8k16_load_b_u8_col,          // llvm.nvvm.wmma.m32n8k16.load.b.col.u8
+    nvvm_wmma_m32n8k16_load_b_bf16_row,        // llvm.nvvm.wmma.m32n8k16.load.b.row.bf16
     nvvm_wmma_m32n8k16_load_b_f16_row,         // llvm.nvvm.wmma.m32n8k16.load.b.row.f16
     nvvm_wmma_m32n8k16_load_b_s8_row,          // llvm.nvvm.wmma.m32n8k16.load.b.row.s8
+    nvvm_wmma_m32n8k16_load_b_bf16_row_stride,  // llvm.nvvm.wmma.m32n8k16.load.b.row.stride.bf16
     nvvm_wmma_m32n8k16_load_b_f16_row_stride,  // llvm.nvvm.wmma.m32n8k16.load.b.row.stride.f16
     nvvm_wmma_m32n8k16_load_b_s8_row_stride,   // llvm.nvvm.wmma.m32n8k16.load.b.row.stride.s8
     nvvm_wmma_m32n8k16_load_b_u8_row_stride,   // llvm.nvvm.wmma.m32n8k16.load.b.row.stride.u8
@@ -1154,6 +1259,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m32n8k16_load_c_f16_row_stride,  // llvm.nvvm.wmma.m32n8k16.load.c.row.stride.f16
     nvvm_wmma_m32n8k16_load_c_f32_row_stride,  // llvm.nvvm.wmma.m32n8k16.load.c.row.stride.f32
     nvvm_wmma_m32n8k16_load_c_s32_row_stride,  // llvm.nvvm.wmma.m32n8k16.load.c.row.stride.s32
+    nvvm_wmma_m32n8k16_mma_col_col_bf16,       // llvm.nvvm.wmma.m32n8k16.mma.col.col.bf16
     nvvm_wmma_m32n8k16_mma_col_col_f16_f16,    // llvm.nvvm.wmma.m32n8k16.mma.col.col.f16.f16
     nvvm_wmma_m32n8k16_mma_col_col_f16_f16_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.col.col.f16.f16.satfinite
     nvvm_wmma_m32n8k16_mma_col_col_f16_f32,    // llvm.nvvm.wmma.m32n8k16.mma.col.col.f16.f32
@@ -1166,6 +1272,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m32n8k16_mma_col_col_s8_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.col.col.s8.satfinite
     nvvm_wmma_m32n8k16_mma_col_col_u8,         // llvm.nvvm.wmma.m32n8k16.mma.col.col.u8
     nvvm_wmma_m32n8k16_mma_col_col_u8_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.col.col.u8.satfinite
+    nvvm_wmma_m32n8k16_mma_col_row_bf16,       // llvm.nvvm.wmma.m32n8k16.mma.col.row.bf16
     nvvm_wmma_m32n8k16_mma_col_row_f16_f16,    // llvm.nvvm.wmma.m32n8k16.mma.col.row.f16.f16
     nvvm_wmma_m32n8k16_mma_col_row_f16_f16_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.col.row.f16.f16.satfinite
     nvvm_wmma_m32n8k16_mma_col_row_f16_f32,    // llvm.nvvm.wmma.m32n8k16.mma.col.row.f16.f32
@@ -1178,6 +1285,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m32n8k16_mma_col_row_s8_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.col.row.s8.satfinite
     nvvm_wmma_m32n8k16_mma_col_row_u8,         // llvm.nvvm.wmma.m32n8k16.mma.col.row.u8
     nvvm_wmma_m32n8k16_mma_col_row_u8_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.col.row.u8.satfinite
+    nvvm_wmma_m32n8k16_mma_row_col_bf16,       // llvm.nvvm.wmma.m32n8k16.mma.row.col.bf16
     nvvm_wmma_m32n8k16_mma_row_col_f16_f16,    // llvm.nvvm.wmma.m32n8k16.mma.row.col.f16.f16
     nvvm_wmma_m32n8k16_mma_row_col_f16_f16_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.row.col.f16.f16.satfinite
     nvvm_wmma_m32n8k16_mma_row_col_f16_f32,    // llvm.nvvm.wmma.m32n8k16.mma.row.col.f16.f32
@@ -1190,6 +1298,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m32n8k16_mma_row_col_s8_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.row.col.s8.satfinite
     nvvm_wmma_m32n8k16_mma_row_col_u8,         // llvm.nvvm.wmma.m32n8k16.mma.row.col.u8
     nvvm_wmma_m32n8k16_mma_row_col_u8_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.row.col.u8.satfinite
+    nvvm_wmma_m32n8k16_mma_row_row_bf16,       // llvm.nvvm.wmma.m32n8k16.mma.row.row.bf16
     nvvm_wmma_m32n8k16_mma_row_row_f16_f16,    // llvm.nvvm.wmma.m32n8k16.mma.row.row.f16.f16
     nvvm_wmma_m32n8k16_mma_row_row_f16_f16_satfinite,  // llvm.nvvm.wmma.m32n8k16.mma.row.row.f16.f16.satfinite
     nvvm_wmma_m32n8k16_mma_row_row_f16_f32,    // llvm.nvvm.wmma.m32n8k16.mma.row.row.f16.f32
@@ -1214,26 +1323,34 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m32n8k16_store_d_f16_row_stride,  // llvm.nvvm.wmma.m32n8k16.store.d.row.stride.f16
     nvvm_wmma_m32n8k16_store_d_f32_row_stride,  // llvm.nvvm.wmma.m32n8k16.store.d.row.stride.f32
     nvvm_wmma_m32n8k16_store_d_s32_row_stride,  // llvm.nvvm.wmma.m32n8k16.store.d.row.stride.s32
+    nvvm_wmma_m8n32k16_load_a_bf16_col,        // llvm.nvvm.wmma.m8n32k16.load.a.col.bf16
     nvvm_wmma_m8n32k16_load_a_f16_col,         // llvm.nvvm.wmma.m8n32k16.load.a.col.f16
     nvvm_wmma_m8n32k16_load_a_s8_col,          // llvm.nvvm.wmma.m8n32k16.load.a.col.s8
+    nvvm_wmma_m8n32k16_load_a_bf16_col_stride,  // llvm.nvvm.wmma.m8n32k16.load.a.col.stride.bf16
     nvvm_wmma_m8n32k16_load_a_f16_col_stride,  // llvm.nvvm.wmma.m8n32k16.load.a.col.stride.f16
     nvvm_wmma_m8n32k16_load_a_s8_col_stride,   // llvm.nvvm.wmma.m8n32k16.load.a.col.stride.s8
     nvvm_wmma_m8n32k16_load_a_u8_col_stride,   // llvm.nvvm.wmma.m8n32k16.load.a.col.stride.u8
     nvvm_wmma_m8n32k16_load_a_u8_col,          // llvm.nvvm.wmma.m8n32k16.load.a.col.u8
+    nvvm_wmma_m8n32k16_load_a_bf16_row,        // llvm.nvvm.wmma.m8n32k16.load.a.row.bf16
     nvvm_wmma_m8n32k16_load_a_f16_row,         // llvm.nvvm.wmma.m8n32k16.load.a.row.f16
     nvvm_wmma_m8n32k16_load_a_s8_row,          // llvm.nvvm.wmma.m8n32k16.load.a.row.s8
+    nvvm_wmma_m8n32k16_load_a_bf16_row_stride,  // llvm.nvvm.wmma.m8n32k16.load.a.row.stride.bf16
     nvvm_wmma_m8n32k16_load_a_f16_row_stride,  // llvm.nvvm.wmma.m8n32k16.load.a.row.stride.f16
     nvvm_wmma_m8n32k16_load_a_s8_row_stride,   // llvm.nvvm.wmma.m8n32k16.load.a.row.stride.s8
     nvvm_wmma_m8n32k16_load_a_u8_row_stride,   // llvm.nvvm.wmma.m8n32k16.load.a.row.stride.u8
     nvvm_wmma_m8n32k16_load_a_u8_row,          // llvm.nvvm.wmma.m8n32k16.load.a.row.u8
+    nvvm_wmma_m8n32k16_load_b_bf16_col,        // llvm.nvvm.wmma.m8n32k16.load.b.col.bf16
     nvvm_wmma_m8n32k16_load_b_f16_col,         // llvm.nvvm.wmma.m8n32k16.load.b.col.f16
     nvvm_wmma_m8n32k16_load_b_s8_col,          // llvm.nvvm.wmma.m8n32k16.load.b.col.s8
+    nvvm_wmma_m8n32k16_load_b_bf16_col_stride,  // llvm.nvvm.wmma.m8n32k16.load.b.col.stride.bf16
     nvvm_wmma_m8n32k16_load_b_f16_col_stride,  // llvm.nvvm.wmma.m8n32k16.load.b.col.stride.f16
     nvvm_wmma_m8n32k16_load_b_s8_col_stride,   // llvm.nvvm.wmma.m8n32k16.load.b.col.stride.s8
     nvvm_wmma_m8n32k16_load_b_u8_col_stride,   // llvm.nvvm.wmma.m8n32k16.load.b.col.stride.u8
     nvvm_wmma_m8n32k16_load_b_u8_col,          // llvm.nvvm.wmma.m8n32k16.load.b.col.u8
+    nvvm_wmma_m8n32k16_load_b_bf16_row,        // llvm.nvvm.wmma.m8n32k16.load.b.row.bf16
     nvvm_wmma_m8n32k16_load_b_f16_row,         // llvm.nvvm.wmma.m8n32k16.load.b.row.f16
     nvvm_wmma_m8n32k16_load_b_s8_row,          // llvm.nvvm.wmma.m8n32k16.load.b.row.s8
+    nvvm_wmma_m8n32k16_load_b_bf16_row_stride,  // llvm.nvvm.wmma.m8n32k16.load.b.row.stride.bf16
     nvvm_wmma_m8n32k16_load_b_f16_row_stride,  // llvm.nvvm.wmma.m8n32k16.load.b.row.stride.f16
     nvvm_wmma_m8n32k16_load_b_s8_row_stride,   // llvm.nvvm.wmma.m8n32k16.load.b.row.stride.s8
     nvvm_wmma_m8n32k16_load_b_u8_row_stride,   // llvm.nvvm.wmma.m8n32k16.load.b.row.stride.u8
@@ -1250,6 +1367,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m8n32k16_load_c_f16_row_stride,  // llvm.nvvm.wmma.m8n32k16.load.c.row.stride.f16
     nvvm_wmma_m8n32k16_load_c_f32_row_stride,  // llvm.nvvm.wmma.m8n32k16.load.c.row.stride.f32
     nvvm_wmma_m8n32k16_load_c_s32_row_stride,  // llvm.nvvm.wmma.m8n32k16.load.c.row.stride.s32
+    nvvm_wmma_m8n32k16_mma_col_col_bf16,       // llvm.nvvm.wmma.m8n32k16.mma.col.col.bf16
     nvvm_wmma_m8n32k16_mma_col_col_f16_f16,    // llvm.nvvm.wmma.m8n32k16.mma.col.col.f16.f16
     nvvm_wmma_m8n32k16_mma_col_col_f16_f16_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.col.col.f16.f16.satfinite
     nvvm_wmma_m8n32k16_mma_col_col_f16_f32,    // llvm.nvvm.wmma.m8n32k16.mma.col.col.f16.f32
@@ -1262,6 +1380,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m8n32k16_mma_col_col_s8_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.col.col.s8.satfinite
     nvvm_wmma_m8n32k16_mma_col_col_u8,         // llvm.nvvm.wmma.m8n32k16.mma.col.col.u8
     nvvm_wmma_m8n32k16_mma_col_col_u8_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.col.col.u8.satfinite
+    nvvm_wmma_m8n32k16_mma_col_row_bf16,       // llvm.nvvm.wmma.m8n32k16.mma.col.row.bf16
     nvvm_wmma_m8n32k16_mma_col_row_f16_f16,    // llvm.nvvm.wmma.m8n32k16.mma.col.row.f16.f16
     nvvm_wmma_m8n32k16_mma_col_row_f16_f16_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.col.row.f16.f16.satfinite
     nvvm_wmma_m8n32k16_mma_col_row_f16_f32,    // llvm.nvvm.wmma.m8n32k16.mma.col.row.f16.f32
@@ -1274,6 +1393,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m8n32k16_mma_col_row_s8_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.col.row.s8.satfinite
     nvvm_wmma_m8n32k16_mma_col_row_u8,         // llvm.nvvm.wmma.m8n32k16.mma.col.row.u8
     nvvm_wmma_m8n32k16_mma_col_row_u8_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.col.row.u8.satfinite
+    nvvm_wmma_m8n32k16_mma_row_col_bf16,       // llvm.nvvm.wmma.m8n32k16.mma.row.col.bf16
     nvvm_wmma_m8n32k16_mma_row_col_f16_f16,    // llvm.nvvm.wmma.m8n32k16.mma.row.col.f16.f16
     nvvm_wmma_m8n32k16_mma_row_col_f16_f16_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.row.col.f16.f16.satfinite
     nvvm_wmma_m8n32k16_mma_row_col_f16_f32,    // llvm.nvvm.wmma.m8n32k16.mma.row.col.f16.f32
@@ -1286,6 +1406,7 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m8n32k16_mma_row_col_s8_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.row.col.s8.satfinite
     nvvm_wmma_m8n32k16_mma_row_col_u8,         // llvm.nvvm.wmma.m8n32k16.mma.row.col.u8
     nvvm_wmma_m8n32k16_mma_row_col_u8_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.row.col.u8.satfinite
+    nvvm_wmma_m8n32k16_mma_row_row_bf16,       // llvm.nvvm.wmma.m8n32k16.mma.row.row.bf16
     nvvm_wmma_m8n32k16_mma_row_row_f16_f16,    // llvm.nvvm.wmma.m8n32k16.mma.row.row.f16.f16
     nvvm_wmma_m8n32k16_mma_row_row_f16_f16_satfinite,  // llvm.nvvm.wmma.m8n32k16.mma.row.row.f16.f16.satfinite
     nvvm_wmma_m8n32k16_mma_row_row_f16_f32,    // llvm.nvvm.wmma.m8n32k16.mma.row.row.f16.f32
@@ -1318,7 +1439,8 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m8n8k128_load_c_s32_col_stride,  // llvm.nvvm.wmma.m8n8k128.load.c.col.stride.s32
     nvvm_wmma_m8n8k128_load_c_s32_row,         // llvm.nvvm.wmma.m8n8k128.load.c.row.s32
     nvvm_wmma_m8n8k128_load_c_s32_row_stride,  // llvm.nvvm.wmma.m8n8k128.load.c.row.stride.s32
-    nvvm_wmma_m8n8k128_mma_row_col_b1,         // llvm.nvvm.wmma.m8n8k128.mma.row.col.b1
+    nvvm_wmma_m8n8k128_mma_and_popc_row_col_b1,  // llvm.nvvm.wmma.m8n8k128.mma.and.popc.row.col.b1
+    nvvm_wmma_m8n8k128_mma_xor_popc_row_col_b1,  // llvm.nvvm.wmma.m8n8k128.mma.xor.popc.row.col.b1
     nvvm_wmma_m8n8k128_store_d_s32_col,        // llvm.nvvm.wmma.m8n8k128.store.d.col.s32
     nvvm_wmma_m8n8k128_store_d_s32_col_stride,  // llvm.nvvm.wmma.m8n8k128.store.d.col.stride.s32
     nvvm_wmma_m8n8k128_store_d_s32_row,        // llvm.nvvm.wmma.m8n8k128.store.d.row.s32
@@ -1343,6 +1465,42 @@ enum NVVMIntrinsics : unsigned {
     nvvm_wmma_m8n8k32_store_d_s32_col_stride,  // llvm.nvvm.wmma.m8n8k32.store.d.col.stride.s32
     nvvm_wmma_m8n8k32_store_d_s32_row,         // llvm.nvvm.wmma.m8n8k32.store.d.row.s32
     nvvm_wmma_m8n8k32_store_d_s32_row_stride,  // llvm.nvvm.wmma.m8n8k32.store.d.row.stride.s32
+    nvvm_wmma_m8n8k4_load_a_f64_col,           // llvm.nvvm.wmma.m8n8k4.load.a.col.f64
+    nvvm_wmma_m8n8k4_load_a_f64_col_stride,    // llvm.nvvm.wmma.m8n8k4.load.a.col.stride.f64
+    nvvm_wmma_m8n8k4_load_a_f64_row,           // llvm.nvvm.wmma.m8n8k4.load.a.row.f64
+    nvvm_wmma_m8n8k4_load_a_f64_row_stride,    // llvm.nvvm.wmma.m8n8k4.load.a.row.stride.f64
+    nvvm_wmma_m8n8k4_load_b_f64_col,           // llvm.nvvm.wmma.m8n8k4.load.b.col.f64
+    nvvm_wmma_m8n8k4_load_b_f64_col_stride,    // llvm.nvvm.wmma.m8n8k4.load.b.col.stride.f64
+    nvvm_wmma_m8n8k4_load_b_f64_row,           // llvm.nvvm.wmma.m8n8k4.load.b.row.f64
+    nvvm_wmma_m8n8k4_load_b_f64_row_stride,    // llvm.nvvm.wmma.m8n8k4.load.b.row.stride.f64
+    nvvm_wmma_m8n8k4_load_c_f64_col,           // llvm.nvvm.wmma.m8n8k4.load.c.col.f64
+    nvvm_wmma_m8n8k4_load_c_f64_col_stride,    // llvm.nvvm.wmma.m8n8k4.load.c.col.stride.f64
+    nvvm_wmma_m8n8k4_load_c_f64_row,           // llvm.nvvm.wmma.m8n8k4.load.c.row.f64
+    nvvm_wmma_m8n8k4_load_c_f64_row_stride,    // llvm.nvvm.wmma.m8n8k4.load.c.row.stride.f64
+    nvvm_wmma_m8n8k4_mma_col_col_f64,          // llvm.nvvm.wmma.m8n8k4.mma.col.col.f64
+    nvvm_wmma_m8n8k4_mma_col_col_rm_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.col.rm.f64
+    nvvm_wmma_m8n8k4_mma_col_col_rn_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.col.rn.f64
+    nvvm_wmma_m8n8k4_mma_col_col_rp_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.col.rp.f64
+    nvvm_wmma_m8n8k4_mma_col_col_rz_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.col.rz.f64
+    nvvm_wmma_m8n8k4_mma_col_row_f64,          // llvm.nvvm.wmma.m8n8k4.mma.col.row.f64
+    nvvm_wmma_m8n8k4_mma_col_row_rm_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.row.rm.f64
+    nvvm_wmma_m8n8k4_mma_col_row_rn_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.row.rn.f64
+    nvvm_wmma_m8n8k4_mma_col_row_rp_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.row.rp.f64
+    nvvm_wmma_m8n8k4_mma_col_row_rz_f64,       // llvm.nvvm.wmma.m8n8k4.mma.col.row.rz.f64
+    nvvm_wmma_m8n8k4_mma_row_col_f64,          // llvm.nvvm.wmma.m8n8k4.mma.row.col.f64
+    nvvm_wmma_m8n8k4_mma_row_col_rm_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.col.rm.f64
+    nvvm_wmma_m8n8k4_mma_row_col_rn_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.col.rn.f64
+    nvvm_wmma_m8n8k4_mma_row_col_rp_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.col.rp.f64
+    nvvm_wmma_m8n8k4_mma_row_col_rz_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.col.rz.f64
+    nvvm_wmma_m8n8k4_mma_row_row_f64,          // llvm.nvvm.wmma.m8n8k4.mma.row.row.f64
+    nvvm_wmma_m8n8k4_mma_row_row_rm_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.row.rm.f64
+    nvvm_wmma_m8n8k4_mma_row_row_rn_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.row.rn.f64
+    nvvm_wmma_m8n8k4_mma_row_row_rp_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.row.rp.f64
+    nvvm_wmma_m8n8k4_mma_row_row_rz_f64,       // llvm.nvvm.wmma.m8n8k4.mma.row.row.rz.f64
+    nvvm_wmma_m8n8k4_store_d_f64_col,          // llvm.nvvm.wmma.m8n8k4.store.d.col.f64
+    nvvm_wmma_m8n8k4_store_d_f64_col_stride,   // llvm.nvvm.wmma.m8n8k4.store.d.col.stride.f64
+    nvvm_wmma_m8n8k4_store_d_f64_row,          // llvm.nvvm.wmma.m8n8k4.store.d.row.f64
+    nvvm_wmma_m8n8k4_store_d_f64_row_stride,   // llvm.nvvm.wmma.m8n8k4.store.d.row.stride.f64
 }; // enum
 } // namespace Intrinsic
 } // namespace llvm

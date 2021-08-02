@@ -1156,6 +1156,10 @@
   bool VisitSwiftAsyncAttr(SwiftAsyncAttr *A) {
     return true; 
   }
+  bool TraverseSwiftAsyncCallAttr(SwiftAsyncCallAttr *A);
+  bool VisitSwiftAsyncCallAttr(SwiftAsyncCallAttr *A) {
+    return true; 
+  }
   bool TraverseSwiftAsyncContextAttr(SwiftAsyncContextAttr *A);
   bool VisitSwiftAsyncContextAttr(SwiftAsyncContextAttr *A) {
     return true; 
@@ -4176,6 +4180,15 @@ bool VISITORCLASS<Derived>::TraverseSwiftAsyncAttr(SwiftAsyncAttr *A) {
 }
 
 template <typename Derived>
+bool VISITORCLASS<Derived>::TraverseSwiftAsyncCallAttr(SwiftAsyncCallAttr *A) {
+  if (!getDerived().VisitAttr(A))
+    return false;
+  if (!getDerived().VisitSwiftAsyncCallAttr(A))
+    return false;
+  return true;
+}
+
+template <typename Derived>
 bool VISITORCLASS<Derived>::TraverseSwiftAsyncContextAttr(SwiftAsyncContextAttr *A) {
   if (!getDerived().VisitAttr(A))
     return false;
@@ -5302,6 +5315,8 @@ bool VISITORCLASS<Derived>::TraverseAttr(Attr *A) {
       return getDerived().TraverseSuppressAttr(cast<SuppressAttr>(A));
     case attr::SwiftAsync:
       return getDerived().TraverseSwiftAsyncAttr(cast<SwiftAsyncAttr>(A));
+    case attr::SwiftAsyncCall:
+      return getDerived().TraverseSwiftAsyncCallAttr(cast<SwiftAsyncCallAttr>(A));
     case attr::SwiftAsyncContext:
       return getDerived().TraverseSwiftAsyncContextAttr(cast<SwiftAsyncContextAttr>(A));
     case attr::SwiftAsyncError:

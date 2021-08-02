@@ -37,6 +37,7 @@
 #include "clang/APINotes/APINotesManager.h"
 #include "clang/AST/TypeOrdering.h"
 #include "clang/Basic/BitmaskEnum.h"
+#include "clang/Basic/Builtins.h"
 #include "clang/Basic/ExpressionTraits.h"
 #include "clang/Basic/Module.h"
 #include "clang/Basic/OpenCLOptions.h"
@@ -116,6 +117,7 @@ namespace clang {
   class CodeCompletionTUInfo;
   class CodeCompletionResult;
   class CoroutineBodyStmt;
+  class DarwinSDKInfo;
   class Decl;
   class DeclAccessPair;
   class DeclContext;
@@ -1383,7 +1385,7 @@ public:
   /// initializers for tentative definitions in C) once parsing has
   /// completed. Modules and precompiled headers perform different kinds of
   /// checks.
-  TranslationUnitKind TUKind;
+  const TranslationUnitKind TUKind;
 
   llvm::BumpPtrAllocator BumpAlloc;
 
@@ -1531,6 +1533,8 @@ public:
   /// assignment.
   llvm::DenseMap<const VarDecl *, int> RefsMinusAssignments;
 
+  Optional<std::unique_ptr<DarwinSDKInfo>> CachedDarwinSDKInfo;
+
 public:
   Sema(Preprocessor &pp, ASTContext &ctxt, ASTConsumer &consumer,
        TranslationUnitKind TUKind = TU_Complete,
@@ -1559,6 +1563,8 @@ public:
   ASTConsumer &getASTConsumer() const { return Consumer; }
   ASTMutationListener *getASTMutationListener() const;
   ExternalSemaSource* getExternalSource() const { return ExternalSource; }
+  DarwinSDKInfo *getDarwinSDKInfoForAvailabilityChecking(SourceLocation Loc,
+                                                         StringRef Platform);
 
   ///Registers an external source. If an external source already exists,
   /// creates a multiplex external source and appends to it.
@@ -1775,6 +1781,22 @@ public:
 
   /// Build a partial diagnostic.
   PartialDiagnostic PDiag(unsigned DiagID = 0); // in SemaInternal.h
+
+  /// Whether deferrable diagnostics should be deferred.
+  bool DeferDiags = false;
+
+  /// RAII class to control scope of DeferDiags.
+  class DeferDiagsRAII {
+    Sema &S;
+    bool SavedDeferDiags = false;
+
+  public:
+    DeferDiagsRAII(Sema &S, bool DeferDiags)
+        : S(S), SavedDeferDiags(S.DeferDiags) {
+      S.DeferDiags = DeferDiags;
+    }
+    ~DeferDiagsRAII() { S.DeferDiags = SavedDeferDiags; }
+  };
 
   /// Whether uncompilable error has occurred. This includes error happens
   /// in deferred diagnostics.
@@ -3499,7 +3521,6 @@ public:
     CCEK_Enumerator,  ///< Enumerator value with fixed underlying type.
     CCEK_TemplateArg, ///< Value of a non-type template parameter.
     CCEK_ArrayBound,  ///< Array bound in array declarator or new-expression.
-    CCEK_ConstexprIf, ///< Condition in a constexpr if statement.
     CCEK_ExplicitBool ///< Condition in an explicit(bool) specifier.
   };
   ExprResult CheckConvertedConstantExpression(Expr *From, QualType T,
@@ -4807,8 +4828,7 @@ public:
     bool isCopyElidable() const { return S == MoveEligibleAndCopyElidable; }
   };
   NamedReturnInfo getNamedReturnInfo(Expr *&E, bool ForceCXX2b = false);
-  NamedReturnInfo getNamedReturnInfo(const VarDecl *VD,
-                                     bool ForceCXX20 = false);
+  NamedReturnInfo getNamedReturnInfo(const VarDecl *VD);
   const VarDecl *getCopyElisionCandidate(NamedReturnInfo &Info,
                                          QualType ReturnType);
 
@@ -5450,6 +5470,8 @@ public:
                            Expr *ExecConfig = nullptr,
                            bool IsExecConfig = false,
                            bool AllowRecovery = false);
+  Expr *BuildBuiltinCallExpr(SourceLocation Loc, Builtin::ID Id,
+                             MultiExprArg CallArgs);
   enum class AtomicArgumentOrder { API, AST };
   ExprResult
   BuildAtomicExpr(SourceRange CallRange, SourceRange ExprRange,
@@ -6114,6 +6136,12 @@ public:
   // Checks that reinterpret casts don't have undefined behavior.
   void CheckCompatibleReinterpretCast(QualType SrcType, QualType DestType,
                                       bool IsDereference, SourceRange Range);
+
+  // Checks that the vector type should be initialized from a scalar
+  // by splatting the value rather than populating a single element.
+  // This is the case for AltiVecVector types as well as with
+  // AltiVecPixel and AltiVecBool when -faltivec-src-compat=xl is specified.
+  bool ShouldSplatAltivecScalarInCast(const VectorType *VecTy);
 
   /// ActOnCXXNamedCast - Parse
   /// {dynamic,static,reinterpret,const,addrspace}_cast's.
@@ -12604,6 +12632,7 @@ private:
   bool SemaBuiltinComplex(CallExpr *TheCall);
   bool SemaBuiltinVSX(CallExpr *TheCall);
   bool SemaBuiltinOSLogFormat(CallExpr *TheCall);
+  bool SemaValueIsRunOfOnes(CallExpr *TheCall, unsigned ArgNum);
 
 public:
   // Used by C++ template instantiation.
@@ -12615,6 +12644,7 @@ public:
 private:
   bool SemaBuiltinPrefetch(CallExpr *TheCall);
   bool SemaBuiltinAllocaWithAlign(CallExpr *TheCall);
+  bool SemaBuiltinArithmeticFence(CallExpr *TheCall);
   bool SemaBuiltinAssume(CallExpr *TheCall);
   bool SemaBuiltinAssumeAligned(CallExpr *TheCall);
   bool SemaBuiltinLongjmp(CallExpr *TheCall);

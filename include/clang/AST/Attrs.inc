@@ -1639,6 +1639,8 @@ static llvm::StringRef getPrettyPlatformName(llvm::StringRef Platform) {
              .Case("macos_app_extension", "macOS (App Extension)")
              .Case("tvos_app_extension", "tvOS (App Extension)")
              .Case("watchos_app_extension", "watchOS (App Extension)")
+             .Case("maccatalyst", "macCatalyst")
+             .Case("maccatalyst_app_extension", "macCatalyst (App Extension)")
              .Case("swift", "Swift")
              .Default(llvm::StringRef());
 }
@@ -1652,6 +1654,8 @@ static llvm::StringRef getPlatformNameSourceSpelling(llvm::StringRef Platform) {
              .Case("macos_app_extension", "macOSApplicationExtension")
              .Case("tvos_app_extension", "tvOSApplicationExtension")
              .Case("watchos_app_extension", "watchOSApplicationExtension")
+             .Case("maccatalyst", "macCatalyst")
+             .Case("maccatalyst_app_extension", "macCatalystApplicationExtension")
              .Case("zos", "z/OS")
              .Default(Platform);
 }
@@ -1665,6 +1669,8 @@ static llvm::StringRef canonicalizePlatformName(llvm::StringRef Platform) {
              .Case("macOSApplicationExtension", "macos_app_extension")
              .Case("tvOSApplicationExtension", "tvos_app_extension")
              .Case("watchOSApplicationExtension", "watchos_app_extension")
+             .Case("macCatalyst", "maccatalyst")
+             .Case("macCatalystApplicationExtension", "maccatalyst_app_extension")
              .Default(Platform);
 } 
 
@@ -9987,6 +9993,35 @@ public:
 
 
   static bool classof(const Attr *A) { return A->getKind() == attr::SwiftAsync; }
+};
+
+class SwiftAsyncCallAttr : public InheritableAttr {
+public:
+  enum Spelling {
+    GNU_swiftasynccall = 0,
+    CXX11_clang_swiftasynccall = 1,
+    C2x_clang_swiftasynccall = 2,
+  SpellingNotCalculated = 15
+
+  };
+
+  // Factory methods
+  static SwiftAsyncCallAttr *CreateImplicit(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo = {SourceRange{}});
+  static SwiftAsyncCallAttr *Create(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo);
+  static SwiftAsyncCallAttr *CreateImplicit(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax);
+  static SwiftAsyncCallAttr *Create(ASTContext &Ctx, SourceRange Range, AttributeCommonInfo::Syntax Syntax);
+
+  // Constructors
+  SwiftAsyncCallAttr(ASTContext &Ctx, const AttributeCommonInfo &CommonInfo
+             );
+
+  SwiftAsyncCallAttr *clone(ASTContext &C) const;
+  void printPretty(raw_ostream &OS,
+                   const PrintingPolicy &Policy) const;
+  const char *getSpelling() const;
+
+
+  static bool classof(const Attr *A) { return A->getKind() == attr::SwiftAsyncCall; }
 };
 
 class SwiftAsyncContextAttr : public ParameterABIAttr {

@@ -1,13 +1,159 @@
+case RISCV::BI__builtin_rvv_vget_v_i8m2_i8m1:
+case RISCV::BI__builtin_rvv_vget_v_i8m4_i8m1:
+case RISCV::BI__builtin_rvv_vget_v_i8m8_i8m1:
+case RISCV::BI__builtin_rvv_vget_v_i16m2_i16m1:
+case RISCV::BI__builtin_rvv_vget_v_i16m4_i16m1:
+case RISCV::BI__builtin_rvv_vget_v_i16m8_i16m1:
+case RISCV::BI__builtin_rvv_vget_v_i32m2_i32m1:
+case RISCV::BI__builtin_rvv_vget_v_i32m4_i32m1:
+case RISCV::BI__builtin_rvv_vget_v_i32m8_i32m1:
+case RISCV::BI__builtin_rvv_vget_v_i64m2_i64m1:
+case RISCV::BI__builtin_rvv_vget_v_i64m4_i64m1:
+case RISCV::BI__builtin_rvv_vget_v_i64m8_i64m1:
+case RISCV::BI__builtin_rvv_vget_v_f32m2_f32m1:
+case RISCV::BI__builtin_rvv_vget_v_f32m4_f32m1:
+case RISCV::BI__builtin_rvv_vget_v_f32m8_f32m1:
+case RISCV::BI__builtin_rvv_vget_v_f64m2_f64m1:
+case RISCV::BI__builtin_rvv_vget_v_f64m4_f64m1:
+case RISCV::BI__builtin_rvv_vget_v_f64m8_f64m1:
+case RISCV::BI__builtin_rvv_vget_v_u8m2_u8m1:
+case RISCV::BI__builtin_rvv_vget_v_u8m4_u8m1:
+case RISCV::BI__builtin_rvv_vget_v_u8m8_u8m1:
+case RISCV::BI__builtin_rvv_vget_v_u16m2_u16m1:
+case RISCV::BI__builtin_rvv_vget_v_u16m4_u16m1:
+case RISCV::BI__builtin_rvv_vget_v_u16m8_u16m1:
+case RISCV::BI__builtin_rvv_vget_v_u32m2_u32m1:
+case RISCV::BI__builtin_rvv_vget_v_u32m4_u32m1:
+case RISCV::BI__builtin_rvv_vget_v_u32m8_u32m1:
+case RISCV::BI__builtin_rvv_vget_v_u64m2_u64m1:
+case RISCV::BI__builtin_rvv_vget_v_u64m4_u64m1:
+case RISCV::BI__builtin_rvv_vget_v_u64m8_u64m1:
+case RISCV::BI__builtin_rvv_vget_v_i8m4_i8m2:
+case RISCV::BI__builtin_rvv_vget_v_i8m8_i8m2:
+case RISCV::BI__builtin_rvv_vget_v_i16m4_i16m2:
+case RISCV::BI__builtin_rvv_vget_v_i16m8_i16m2:
+case RISCV::BI__builtin_rvv_vget_v_i32m4_i32m2:
+case RISCV::BI__builtin_rvv_vget_v_i32m8_i32m2:
+case RISCV::BI__builtin_rvv_vget_v_i64m4_i64m2:
+case RISCV::BI__builtin_rvv_vget_v_i64m8_i64m2:
+case RISCV::BI__builtin_rvv_vget_v_f32m4_f32m2:
+case RISCV::BI__builtin_rvv_vget_v_f32m8_f32m2:
+case RISCV::BI__builtin_rvv_vget_v_f64m4_f64m2:
+case RISCV::BI__builtin_rvv_vget_v_f64m8_f64m2:
+case RISCV::BI__builtin_rvv_vget_v_u8m4_u8m2:
+case RISCV::BI__builtin_rvv_vget_v_u8m8_u8m2:
+case RISCV::BI__builtin_rvv_vget_v_u16m4_u16m2:
+case RISCV::BI__builtin_rvv_vget_v_u16m8_u16m2:
+case RISCV::BI__builtin_rvv_vget_v_u32m4_u32m2:
+case RISCV::BI__builtin_rvv_vget_v_u32m8_u32m2:
+case RISCV::BI__builtin_rvv_vget_v_u64m4_u64m2:
+case RISCV::BI__builtin_rvv_vget_v_u64m8_u64m2:
+case RISCV::BI__builtin_rvv_vget_v_i8m8_i8m4:
+case RISCV::BI__builtin_rvv_vget_v_i16m8_i16m4:
+case RISCV::BI__builtin_rvv_vget_v_i32m8_i32m4:
+case RISCV::BI__builtin_rvv_vget_v_i64m8_i64m4:
+case RISCV::BI__builtin_rvv_vget_v_f32m8_f32m4:
+case RISCV::BI__builtin_rvv_vget_v_f64m8_f64m4:
+case RISCV::BI__builtin_rvv_vget_v_u8m8_u8m4:
+case RISCV::BI__builtin_rvv_vget_v_u16m8_u16m4:
+case RISCV::BI__builtin_rvv_vget_v_u32m8_u32m4:
+case RISCV::BI__builtin_rvv_vget_v_u64m8_u64m4:
+
+      {
+        ID = Intrinsic::experimental_vector_extract;
+        ScalableVectorType *VecTy = cast<ScalableVectorType>(ResultType);
+        Ops[1] = Builder.CreateMul(Ops[1],
+                                   ConstantInt::get(Ops[1]->getType(),
+                                                    VecTy->getMinNumElements()));
+        IntrinsicTypes = {ResultType, Ops[0]->getType()};
+        return Builder.CreateCall(CGM.getIntrinsic(ID, IntrinsicTypes), Ops, "");
+      }
+      break;
+case RISCV::BI__builtin_rvv_vset_v_i8m1_i8m2:
+case RISCV::BI__builtin_rvv_vset_v_i16m1_i16m2:
+case RISCV::BI__builtin_rvv_vset_v_i32m1_i32m2:
+case RISCV::BI__builtin_rvv_vset_v_i64m1_i64m2:
+case RISCV::BI__builtin_rvv_vset_v_f32m1_f32m2:
+case RISCV::BI__builtin_rvv_vset_v_f64m1_f64m2:
+case RISCV::BI__builtin_rvv_vset_v_u8m1_u8m2:
+case RISCV::BI__builtin_rvv_vset_v_u16m1_u16m2:
+case RISCV::BI__builtin_rvv_vset_v_u32m1_u32m2:
+case RISCV::BI__builtin_rvv_vset_v_u64m1_u64m2:
+case RISCV::BI__builtin_rvv_vset_v_i8m1_i8m4:
+case RISCV::BI__builtin_rvv_vset_v_i8m2_i8m4:
+case RISCV::BI__builtin_rvv_vset_v_i16m1_i16m4:
+case RISCV::BI__builtin_rvv_vset_v_i16m2_i16m4:
+case RISCV::BI__builtin_rvv_vset_v_i32m1_i32m4:
+case RISCV::BI__builtin_rvv_vset_v_i32m2_i32m4:
+case RISCV::BI__builtin_rvv_vset_v_i64m1_i64m4:
+case RISCV::BI__builtin_rvv_vset_v_i64m2_i64m4:
+case RISCV::BI__builtin_rvv_vset_v_f32m1_f32m4:
+case RISCV::BI__builtin_rvv_vset_v_f32m2_f32m4:
+case RISCV::BI__builtin_rvv_vset_v_f64m1_f64m4:
+case RISCV::BI__builtin_rvv_vset_v_f64m2_f64m4:
+case RISCV::BI__builtin_rvv_vset_v_u8m1_u8m4:
+case RISCV::BI__builtin_rvv_vset_v_u8m2_u8m4:
+case RISCV::BI__builtin_rvv_vset_v_u16m1_u16m4:
+case RISCV::BI__builtin_rvv_vset_v_u16m2_u16m4:
+case RISCV::BI__builtin_rvv_vset_v_u32m1_u32m4:
+case RISCV::BI__builtin_rvv_vset_v_u32m2_u32m4:
+case RISCV::BI__builtin_rvv_vset_v_u64m1_u64m4:
+case RISCV::BI__builtin_rvv_vset_v_u64m2_u64m4:
+case RISCV::BI__builtin_rvv_vset_v_i8m1_i8m8:
+case RISCV::BI__builtin_rvv_vset_v_i8m2_i8m8:
+case RISCV::BI__builtin_rvv_vset_v_i8m4_i8m8:
+case RISCV::BI__builtin_rvv_vset_v_i16m1_i16m8:
+case RISCV::BI__builtin_rvv_vset_v_i16m2_i16m8:
+case RISCV::BI__builtin_rvv_vset_v_i16m4_i16m8:
+case RISCV::BI__builtin_rvv_vset_v_i32m1_i32m8:
+case RISCV::BI__builtin_rvv_vset_v_i32m2_i32m8:
+case RISCV::BI__builtin_rvv_vset_v_i32m4_i32m8:
+case RISCV::BI__builtin_rvv_vset_v_i64m1_i64m8:
+case RISCV::BI__builtin_rvv_vset_v_i64m2_i64m8:
+case RISCV::BI__builtin_rvv_vset_v_i64m4_i64m8:
+case RISCV::BI__builtin_rvv_vset_v_f32m1_f32m8:
+case RISCV::BI__builtin_rvv_vset_v_f32m2_f32m8:
+case RISCV::BI__builtin_rvv_vset_v_f32m4_f32m8:
+case RISCV::BI__builtin_rvv_vset_v_f64m1_f64m8:
+case RISCV::BI__builtin_rvv_vset_v_f64m2_f64m8:
+case RISCV::BI__builtin_rvv_vset_v_f64m4_f64m8:
+case RISCV::BI__builtin_rvv_vset_v_u8m1_u8m8:
+case RISCV::BI__builtin_rvv_vset_v_u8m2_u8m8:
+case RISCV::BI__builtin_rvv_vset_v_u8m4_u8m8:
+case RISCV::BI__builtin_rvv_vset_v_u16m1_u16m8:
+case RISCV::BI__builtin_rvv_vset_v_u16m2_u16m8:
+case RISCV::BI__builtin_rvv_vset_v_u16m4_u16m8:
+case RISCV::BI__builtin_rvv_vset_v_u32m1_u32m8:
+case RISCV::BI__builtin_rvv_vset_v_u32m2_u32m8:
+case RISCV::BI__builtin_rvv_vset_v_u32m4_u32m8:
+case RISCV::BI__builtin_rvv_vset_v_u64m1_u64m8:
+case RISCV::BI__builtin_rvv_vset_v_u64m2_u64m8:
+case RISCV::BI__builtin_rvv_vset_v_u64m4_u64m8:
+
+      {
+        ID = Intrinsic::experimental_vector_insert;
+        IntrinsicTypes = {ResultType, Ops[2]->getType()};
+        ScalableVectorType *VecTy = cast<ScalableVectorType>(Ops[2]->getType());
+        Ops[1] = Builder.CreateMul(Ops[1],
+                                   ConstantInt::get(Ops[1]->getType(),
+                                                    VecTy->getMinNumElements()));
+        std::swap(Ops[1], Ops[2]);
+        return Builder.CreateCall(CGM.getIntrinsic(ID, IntrinsicTypes), Ops, "");
+      }
+      break;
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8mf2_i8m1:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8mf4_i8m1:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8mf8_i8m1:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i16mf2_i16m1:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i16mf4_i16m1:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i32mf2_i32m1:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf2_f16m1:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf4_f16m1:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32mf2_f32m1:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8mf4_i8mf2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8mf8_i8mf2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i16mf4_i16mf2:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf4_f16mf2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8mf8_i8mf4:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8m1_i8m2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i8mf2_i8m2:
@@ -19,6 +165,9 @@ case RISCV::BI__builtin_rvv_vlmul_ext_v_i16mf4_i16m2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i32m1_i32m2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i32mf2_i32m2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i64m1_i64m2:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16m1_f16m2:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf2_f16m2:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf4_f16m2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32m1_f32m2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32mf2_f32m2:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f64m1_f64m2:
@@ -36,6 +185,10 @@ case RISCV::BI__builtin_rvv_vlmul_ext_v_i32m2_i32m4:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i32mf2_i32m4:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i64m1_i64m4:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i64m2_i64m4:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16m1_f16m4:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16m2_f16m4:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf2_f16m4:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf4_f16m4:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32m1_f32m4:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32m2_f32m4:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32mf2_f32m4:
@@ -59,6 +212,11 @@ case RISCV::BI__builtin_rvv_vlmul_ext_v_i32mf2_i32m8:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i64m1_i64m8:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i64m2_i64m8:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_i64m4_i64m8:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16m1_f16m8:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16m2_f16m8:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16m4_f16m8:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf2_f16m8:
+case RISCV::BI__builtin_rvv_vlmul_ext_v_f16mf4_f16m8:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32m1_f32m8:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32m2_f32m8:
 case RISCV::BI__builtin_rvv_vlmul_ext_v_f32m4_f32m8:
@@ -138,6 +296,10 @@ case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m1_i32mf2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m2_i32mf2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m4_i32mf2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m8_i32mf2:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m1_f16mf2:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m2_f16mf2:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m4_f16mf2:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m8_f16mf2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m1_f32mf2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m2_f32mf2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m4_f32mf2:
@@ -152,6 +314,11 @@ case RISCV::BI__builtin_rvv_vlmul_trunc_v_i16m2_i16mf4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i16m4_i16mf4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i16m8_i16mf4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i16mf2_i16mf4:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m1_f16mf4:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m2_f16mf4:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m4_f16mf4:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m8_f16mf4:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16mf2_f16mf4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i8m1_i8mf8:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i8m2_i8mf8:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i8m4_i8mf8:
@@ -170,6 +337,9 @@ case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m8_i32m1:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i64m2_i64m1:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i64m4_i64m1:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i64m8_i64m1:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m2_f16m1:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m4_f16m1:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m8_f16m1:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m2_f32m1:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m4_f32m1:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m8_f32m1:
@@ -184,6 +354,8 @@ case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m4_i32m2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m8_i32m2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i64m4_i64m2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i64m8_i64m2:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m4_f16m2:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m8_f16m2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m4_f32m2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m8_f32m2:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f64m4_f64m2:
@@ -192,6 +364,7 @@ case RISCV::BI__builtin_rvv_vlmul_trunc_v_i8m8_i8m4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i16m8_i16m4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i32m8_i32m4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_i64m8_i64m4:
+case RISCV::BI__builtin_rvv_vlmul_trunc_v_f16m8_f16m4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f32m8_f32m4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_f64m8_f64m4:
 case RISCV::BI__builtin_rvv_vlmul_trunc_v_u8m1_u8mf2:
@@ -252,6 +425,12 @@ case RISCV::BI__builtin_rvv_vlmul_trunc_v_u64m8_u64m4:
         Ops.push_back(ConstantInt::get(Int64Ty, 0));
         return Builder.CreateCall(CGM.getIntrinsic(ID, IntrinsicTypes), Ops, "");
       } break;
+case RISCV::BI__builtin_rvv_vreinterpret_v_i16m1_f16m1:
+case RISCV::BI__builtin_rvv_vreinterpret_v_i16m2_f16m2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_i16m4_f16m4:
+case RISCV::BI__builtin_rvv_vreinterpret_v_i16m8_f16m8:
+case RISCV::BI__builtin_rvv_vreinterpret_v_i16mf2_f16mf2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_i16mf4_f16mf4:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i32m1_f32m1:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i32m2_f32m2:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i32m4_f32m4:
@@ -261,6 +440,12 @@ case RISCV::BI__builtin_rvv_vreinterpret_v_i64m1_f64m1:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i64m2_f64m2:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i64m4_f64m4:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i64m8_f64m8:
+case RISCV::BI__builtin_rvv_vreinterpret_v_u16m1_f16m1:
+case RISCV::BI__builtin_rvv_vreinterpret_v_u16m2_f16m2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_u16m4_f16m4:
+case RISCV::BI__builtin_rvv_vreinterpret_v_u16m8_f16m8:
+case RISCV::BI__builtin_rvv_vreinterpret_v_u16mf2_f16mf2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_u16mf4_f16mf4:
 case RISCV::BI__builtin_rvv_vreinterpret_v_u32m1_f32m1:
 case RISCV::BI__builtin_rvv_vreinterpret_v_u32m2_f32m2:
 case RISCV::BI__builtin_rvv_vreinterpret_v_u32m4_f32m4:
@@ -326,6 +511,12 @@ case RISCV::BI__builtin_rvv_vreinterpret_v_i64m1_i8m1:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i64m2_i8m2:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i64m4_i8m4:
 case RISCV::BI__builtin_rvv_vreinterpret_v_i64m8_i8m8:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m1_i16m1:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m2_i16m2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m4_i16m4:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m8_i16m8:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16mf2_i16mf2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16mf4_i16mf4:
 case RISCV::BI__builtin_rvv_vreinterpret_v_f32m1_i32m1:
 case RISCV::BI__builtin_rvv_vreinterpret_v_f32m2_i32m2:
 case RISCV::BI__builtin_rvv_vreinterpret_v_f32m4_i32m4:
@@ -413,6 +604,12 @@ case RISCV::BI__builtin_rvv_vreinterpret_v_u64m1_u8m1:
 case RISCV::BI__builtin_rvv_vreinterpret_v_u64m2_u8m2:
 case RISCV::BI__builtin_rvv_vreinterpret_v_u64m4_u8m4:
 case RISCV::BI__builtin_rvv_vreinterpret_v_u64m8_u8m8:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m1_u16m1:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m2_u16m2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m4_u16m4:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16m8_u16m8:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16mf2_u16mf2:
+case RISCV::BI__builtin_rvv_vreinterpret_v_f16mf4_u16mf4:
 case RISCV::BI__builtin_rvv_vreinterpret_v_f32m1_u32m1:
 case RISCV::BI__builtin_rvv_vreinterpret_v_f32m2_u32m2:
 case RISCV::BI__builtin_rvv_vreinterpret_v_f32m4_u32m4:
@@ -469,6 +666,12 @@ case RISCV::BI__builtin_rvv_vundefined_i64m1:
 case RISCV::BI__builtin_rvv_vundefined_i64m2:
 case RISCV::BI__builtin_rvv_vundefined_i64m4:
 case RISCV::BI__builtin_rvv_vundefined_i64m8:
+case RISCV::BI__builtin_rvv_vundefined_f16m1:
+case RISCV::BI__builtin_rvv_vundefined_f16m2:
+case RISCV::BI__builtin_rvv_vundefined_f16m4:
+case RISCV::BI__builtin_rvv_vundefined_f16m8:
+case RISCV::BI__builtin_rvv_vundefined_f16mf2:
+case RISCV::BI__builtin_rvv_vundefined_f16mf4:
 case RISCV::BI__builtin_rvv_vundefined_f32m1:
 case RISCV::BI__builtin_rvv_vundefined_f32m2:
 case RISCV::BI__builtin_rvv_vundefined_f32m4:
@@ -1784,6 +1987,11 @@ case RISCV::BI__builtin_rvv_vamoswapei64_v_u32m1:
 case RISCV::BI__builtin_rvv_vamoswapei64_v_u32m2:
 case RISCV::BI__builtin_rvv_vamoswapei64_v_u32m4:
 case RISCV::BI__builtin_rvv_vamoswapei64_v_u32mf2:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m1:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m2:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m4:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m8:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32mf2:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_i64m1:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_i64m2:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_i64m4:
@@ -1792,11 +2000,6 @@ case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m1:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m2:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m4:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m8:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m1:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m2:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m4:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m8:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32mf2:
 case RISCV::BI__builtin_rvv_vamoswapei16_v_i64m1:
 case RISCV::BI__builtin_rvv_vamoswapei16_v_i64m2:
 case RISCV::BI__builtin_rvv_vamoswapei16_v_i64m4:
@@ -1895,6 +2098,11 @@ case RISCV::BI__builtin_rvv_vamoswapei64_v_u32m1_m:
 case RISCV::BI__builtin_rvv_vamoswapei64_v_u32m2_m:
 case RISCV::BI__builtin_rvv_vamoswapei64_v_u32m4_m:
 case RISCV::BI__builtin_rvv_vamoswapei64_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m4_m:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m8_m:
+case RISCV::BI__builtin_rvv_vamoswapei8_v_u32mf2_m:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_i64m1_m:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_i64m2_m:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_i64m4_m:
@@ -1903,11 +2111,6 @@ case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m4_m:
 case RISCV::BI__builtin_rvv_vamoswapei8_v_u64m8_m:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m1_m:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m2_m:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m4_m:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32m8_m:
-case RISCV::BI__builtin_rvv_vamoswapei8_v_u32mf2_m:
 case RISCV::BI__builtin_rvv_vamoswapei16_v_i64m1_m:
 case RISCV::BI__builtin_rvv_vamoswapei16_v_i64m2_m:
 case RISCV::BI__builtin_rvv_vamoswapei16_v_i64m4_m:
@@ -2520,6 +2723,12 @@ case RISCV::BI__builtin_rvv_vcompress_vm_i64m1:
 case RISCV::BI__builtin_rvv_vcompress_vm_i64m2:
 case RISCV::BI__builtin_rvv_vcompress_vm_i64m4:
 case RISCV::BI__builtin_rvv_vcompress_vm_i64m8:
+case RISCV::BI__builtin_rvv_vcompress_vm_f16m1:
+case RISCV::BI__builtin_rvv_vcompress_vm_f16m2:
+case RISCV::BI__builtin_rvv_vcompress_vm_f16m4:
+case RISCV::BI__builtin_rvv_vcompress_vm_f16m8:
+case RISCV::BI__builtin_rvv_vcompress_vm_f16mf2:
+case RISCV::BI__builtin_rvv_vcompress_vm_f16mf4:
 case RISCV::BI__builtin_rvv_vcompress_vm_f32m1:
 case RISCV::BI__builtin_rvv_vcompress_vm_f32m2:
 case RISCV::BI__builtin_rvv_vcompress_vm_f32m4:
@@ -2746,6 +2955,12 @@ case RISCV::BI__builtin_rvv_vdivu_vx_u64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfadd_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfadd_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfadd_vv_f32m4:
@@ -2755,6 +2970,12 @@ case RISCV::BI__builtin_rvv_vfadd_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfadd_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfadd_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfadd_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfadd_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfadd_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfadd_vf_f32m4:
@@ -2767,6 +2988,12 @@ case RISCV::BI__builtin_rvv_vfadd_vf_f64m8:
   ID = Intrinsic::riscv_vfadd;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfadd_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfadd_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfadd_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfadd_vv_f32m4_m:
@@ -2776,6 +3003,12 @@ case RISCV::BI__builtin_rvv_vfadd_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfadd_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfadd_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfadd_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfadd_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfadd_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfadd_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfadd_vf_f32m4_m:
@@ -2789,6 +3022,12 @@ case RISCV::BI__builtin_rvv_vfadd_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfclass_v_u16m1:
+case RISCV::BI__builtin_rvv_vfclass_v_u16m2:
+case RISCV::BI__builtin_rvv_vfclass_v_u16m4:
+case RISCV::BI__builtin_rvv_vfclass_v_u16m8:
+case RISCV::BI__builtin_rvv_vfclass_v_u16mf2:
+case RISCV::BI__builtin_rvv_vfclass_v_u16mf4:
 case RISCV::BI__builtin_rvv_vfclass_v_u32m1:
 case RISCV::BI__builtin_rvv_vfclass_v_u32m2:
 case RISCV::BI__builtin_rvv_vfclass_v_u32m4:
@@ -2801,6 +3040,12 @@ case RISCV::BI__builtin_rvv_vfclass_v_u64m8:
   ID = Intrinsic::riscv_vfclass;
   IntrinsicTypes = {Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfclass_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vfclass_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vfclass_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vfclass_v_u16m8_m:
+case RISCV::BI__builtin_rvv_vfclass_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vfclass_v_u16mf4_m:
 case RISCV::BI__builtin_rvv_vfclass_v_u32m1_m:
 case RISCV::BI__builtin_rvv_vfclass_v_u32m2_m:
 case RISCV::BI__builtin_rvv_vfclass_v_u32m4_m:
@@ -2888,6 +3133,12 @@ case RISCV::BI__builtin_rvv_vfcvt_f_xu_v_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m1:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m2:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m4:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m8:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16mf2:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16mf4:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i32m1:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i32m2:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i32m4:
@@ -2900,6 +3151,12 @@ case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i64m8:
   ID = Intrinsic::riscv_vfcvt_rtz_x_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m4_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16m8_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i16mf4_m:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i32m1_m:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i32m2_m:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i32m4_m:
@@ -2913,6 +3170,12 @@ case RISCV::BI__builtin_rvv_vfcvt_rtz_x_f_v_i64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m1:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m2:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m4:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m8:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16mf2:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16mf4:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u32m1:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u32m2:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u32m4:
@@ -2925,6 +3188,12 @@ case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u64m8:
   ID = Intrinsic::riscv_vfcvt_rtz_xu_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16m8_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u16mf4_m:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u32m1_m:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u32m2_m:
 case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u32m4_m:
@@ -2938,6 +3207,12 @@ case RISCV::BI__builtin_rvv_vfcvt_rtz_xu_f_v_u64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m1:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m2:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m4:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m8:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16mf2:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16mf4:
 case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i32m1:
 case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i32m2:
 case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i32m4:
@@ -2950,6 +3225,12 @@ case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i64m8:
   ID = Intrinsic::riscv_vfcvt_x_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m4_m:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16m8_m:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i16mf4_m:
 case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i32m1_m:
 case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i32m2_m:
 case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i32m4_m:
@@ -2963,6 +3244,12 @@ case RISCV::BI__builtin_rvv_vfcvt_x_f_v_i64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m1:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m2:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m4:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m8:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16mf2:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16mf4:
 case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u32m1:
 case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u32m2:
 case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u32m4:
@@ -2975,6 +3262,12 @@ case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u64m8:
   ID = Intrinsic::riscv_vfcvt_xu_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16m8_m:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u16mf4_m:
 case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u32m1_m:
 case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u32m2_m:
 case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u32m4_m:
@@ -2988,6 +3281,12 @@ case RISCV::BI__builtin_rvv_vfcvt_xu_f_v_u64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f32m4:
@@ -2997,6 +3296,12 @@ case RISCV::BI__builtin_rvv_vfdiv_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfdiv_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfdiv_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfdiv_vf_f32m4:
@@ -3009,6 +3314,12 @@ case RISCV::BI__builtin_rvv_vfdiv_vf_f64m8:
   ID = Intrinsic::riscv_vfdiv;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfdiv_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f32m4_m:
@@ -3018,6 +3329,12 @@ case RISCV::BI__builtin_rvv_vfdiv_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfdiv_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfdiv_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfdiv_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfdiv_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfdiv_vf_f32m4_m:
@@ -3052,6 +3369,12 @@ case RISCV::BI__builtin_rvv_vfirst_m_b64_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f32m4:
@@ -3061,6 +3384,12 @@ case RISCV::BI__builtin_rvv_vfmacc_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfmacc_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfmacc_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfmacc_vf_f32m4:
@@ -3073,6 +3402,12 @@ case RISCV::BI__builtin_rvv_vfmacc_vf_f64m8:
   ID = Intrinsic::riscv_vfmacc;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmacc_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f32m4_m:
@@ -3082,6 +3417,12 @@ case RISCV::BI__builtin_rvv_vfmacc_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfmacc_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmacc_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmacc_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmacc_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmacc_vf_f32m4_m:
@@ -3095,6 +3436,12 @@ case RISCV::BI__builtin_rvv_vfmacc_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f32m4:
@@ -3104,6 +3451,12 @@ case RISCV::BI__builtin_rvv_vfmadd_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfmadd_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfmadd_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfmadd_vf_f32m4:
@@ -3116,6 +3469,12 @@ case RISCV::BI__builtin_rvv_vfmadd_vf_f64m8:
   ID = Intrinsic::riscv_vfmadd;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmadd_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f32m4_m:
@@ -3125,6 +3484,12 @@ case RISCV::BI__builtin_rvv_vfmadd_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfmadd_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmadd_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmadd_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmadd_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmadd_vf_f32m4_m:
@@ -3138,6 +3503,12 @@ case RISCV::BI__builtin_rvv_vfmadd_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfmax_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfmax_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfmax_vv_f32m4:
@@ -3147,6 +3518,12 @@ case RISCV::BI__builtin_rvv_vfmax_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfmax_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfmax_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfmax_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfmax_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfmax_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfmax_vf_f32m4:
@@ -3159,6 +3536,12 @@ case RISCV::BI__builtin_rvv_vfmax_vf_f64m8:
   ID = Intrinsic::riscv_vfmax;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmax_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmax_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmax_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmax_vv_f32m4_m:
@@ -3168,6 +3551,12 @@ case RISCV::BI__builtin_rvv_vfmax_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfmax_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfmax_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfmax_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmax_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmax_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmax_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmax_vf_f32m4_m:
@@ -3181,6 +3570,12 @@ case RISCV::BI__builtin_rvv_vfmax_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmerge_vvm_f16m1:
+case RISCV::BI__builtin_rvv_vmerge_vvm_f16m2:
+case RISCV::BI__builtin_rvv_vmerge_vvm_f16m4:
+case RISCV::BI__builtin_rvv_vmerge_vvm_f16m8:
+case RISCV::BI__builtin_rvv_vmerge_vvm_f16mf2:
+case RISCV::BI__builtin_rvv_vmerge_vvm_f16mf4:
 case RISCV::BI__builtin_rvv_vmerge_vvm_f32m1:
 case RISCV::BI__builtin_rvv_vmerge_vvm_f32m2:
 case RISCV::BI__builtin_rvv_vmerge_vvm_f32m4:
@@ -3190,6 +3585,12 @@ case RISCV::BI__builtin_rvv_vmerge_vvm_f64m1:
 case RISCV::BI__builtin_rvv_vmerge_vvm_f64m2:
 case RISCV::BI__builtin_rvv_vmerge_vvm_f64m4:
 case RISCV::BI__builtin_rvv_vmerge_vvm_f64m8:
+case RISCV::BI__builtin_rvv_vfmerge_vfm_f16m1:
+case RISCV::BI__builtin_rvv_vfmerge_vfm_f16m2:
+case RISCV::BI__builtin_rvv_vfmerge_vfm_f16m4:
+case RISCV::BI__builtin_rvv_vfmerge_vfm_f16m8:
+case RISCV::BI__builtin_rvv_vfmerge_vfm_f16mf2:
+case RISCV::BI__builtin_rvv_vfmerge_vfm_f16mf4:
 case RISCV::BI__builtin_rvv_vfmerge_vfm_f32m1:
 case RISCV::BI__builtin_rvv_vfmerge_vfm_f32m2:
 case RISCV::BI__builtin_rvv_vfmerge_vfm_f32m4:
@@ -3204,6 +3605,12 @@ case RISCV::BI__builtin_rvv_vfmerge_vfm_f64m8:
       std::rotate(Ops.begin(), Ops.begin() + 1, Ops.begin() + 3);
       IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[3]->getType()};
     break;
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfmin_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfmin_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfmin_vv_f32m4:
@@ -3213,6 +3620,12 @@ case RISCV::BI__builtin_rvv_vfmin_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfmin_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfmin_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfmin_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfmin_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfmin_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfmin_vf_f32m4:
@@ -3225,6 +3638,12 @@ case RISCV::BI__builtin_rvv_vfmin_vf_f64m8:
   ID = Intrinsic::riscv_vfmin;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmin_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmin_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmin_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmin_vv_f32m4_m:
@@ -3234,6 +3653,12 @@ case RISCV::BI__builtin_rvv_vfmin_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfmin_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfmin_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfmin_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmin_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmin_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmin_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmin_vf_f32m4_m:
@@ -3247,6 +3672,12 @@ case RISCV::BI__builtin_rvv_vfmin_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f32m4:
@@ -3256,6 +3687,12 @@ case RISCV::BI__builtin_rvv_vfmsac_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfmsac_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfmsac_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfmsac_vf_f32m4:
@@ -3268,6 +3705,12 @@ case RISCV::BI__builtin_rvv_vfmsac_vf_f64m8:
   ID = Intrinsic::riscv_vfmsac;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmsac_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f32m4_m:
@@ -3277,6 +3720,12 @@ case RISCV::BI__builtin_rvv_vfmsac_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfmsac_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmsac_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmsac_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmsac_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmsac_vf_f32m4_m:
@@ -3290,6 +3739,12 @@ case RISCV::BI__builtin_rvv_vfmsac_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f32m4:
@@ -3299,6 +3754,12 @@ case RISCV::BI__builtin_rvv_vfmsub_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfmsub_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfmsub_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfmsub_vf_f32m4:
@@ -3311,6 +3772,12 @@ case RISCV::BI__builtin_rvv_vfmsub_vf_f64m8:
   ID = Intrinsic::riscv_vfmsub;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmsub_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f32m4_m:
@@ -3320,6 +3787,12 @@ case RISCV::BI__builtin_rvv_vfmsub_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfmsub_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmsub_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmsub_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmsub_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmsub_vf_f32m4_m:
@@ -3333,6 +3806,12 @@ case RISCV::BI__builtin_rvv_vfmsub_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfmul_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfmul_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfmul_vv_f32m4:
@@ -3342,6 +3821,12 @@ case RISCV::BI__builtin_rvv_vfmul_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfmul_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfmul_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfmul_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfmul_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfmul_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfmul_vf_f32m4:
@@ -3354,6 +3839,12 @@ case RISCV::BI__builtin_rvv_vfmul_vf_f64m8:
   ID = Intrinsic::riscv_vfmul;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmul_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmul_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmul_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmul_vv_f32m4_m:
@@ -3363,6 +3854,12 @@ case RISCV::BI__builtin_rvv_vfmul_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfmul_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfmul_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfmul_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfmul_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfmul_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfmul_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfmul_vf_f32m4_m:
@@ -3376,6 +3873,12 @@ case RISCV::BI__builtin_rvv_vfmul_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmv_f_s_f16m1_f16:
+case RISCV::BI__builtin_rvv_vfmv_f_s_f16m2_f16:
+case RISCV::BI__builtin_rvv_vfmv_f_s_f16m4_f16:
+case RISCV::BI__builtin_rvv_vfmv_f_s_f16m8_f16:
+case RISCV::BI__builtin_rvv_vfmv_f_s_f16mf2_f16:
+case RISCV::BI__builtin_rvv_vfmv_f_s_f16mf4_f16:
 case RISCV::BI__builtin_rvv_vfmv_f_s_f32m1_f32:
 case RISCV::BI__builtin_rvv_vfmv_f_s_f32m2_f32:
 case RISCV::BI__builtin_rvv_vfmv_f_s_f32m4_f32:
@@ -3388,6 +3891,12 @@ case RISCV::BI__builtin_rvv_vfmv_f_s_f64m8_f64:
   ID = Intrinsic::riscv_vfmv_f_s;
   IntrinsicTypes = {Ops[0]->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmv_s_f_f16m1:
+case RISCV::BI__builtin_rvv_vfmv_s_f_f16m2:
+case RISCV::BI__builtin_rvv_vfmv_s_f_f16m4:
+case RISCV::BI__builtin_rvv_vfmv_s_f_f16m8:
+case RISCV::BI__builtin_rvv_vfmv_s_f_f16mf2:
+case RISCV::BI__builtin_rvv_vfmv_s_f_f16mf4:
 case RISCV::BI__builtin_rvv_vfmv_s_f_f32m1:
 case RISCV::BI__builtin_rvv_vfmv_s_f_f32m2:
 case RISCV::BI__builtin_rvv_vfmv_s_f_f32m4:
@@ -3397,6 +3906,12 @@ case RISCV::BI__builtin_rvv_vfmv_s_f_f64m1:
 case RISCV::BI__builtin_rvv_vfmv_s_f_f64m2:
 case RISCV::BI__builtin_rvv_vfmv_s_f_f64m4:
 case RISCV::BI__builtin_rvv_vfmv_s_f_f64m8:
+case RISCV::BI__builtin_rvv_vfmv_s_x_u16m1:
+case RISCV::BI__builtin_rvv_vfmv_s_x_u16m2:
+case RISCV::BI__builtin_rvv_vfmv_s_x_u16m4:
+case RISCV::BI__builtin_rvv_vfmv_s_x_u16m8:
+case RISCV::BI__builtin_rvv_vfmv_s_x_u16mf2:
+case RISCV::BI__builtin_rvv_vfmv_s_x_u16mf4:
 case RISCV::BI__builtin_rvv_vfmv_s_x_u32m1:
 case RISCV::BI__builtin_rvv_vfmv_s_x_u32m2:
 case RISCV::BI__builtin_rvv_vfmv_s_x_u32m4:
@@ -3409,6 +3924,12 @@ case RISCV::BI__builtin_rvv_vfmv_s_x_u64m8:
   ID = Intrinsic::riscv_vfmv_s_f;
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfmv_v_f_f16m1:
+case RISCV::BI__builtin_rvv_vfmv_v_f_f16m2:
+case RISCV::BI__builtin_rvv_vfmv_v_f_f16m4:
+case RISCV::BI__builtin_rvv_vfmv_v_f_f16m8:
+case RISCV::BI__builtin_rvv_vfmv_v_f_f16mf2:
+case RISCV::BI__builtin_rvv_vfmv_v_f_f16mf4:
 case RISCV::BI__builtin_rvv_vfmv_v_f_f32m1:
 case RISCV::BI__builtin_rvv_vfmv_v_f_f32m2:
 case RISCV::BI__builtin_rvv_vfmv_v_f_f32m4:
@@ -3421,6 +3942,11 @@ case RISCV::BI__builtin_rvv_vfmv_v_f_f64m8:
   ID = Intrinsic::riscv_vfmv_v_f;
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16mf4:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16mf2:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16m1:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16m2:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16m4:
 case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f32mf2:
 case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f32m1:
 case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f32m2:
@@ -3428,6 +3954,11 @@ case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f32m4:
   ID = Intrinsic::riscv_vfncvt_f_f_w;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16mf4_m:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16m1_m:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16m2_m:
+case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f16m4_m:
 case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f32mf2_m:
 case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f32m1_m:
 case RISCV::BI__builtin_rvv_vfncvt_f_f_w_f32m2_m:
@@ -3486,6 +4017,11 @@ case RISCV::BI__builtin_rvv_vfncvt_f_xu_w_f32m4_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16mf4:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16mf2:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16m1:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16m2:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16m4:
 case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32mf2:
 case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32m1:
 case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32m2:
@@ -3493,6 +4029,11 @@ case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32m4:
   ID = Intrinsic::riscv_vfncvt_rod_f_f_w;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16mf4_m:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16m1_m:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16m2_m:
+case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f16m4_m:
 case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32mf2_m:
 case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32m1_m:
 case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32m2_m:
@@ -3501,6 +4042,12 @@ case RISCV::BI__builtin_rvv_vfncvt_rod_f_f_w_f32m4_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8mf8:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8mf4:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8mf2:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8m1:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8m2:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8m4:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i16mf4:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i16mf2:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i16m1:
@@ -3513,6 +4060,12 @@ case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i32m4:
   ID = Intrinsic::riscv_vfncvt_rtz_x_f_w;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8mf8_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8mf4_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8mf2_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8m1_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8m2_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i8m4_m:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i16mf4_m:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i16mf2_m:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i16m1_m:
@@ -3526,6 +4079,12 @@ case RISCV::BI__builtin_rvv_vfncvt_rtz_x_f_w_i32m4_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8mf8:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8mf4:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8mf2:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8m1:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8m2:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8m4:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u16mf4:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u16mf2:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u16m1:
@@ -3538,6 +4097,12 @@ case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u32m4:
   ID = Intrinsic::riscv_vfncvt_rtz_xu_f_w;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8mf8_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8mf4_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8mf2_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8m1_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8m2_m:
+case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u8m4_m:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u16mf4_m:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u16mf2_m:
 case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u16m1_m:
@@ -3551,6 +4116,12 @@ case RISCV::BI__builtin_rvv_vfncvt_rtz_xu_f_w_u32m4_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8mf8:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8mf4:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8mf2:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8m1:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8m2:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8m4:
 case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i16mf4:
 case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i16mf2:
 case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i16m1:
@@ -3563,6 +4134,12 @@ case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i32m4:
   ID = Intrinsic::riscv_vfncvt_x_f_w;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8mf8_m:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8mf4_m:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8mf2_m:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8m1_m:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8m2_m:
+case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i8m4_m:
 case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i16mf4_m:
 case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i16mf2_m:
 case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i16m1_m:
@@ -3576,6 +4153,12 @@ case RISCV::BI__builtin_rvv_vfncvt_x_f_w_i32m4_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8mf8:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8mf4:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8mf2:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8m1:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8m2:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8m4:
 case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u16mf4:
 case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u16mf2:
 case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u16m1:
@@ -3588,6 +4171,12 @@ case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u32m4:
   ID = Intrinsic::riscv_vfncvt_xu_f_w;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8mf8_m:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8mf4_m:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8mf2_m:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8m1_m:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8m2_m:
+case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u8m4_m:
 case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u16mf4_m:
 case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u16mf2_m:
 case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u16m1_m:
@@ -3601,6 +4190,12 @@ case RISCV::BI__builtin_rvv_vfncvt_xu_f_w_u32m4_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f32m4:
@@ -3610,6 +4205,12 @@ case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmacc_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfnmacc_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfnmacc_vf_f32m4:
@@ -3622,6 +4223,12 @@ case RISCV::BI__builtin_rvv_vfnmacc_vf_f64m8:
   ID = Intrinsic::riscv_vfnmacc;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f32m4_m:
@@ -3631,6 +4238,12 @@ case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmacc_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmacc_vf_f32m4_m:
@@ -3644,6 +4257,12 @@ case RISCV::BI__builtin_rvv_vfnmacc_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f32m4:
@@ -3653,6 +4272,12 @@ case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmadd_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfnmadd_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfnmadd_vf_f32m4:
@@ -3665,6 +4290,12 @@ case RISCV::BI__builtin_rvv_vfnmadd_vf_f64m8:
   ID = Intrinsic::riscv_vfnmadd;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f32m4_m:
@@ -3674,6 +4305,12 @@ case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmadd_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmadd_vf_f32m4_m:
@@ -3687,6 +4324,12 @@ case RISCV::BI__builtin_rvv_vfnmadd_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f32m4:
@@ -3696,6 +4339,12 @@ case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmsac_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfnmsac_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfnmsac_vf_f32m4:
@@ -3708,6 +4357,12 @@ case RISCV::BI__builtin_rvv_vfnmsac_vf_f64m8:
   ID = Intrinsic::riscv_vfnmsac;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f32m4_m:
@@ -3717,6 +4372,12 @@ case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmsac_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmsac_vf_f32m4_m:
@@ -3730,6 +4391,12 @@ case RISCV::BI__builtin_rvv_vfnmsac_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f32m4:
@@ -3739,6 +4406,12 @@ case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfnmsub_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfnmsub_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfnmsub_vf_f32m4:
@@ -3751,6 +4424,12 @@ case RISCV::BI__builtin_rvv_vfnmsub_vf_f64m8:
   ID = Intrinsic::riscv_vfnmsub;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f32m4_m:
@@ -3760,6 +4439,12 @@ case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfnmsub_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfnmsub_vf_f32m4_m:
@@ -3773,6 +4458,12 @@ case RISCV::BI__builtin_rvv_vfnmsub_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfrdiv_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfrdiv_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfrdiv_vf_f32m4:
@@ -3785,6 +4476,12 @@ case RISCV::BI__builtin_rvv_vfrdiv_vf_f64m8:
   ID = Intrinsic::riscv_vfrdiv;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfrdiv_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfrdiv_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfrdiv_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfrdiv_vf_f32m4_m:
@@ -3798,6 +4495,12 @@ case RISCV::BI__builtin_rvv_vfrdiv_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m1:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m2:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m4:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m8:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16mf2:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16mf4:
 case RISCV::BI__builtin_rvv_vfrec7_v_f32m1:
 case RISCV::BI__builtin_rvv_vfrec7_v_f32m2:
 case RISCV::BI__builtin_rvv_vfrec7_v_f32m4:
@@ -3810,6 +4513,12 @@ case RISCV::BI__builtin_rvv_vfrec7_v_f64m8:
   ID = Intrinsic::riscv_vfrec7;
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfrec7_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfrec7_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vfrec7_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vfrec7_v_f32m4_m:
@@ -3823,6 +4532,12 @@ case RISCV::BI__builtin_rvv_vfrec7_v_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m1_f16m1:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m2_f16m1:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m4_f16m1:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m8_f16m1:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16mf2_f16m1:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16mf4_f16m1:
 case RISCV::BI__builtin_rvv_vfredmax_vs_f32m1_f32m1:
 case RISCV::BI__builtin_rvv_vfredmax_vs_f32m2_f32m1:
 case RISCV::BI__builtin_rvv_vfredmax_vs_f32m4_f32m1:
@@ -3835,6 +4550,12 @@ case RISCV::BI__builtin_rvv_vfredmax_vs_f64m8_f64m1:
   ID = Intrinsic::riscv_vfredmax;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m1_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m4_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16m8_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16mf2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmax_vs_f16mf4_f16m1_m:
 case RISCV::BI__builtin_rvv_vfredmax_vs_f32m1_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredmax_vs_f32m2_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredmax_vs_f32m4_f32m1_m:
@@ -3848,6 +4569,12 @@ case RISCV::BI__builtin_rvv_vfredmax_vs_f64m8_f64m1_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m1_f16m1:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m2_f16m1:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m4_f16m1:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m8_f16m1:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16mf2_f16m1:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16mf4_f16m1:
 case RISCV::BI__builtin_rvv_vfredmin_vs_f32m1_f32m1:
 case RISCV::BI__builtin_rvv_vfredmin_vs_f32m2_f32m1:
 case RISCV::BI__builtin_rvv_vfredmin_vs_f32m4_f32m1:
@@ -3860,6 +4587,12 @@ case RISCV::BI__builtin_rvv_vfredmin_vs_f64m8_f64m1:
   ID = Intrinsic::riscv_vfredmin;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m1_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m4_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16m8_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16mf2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredmin_vs_f16mf4_f16m1_m:
 case RISCV::BI__builtin_rvv_vfredmin_vs_f32m1_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredmin_vs_f32m2_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredmin_vs_f32m4_f32m1_m:
@@ -3873,6 +4606,12 @@ case RISCV::BI__builtin_rvv_vfredmin_vs_f64m8_f64m1_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m1_f16m1:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m2_f16m1:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m4_f16m1:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m8_f16m1:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16mf2_f16m1:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16mf4_f16m1:
 case RISCV::BI__builtin_rvv_vfredosum_vs_f32m1_f32m1:
 case RISCV::BI__builtin_rvv_vfredosum_vs_f32m2_f32m1:
 case RISCV::BI__builtin_rvv_vfredosum_vs_f32m4_f32m1:
@@ -3885,6 +4624,12 @@ case RISCV::BI__builtin_rvv_vfredosum_vs_f64m8_f64m1:
   ID = Intrinsic::riscv_vfredosum;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m1_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m4_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16m8_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16mf2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredosum_vs_f16mf4_f16m1_m:
 case RISCV::BI__builtin_rvv_vfredosum_vs_f32m1_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredosum_vs_f32m2_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredosum_vs_f32m4_f32m1_m:
@@ -3898,6 +4643,12 @@ case RISCV::BI__builtin_rvv_vfredosum_vs_f64m8_f64m1_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m1_f16m1:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m2_f16m1:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m4_f16m1:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m8_f16m1:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16mf2_f16m1:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16mf4_f16m1:
 case RISCV::BI__builtin_rvv_vfredsum_vs_f32m1_f32m1:
 case RISCV::BI__builtin_rvv_vfredsum_vs_f32m2_f32m1:
 case RISCV::BI__builtin_rvv_vfredsum_vs_f32m4_f32m1:
@@ -3910,6 +4661,12 @@ case RISCV::BI__builtin_rvv_vfredsum_vs_f64m8_f64m1:
   ID = Intrinsic::riscv_vfredsum;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m1_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m4_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16m8_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16mf2_f16m1_m:
+case RISCV::BI__builtin_rvv_vfredsum_vs_f16mf4_f16m1_m:
 case RISCV::BI__builtin_rvv_vfredsum_vs_f32m1_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredsum_vs_f32m2_f32m1_m:
 case RISCV::BI__builtin_rvv_vfredsum_vs_f32m4_f32m1_m:
@@ -3923,6 +4680,12 @@ case RISCV::BI__builtin_rvv_vfredsum_vs_f64m8_f64m1_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m1:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m2:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m4:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m8:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16mf2:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16mf4:
 case RISCV::BI__builtin_rvv_vfrsqrt7_v_f32m1:
 case RISCV::BI__builtin_rvv_vfrsqrt7_v_f32m2:
 case RISCV::BI__builtin_rvv_vfrsqrt7_v_f32m4:
@@ -3935,6 +4698,12 @@ case RISCV::BI__builtin_rvv_vfrsqrt7_v_f64m8:
   ID = Intrinsic::riscv_vfrsqrt7;
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfrsqrt7_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfrsqrt7_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vfrsqrt7_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vfrsqrt7_v_f32m4_m:
@@ -3948,6 +4717,12 @@ case RISCV::BI__builtin_rvv_vfrsqrt7_v_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfrsub_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfrsub_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfrsub_vf_f32m4:
@@ -3960,6 +4735,12 @@ case RISCV::BI__builtin_rvv_vfrsub_vf_f64m8:
   ID = Intrinsic::riscv_vfrsub;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfrsub_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfrsub_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfrsub_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfrsub_vf_f32m4_m:
@@ -3973,6 +4754,12 @@ case RISCV::BI__builtin_rvv_vfrsub_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f32m4:
@@ -3982,6 +4769,12 @@ case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfsgnj_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfsgnj_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfsgnj_vf_f32m4:
@@ -3994,6 +4787,12 @@ case RISCV::BI__builtin_rvv_vfsgnj_vf_f64m8:
   ID = Intrinsic::riscv_vfsgnj;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f32m4_m:
@@ -4003,6 +4802,12 @@ case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsgnj_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsgnj_vf_f32m4_m:
@@ -4016,6 +4821,12 @@ case RISCV::BI__builtin_rvv_vfsgnj_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfneg_v_f16m1:
+case RISCV::BI__builtin_rvv_vfneg_v_f16m2:
+case RISCV::BI__builtin_rvv_vfneg_v_f16m4:
+case RISCV::BI__builtin_rvv_vfneg_v_f16m8:
+case RISCV::BI__builtin_rvv_vfneg_v_f16mf2:
+case RISCV::BI__builtin_rvv_vfneg_v_f16mf4:
 case RISCV::BI__builtin_rvv_vfneg_v_f32m1:
 case RISCV::BI__builtin_rvv_vfneg_v_f32m2:
 case RISCV::BI__builtin_rvv_vfneg_v_f32m4:
@@ -4035,6 +4846,12 @@ case RISCV::BI__builtin_rvv_vfneg_v_f64m8:
         break;
       }
       break;
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f32m4:
@@ -4044,6 +4861,12 @@ case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfsgnjn_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfsgnjn_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfsgnjn_vf_f32m4:
@@ -4056,6 +4879,12 @@ case RISCV::BI__builtin_rvv_vfsgnjn_vf_f64m8:
   ID = Intrinsic::riscv_vfsgnjn;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfneg_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vfneg_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vfneg_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vfneg_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vfneg_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfneg_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfneg_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vfneg_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vfneg_v_f32m4_m:
@@ -4077,6 +4906,12 @@ case RISCV::BI__builtin_rvv_vfneg_v_f64m8_m:
         break;
       }
       break;
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f32m4_m:
@@ -4086,6 +4921,12 @@ case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsgnjn_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsgnjn_vf_f32m4_m:
@@ -4099,6 +4940,12 @@ case RISCV::BI__builtin_rvv_vfsgnjn_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f32m4:
@@ -4108,6 +4955,12 @@ case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfsgnjx_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfsgnjx_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfsgnjx_vf_f32m4:
@@ -4120,6 +4973,12 @@ case RISCV::BI__builtin_rvv_vfsgnjx_vf_f64m8:
   ID = Intrinsic::riscv_vfsgnjx;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfabs_v_f16m1:
+case RISCV::BI__builtin_rvv_vfabs_v_f16m2:
+case RISCV::BI__builtin_rvv_vfabs_v_f16m4:
+case RISCV::BI__builtin_rvv_vfabs_v_f16m8:
+case RISCV::BI__builtin_rvv_vfabs_v_f16mf2:
+case RISCV::BI__builtin_rvv_vfabs_v_f16mf4:
 case RISCV::BI__builtin_rvv_vfabs_v_f32m1:
 case RISCV::BI__builtin_rvv_vfabs_v_f32m2:
 case RISCV::BI__builtin_rvv_vfabs_v_f32m4:
@@ -4139,6 +4998,12 @@ case RISCV::BI__builtin_rvv_vfabs_v_f64m8:
         break;
       }
       break;
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f32m4_m:
@@ -4148,6 +5013,12 @@ case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsgnjx_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsgnjx_vf_f32m4_m:
@@ -4161,6 +5032,12 @@ case RISCV::BI__builtin_rvv_vfsgnjx_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfabs_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vfabs_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vfabs_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vfabs_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vfabs_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfabs_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfabs_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vfabs_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vfabs_v_f32m4_m:
@@ -4182,6 +5059,12 @@ case RISCV::BI__builtin_rvv_vfabs_v_f64m8_m:
         break;
       }
       break;
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfslide1down_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfslide1down_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfslide1down_vf_f32m4:
@@ -4194,6 +5077,12 @@ case RISCV::BI__builtin_rvv_vfslide1down_vf_f64m8:
   ID = Intrinsic::riscv_vfslide1down;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfslide1down_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfslide1down_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfslide1down_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfslide1down_vf_f32m4_m:
@@ -4207,6 +5096,12 @@ case RISCV::BI__builtin_rvv_vfslide1down_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfslide1up_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfslide1up_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfslide1up_vf_f32m4:
@@ -4219,6 +5114,12 @@ case RISCV::BI__builtin_rvv_vfslide1up_vf_f64m8:
   ID = Intrinsic::riscv_vfslide1up;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfslide1up_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfslide1up_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfslide1up_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfslide1up_vf_f32m4_m:
@@ -4232,6 +5133,12 @@ case RISCV::BI__builtin_rvv_vfslide1up_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m1:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m2:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m4:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m8:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16mf2:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16mf4:
 case RISCV::BI__builtin_rvv_vfsqrt_v_f32m1:
 case RISCV::BI__builtin_rvv_vfsqrt_v_f32m2:
 case RISCV::BI__builtin_rvv_vfsqrt_v_f32m4:
@@ -4244,6 +5151,12 @@ case RISCV::BI__builtin_rvv_vfsqrt_v_f64m8:
   ID = Intrinsic::riscv_vfsqrt;
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsqrt_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsqrt_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsqrt_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsqrt_v_f32m4_m:
@@ -4257,6 +5170,12 @@ case RISCV::BI__builtin_rvv_vfsqrt_v_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m1:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m2:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m4:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m8:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vfsub_vv_f32m1:
 case RISCV::BI__builtin_rvv_vfsub_vv_f32m2:
 case RISCV::BI__builtin_rvv_vfsub_vv_f32m4:
@@ -4266,6 +5185,12 @@ case RISCV::BI__builtin_rvv_vfsub_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfsub_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfsub_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfsub_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m1:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m2:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m4:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m8:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16mf2:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16mf4:
 case RISCV::BI__builtin_rvv_vfsub_vf_f32m1:
 case RISCV::BI__builtin_rvv_vfsub_vf_f32m2:
 case RISCV::BI__builtin_rvv_vfsub_vf_f32m4:
@@ -4278,6 +5203,12 @@ case RISCV::BI__builtin_rvv_vfsub_vf_f64m8:
   ID = Intrinsic::riscv_vfsub;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsub_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsub_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsub_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsub_vv_f32m4_m:
@@ -4287,6 +5218,12 @@ case RISCV::BI__builtin_rvv_vfsub_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfsub_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfsub_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfsub_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m1_m:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m2_m:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m4_m:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16m8_m:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16mf2_m:
+case RISCV::BI__builtin_rvv_vfsub_vf_f16mf4_m:
 case RISCV::BI__builtin_rvv_vfsub_vf_f32m1_m:
 case RISCV::BI__builtin_rvv_vfsub_vf_f32m2_m:
 case RISCV::BI__builtin_rvv_vfsub_vf_f32m4_m:
@@ -4300,10 +5237,20 @@ case RISCV::BI__builtin_rvv_vfsub_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m1:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m2:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m4:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m8:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m1:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m2:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m4:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m8:
 case RISCV::BI__builtin_rvv_vfwadd_vf_f64m1:
 case RISCV::BI__builtin_rvv_vfwadd_vf_f64m2:
 case RISCV::BI__builtin_rvv_vfwadd_vf_f64m4:
@@ -4311,10 +5258,20 @@ case RISCV::BI__builtin_rvv_vfwadd_vf_f64m8:
   ID = Intrinsic::riscv_vfwadd;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwadd_vv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwadd_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwadd_vf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwadd_vf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwadd_vf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwadd_vf_f64m4_m:
@@ -4323,10 +5280,20 @@ case RISCV::BI__builtin_rvv_vfwadd_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m1:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m2:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m4:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m8:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m1:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m2:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m4:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m8:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m1:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m2:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m4:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m8:
 case RISCV::BI__builtin_rvv_vfwadd_wf_f64m1:
 case RISCV::BI__builtin_rvv_vfwadd_wf_f64m2:
 case RISCV::BI__builtin_rvv_vfwadd_wf_f64m4:
@@ -4334,10 +5301,20 @@ case RISCV::BI__builtin_rvv_vfwadd_wf_f64m8:
   ID = Intrinsic::riscv_vfwadd_w;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwadd_wv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwadd_wv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwadd_wf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwadd_wf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwadd_wf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwadd_wf_f64m4_m:
@@ -4445,6 +5422,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_f_xu_v_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32mf2:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m1:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m2:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m4:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m8:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m1:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m2:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m4:
@@ -4452,6 +5434,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m8:
   ID = Intrinsic::riscv_vfwcvt_rtz_x_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m4_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i32m8_m:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m1_m:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m2_m:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m4_m:
@@ -4460,6 +5447,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_rtz_x_f_v_i64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32mf2:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m1:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m2:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m4:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m8:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m1:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m2:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m4:
@@ -4467,6 +5459,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m8:
   ID = Intrinsic::riscv_vfwcvt_rtz_xu_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m4_m:
+case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u32m8_m:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m4_m:
@@ -4475,6 +5472,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_rtz_xu_f_v_u64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32mf2:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m1:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m2:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m4:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m8:
 case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m1:
 case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m2:
 case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m4:
@@ -4482,6 +5484,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m8:
   ID = Intrinsic::riscv_vfwcvt_x_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m4_m:
+case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i32m8_m:
 case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m1_m:
 case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m2_m:
 case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m4_m:
@@ -4490,6 +5497,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_x_f_v_i64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32mf2:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m1:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m2:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m4:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m8:
 case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m1:
 case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m2:
 case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m4:
@@ -4497,6 +5509,11 @@ case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m8:
   ID = Intrinsic::riscv_vfwcvt_xu_f_v;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m4_m:
+case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u32m8_m:
 case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m4_m:
@@ -4505,10 +5522,20 @@ case RISCV::BI__builtin_rvv_vfwcvt_xu_f_v_u64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m1:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m2:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m4:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m8:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m1:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m2:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m4:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m8:
 case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m1:
 case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m2:
 case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m4:
@@ -4516,10 +5543,20 @@ case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m8:
   ID = Intrinsic::riscv_vfwmacc;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwmacc_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwmacc_vf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m4_m:
@@ -4528,10 +5565,20 @@ case RISCV::BI__builtin_rvv_vfwmacc_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m1:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m2:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m4:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m8:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m1:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m2:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m4:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m8:
 case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m1:
 case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m2:
 case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m4:
@@ -4539,10 +5586,20 @@ case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m8:
   ID = Intrinsic::riscv_vfwmsac;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwmsac_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwmsac_vf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m4_m:
@@ -4551,10 +5608,20 @@ case RISCV::BI__builtin_rvv_vfwmsac_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m1:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m2:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m4:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m8:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m1:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m2:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m4:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m8:
 case RISCV::BI__builtin_rvv_vfwmul_vf_f64m1:
 case RISCV::BI__builtin_rvv_vfwmul_vf_f64m2:
 case RISCV::BI__builtin_rvv_vfwmul_vf_f64m4:
@@ -4562,10 +5629,20 @@ case RISCV::BI__builtin_rvv_vfwmul_vf_f64m8:
   ID = Intrinsic::riscv_vfwmul;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwmul_vv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwmul_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwmul_vf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwmul_vf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwmul_vf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwmul_vf_f64m4_m:
@@ -4574,10 +5651,20 @@ case RISCV::BI__builtin_rvv_vfwmul_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m1:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m2:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m4:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m8:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m1:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m2:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m4:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m8:
 case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m1:
 case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m2:
 case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m4:
@@ -4585,10 +5672,20 @@ case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m8:
   ID = Intrinsic::riscv_vfwnmacc;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwnmacc_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwnmacc_vf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m4_m:
@@ -4597,10 +5694,20 @@ case RISCV::BI__builtin_rvv_vfwnmacc_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m1:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m2:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m4:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m8:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m1:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m2:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m4:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m8:
 case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m1:
 case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m2:
 case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m4:
@@ -4608,10 +5715,20 @@ case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m8:
   ID = Intrinsic::riscv_vfwnmsac;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwnmsac_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwnmsac_vf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m4_m:
@@ -4620,6 +5737,12 @@ case RISCV::BI__builtin_rvv_vfwnmsac_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m1_f32m1:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m2_f32m1:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m4_f32m1:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m8_f32m1:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16mf2_f32m1:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16mf4_f32m1:
 case RISCV::BI__builtin_rvv_vfwredosum_vs_f32m1_f64m1:
 case RISCV::BI__builtin_rvv_vfwredosum_vs_f32m2_f64m1:
 case RISCV::BI__builtin_rvv_vfwredosum_vs_f32m4_f64m1:
@@ -4628,6 +5751,12 @@ case RISCV::BI__builtin_rvv_vfwredosum_vs_f32mf2_f64m1:
   ID = Intrinsic::riscv_vfwredosum;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m1_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m2_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m4_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16m8_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16mf2_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredosum_vs_f16mf4_f32m1_m:
 case RISCV::BI__builtin_rvv_vfwredosum_vs_f32m1_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwredosum_vs_f32m2_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwredosum_vs_f32m4_f64m1_m:
@@ -4637,6 +5766,12 @@ case RISCV::BI__builtin_rvv_vfwredosum_vs_f32mf2_f64m1_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m1_f32m1:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m2_f32m1:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m4_f32m1:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m8_f32m1:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16mf2_f32m1:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16mf4_f32m1:
 case RISCV::BI__builtin_rvv_vfwredsum_vs_f32m1_f64m1:
 case RISCV::BI__builtin_rvv_vfwredsum_vs_f32m2_f64m1:
 case RISCV::BI__builtin_rvv_vfwredsum_vs_f32m4_f64m1:
@@ -4645,6 +5780,12 @@ case RISCV::BI__builtin_rvv_vfwredsum_vs_f32mf2_f64m1:
   ID = Intrinsic::riscv_vfwredsum;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m1_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m2_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m4_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16m8_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16mf2_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwredsum_vs_f16mf4_f32m1_m:
 case RISCV::BI__builtin_rvv_vfwredsum_vs_f32m1_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwredsum_vs_f32m2_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwredsum_vs_f32m4_f64m1_m:
@@ -4654,10 +5795,20 @@ case RISCV::BI__builtin_rvv_vfwredsum_vs_f32mf2_f64m1_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m1:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m2:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m4:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m8:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m1:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m2:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m4:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m8:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m1:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m2:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m4:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m8:
 case RISCV::BI__builtin_rvv_vfwsub_vf_f64m1:
 case RISCV::BI__builtin_rvv_vfwsub_vf_f64m2:
 case RISCV::BI__builtin_rvv_vfwsub_vf_f64m4:
@@ -4665,10 +5816,20 @@ case RISCV::BI__builtin_rvv_vfwsub_vf_f64m8:
   ID = Intrinsic::riscv_vfwsub;
   IntrinsicTypes = {ResultType, Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwsub_vv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwsub_vv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwsub_vf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwsub_vf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwsub_vf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwsub_vf_f64m4_m:
@@ -4677,10 +5838,20 @@ case RISCV::BI__builtin_rvv_vfwsub_vf_f64m8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32mf2:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m1:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m2:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m4:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m8:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m1:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m2:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m4:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m8:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32mf2:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m1:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m2:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m4:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m8:
 case RISCV::BI__builtin_rvv_vfwsub_wf_f64m1:
 case RISCV::BI__builtin_rvv_vfwsub_wf_f64m2:
 case RISCV::BI__builtin_rvv_vfwsub_wf_f64m4:
@@ -4688,10 +5859,20 @@ case RISCV::BI__builtin_rvv_vfwsub_wf_f64m8:
   ID = Intrinsic::riscv_vfwsub_w;
   IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwsub_wv_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m4_m:
 case RISCV::BI__builtin_rvv_vfwsub_wv_f64m8_m:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32mf2_m:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m1_m:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m2_m:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m4_m:
+case RISCV::BI__builtin_rvv_vfwsub_wf_f32m8_m:
 case RISCV::BI__builtin_rvv_vfwsub_wf_f64m1_m:
 case RISCV::BI__builtin_rvv_vfwsub_wf_f64m2_m:
 case RISCV::BI__builtin_rvv_vfwsub_wf_f64m4_m:
@@ -4853,6 +6034,13 @@ case RISCV::BI__builtin_rvv_vle8_v_i8m8:
 case RISCV::BI__builtin_rvv_vle8_v_i8mf2:
 case RISCV::BI__builtin_rvv_vle8_v_i8mf4:
 case RISCV::BI__builtin_rvv_vle8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vle8_v_u8m1:
+case RISCV::BI__builtin_rvv_vle8_v_u8m2:
+case RISCV::BI__builtin_rvv_vle8_v_u8m4:
+case RISCV::BI__builtin_rvv_vle8_v_u8m8:
+case RISCV::BI__builtin_rvv_vle8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vle8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vle8_v_u8mf8:
 case RISCV::BI__builtin_rvv_vle16_v_i16m1:
 case RISCV::BI__builtin_rvv_vle16_v_i16m2:
 case RISCV::BI__builtin_rvv_vle16_v_i16m4:
@@ -4865,6 +6053,12 @@ case RISCV::BI__builtin_rvv_vle16_v_u16m4:
 case RISCV::BI__builtin_rvv_vle16_v_u16m8:
 case RISCV::BI__builtin_rvv_vle16_v_u16mf2:
 case RISCV::BI__builtin_rvv_vle16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vle16_v_f16m1:
+case RISCV::BI__builtin_rvv_vle16_v_f16m2:
+case RISCV::BI__builtin_rvv_vle16_v_f16m4:
+case RISCV::BI__builtin_rvv_vle16_v_f16m8:
+case RISCV::BI__builtin_rvv_vle16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vle16_v_f16mf4:
 case RISCV::BI__builtin_rvv_vle32_v_i32m1:
 case RISCV::BI__builtin_rvv_vle32_v_i32m2:
 case RISCV::BI__builtin_rvv_vle32_v_i32m4:
@@ -4892,13 +6086,6 @@ case RISCV::BI__builtin_rvv_vle64_v_f64m1:
 case RISCV::BI__builtin_rvv_vle64_v_f64m2:
 case RISCV::BI__builtin_rvv_vle64_v_f64m4:
 case RISCV::BI__builtin_rvv_vle64_v_f64m8:
-case RISCV::BI__builtin_rvv_vle8_v_u8m1:
-case RISCV::BI__builtin_rvv_vle8_v_u8m2:
-case RISCV::BI__builtin_rvv_vle8_v_u8m4:
-case RISCV::BI__builtin_rvv_vle8_v_u8m8:
-case RISCV::BI__builtin_rvv_vle8_v_u8mf2:
-case RISCV::BI__builtin_rvv_vle8_v_u8mf4:
-case RISCV::BI__builtin_rvv_vle8_v_u8mf8:
   ID = Intrinsic::riscv_vle;
 
       IntrinsicTypes = {ResultType, Ops[1]->getType()};
@@ -4923,6 +6110,13 @@ case RISCV::BI__builtin_rvv_vle8_v_i8m8_m:
 case RISCV::BI__builtin_rvv_vle8_v_i8mf2_m:
 case RISCV::BI__builtin_rvv_vle8_v_i8mf4_m:
 case RISCV::BI__builtin_rvv_vle8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vle8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vle8_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vle8_v_u8m4_m:
+case RISCV::BI__builtin_rvv_vle8_v_u8m8_m:
+case RISCV::BI__builtin_rvv_vle8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vle8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vle8_v_u8mf8_m:
 case RISCV::BI__builtin_rvv_vle16_v_i16m1_m:
 case RISCV::BI__builtin_rvv_vle16_v_i16m2_m:
 case RISCV::BI__builtin_rvv_vle16_v_i16m4_m:
@@ -4935,6 +6129,12 @@ case RISCV::BI__builtin_rvv_vle16_v_u16m4_m:
 case RISCV::BI__builtin_rvv_vle16_v_u16m8_m:
 case RISCV::BI__builtin_rvv_vle16_v_u16mf2_m:
 case RISCV::BI__builtin_rvv_vle16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vle16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vle16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vle16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vle16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vle16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vle16_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vle32_v_i32m1_m:
 case RISCV::BI__builtin_rvv_vle32_v_i32m2_m:
 case RISCV::BI__builtin_rvv_vle32_v_i32m4_m:
@@ -4962,13 +6162,6 @@ case RISCV::BI__builtin_rvv_vle64_v_f64m1_m:
 case RISCV::BI__builtin_rvv_vle64_v_f64m2_m:
 case RISCV::BI__builtin_rvv_vle64_v_f64m4_m:
 case RISCV::BI__builtin_rvv_vle64_v_f64m8_m:
-case RISCV::BI__builtin_rvv_vle8_v_u8m1_m:
-case RISCV::BI__builtin_rvv_vle8_v_u8m2_m:
-case RISCV::BI__builtin_rvv_vle8_v_u8m4_m:
-case RISCV::BI__builtin_rvv_vle8_v_u8m8_m:
-case RISCV::BI__builtin_rvv_vle8_v_u8mf2_m:
-case RISCV::BI__builtin_rvv_vle8_v_u8mf4_m:
-case RISCV::BI__builtin_rvv_vle8_v_u8mf8_m:
   ID = Intrinsic::riscv_vle_mask;
 
       // Move mask to right before vl.
@@ -4988,6 +6181,12 @@ case RISCV::BI__builtin_rvv_vle16ff_v_u16m4:
 case RISCV::BI__builtin_rvv_vle16ff_v_u16m8:
 case RISCV::BI__builtin_rvv_vle16ff_v_u16mf2:
 case RISCV::BI__builtin_rvv_vle16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m2:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m4:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m8:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16mf4:
 case RISCV::BI__builtin_rvv_vle32ff_v_i32m1:
 case RISCV::BI__builtin_rvv_vle32ff_v_i32m2:
 case RISCV::BI__builtin_rvv_vle32ff_v_i32m4:
@@ -5059,6 +6258,12 @@ case RISCV::BI__builtin_rvv_vle16ff_v_u16m4_m:
 case RISCV::BI__builtin_rvv_vle16ff_v_u16m8_m:
 case RISCV::BI__builtin_rvv_vle16ff_v_u16mf2_m:
 case RISCV::BI__builtin_rvv_vle16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vle16ff_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vle32ff_v_i32m1_m:
 case RISCV::BI__builtin_rvv_vle32ff_v_i32m2_m:
 case RISCV::BI__builtin_rvv_vle32ff_v_i32m4_m:
@@ -5276,6 +6481,27 @@ case RISCV::BI__builtin_rvv_vloxei64_v_u64m1:
 case RISCV::BI__builtin_rvv_vloxei64_v_u64m2:
 case RISCV::BI__builtin_rvv_vloxei64_v_u64m4:
 case RISCV::BI__builtin_rvv_vloxei64_v_u64m8:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m1:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m2:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m4:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m8:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16mf2:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16mf4:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m1:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m2:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m4:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m8:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16m1:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16m2:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16m4:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16mf2:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16mf4:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16m1:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16m2:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16mf2:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16mf4:
 case RISCV::BI__builtin_rvv_vloxei8_v_f32m1:
 case RISCV::BI__builtin_rvv_vloxei8_v_f32m2:
 case RISCV::BI__builtin_rvv_vloxei8_v_f32m4:
@@ -5472,6 +6698,27 @@ case RISCV::BI__builtin_rvv_vloxei64_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vloxei64_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vloxei64_v_u64m4_m:
 case RISCV::BI__builtin_rvv_vloxei64_v_u64m8_m:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vloxei8_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vloxei16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vloxei32_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vloxei64_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vloxei8_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vloxei8_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vloxei8_v_f32m4_m:
@@ -5520,12 +6767,25 @@ case RISCV::BI__builtin_rvv_vlse16_v_i16m4:
 case RISCV::BI__builtin_rvv_vlse16_v_i16m8:
 case RISCV::BI__builtin_rvv_vlse16_v_i16mf2:
 case RISCV::BI__builtin_rvv_vlse16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m2:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m4:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m8:
+case RISCV::BI__builtin_rvv_vlse8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlse8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlse8_v_i8mf8:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m1:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m2:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m4:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m8:
 case RISCV::BI__builtin_rvv_vlse16_v_u16mf2:
 case RISCV::BI__builtin_rvv_vlse16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m2:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m4:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m8:
+case RISCV::BI__builtin_rvv_vlse16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlse16_v_f16mf4:
 case RISCV::BI__builtin_rvv_vlse32_v_i32m1:
 case RISCV::BI__builtin_rvv_vlse32_v_i32m2:
 case RISCV::BI__builtin_rvv_vlse32_v_i32m4:
@@ -5553,13 +6813,6 @@ case RISCV::BI__builtin_rvv_vlse64_v_f64m1:
 case RISCV::BI__builtin_rvv_vlse64_v_f64m2:
 case RISCV::BI__builtin_rvv_vlse64_v_f64m4:
 case RISCV::BI__builtin_rvv_vlse64_v_f64m8:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m1:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m2:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m4:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m8:
-case RISCV::BI__builtin_rvv_vlse8_v_i8mf2:
-case RISCV::BI__builtin_rvv_vlse8_v_i8mf4:
-case RISCV::BI__builtin_rvv_vlse8_v_i8mf8:
 case RISCV::BI__builtin_rvv_vlse8_v_u8m1:
 case RISCV::BI__builtin_rvv_vlse8_v_u8m2:
 case RISCV::BI__builtin_rvv_vlse8_v_u8m4:
@@ -5578,12 +6831,25 @@ case RISCV::BI__builtin_rvv_vlse16_v_i16m4_m:
 case RISCV::BI__builtin_rvv_vlse16_v_i16m8_m:
 case RISCV::BI__builtin_rvv_vlse16_v_i16mf2_m:
 case RISCV::BI__builtin_rvv_vlse16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m4_m:
+case RISCV::BI__builtin_rvv_vlse8_v_i8m8_m:
+case RISCV::BI__builtin_rvv_vlse8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlse8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlse8_v_i8mf8_m:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m1_m:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m2_m:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m4_m:
 case RISCV::BI__builtin_rvv_vlse16_v_u16m8_m:
 case RISCV::BI__builtin_rvv_vlse16_v_u16mf2_m:
 case RISCV::BI__builtin_rvv_vlse16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vlse16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vlse16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlse16_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vlse32_v_i32m1_m:
 case RISCV::BI__builtin_rvv_vlse32_v_i32m2_m:
 case RISCV::BI__builtin_rvv_vlse32_v_i32m4_m:
@@ -5611,13 +6877,6 @@ case RISCV::BI__builtin_rvv_vlse64_v_f64m1_m:
 case RISCV::BI__builtin_rvv_vlse64_v_f64m2_m:
 case RISCV::BI__builtin_rvv_vlse64_v_f64m4_m:
 case RISCV::BI__builtin_rvv_vlse64_v_f64m8_m:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m1_m:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m2_m:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m4_m:
-case RISCV::BI__builtin_rvv_vlse8_v_i8m8_m:
-case RISCV::BI__builtin_rvv_vlse8_v_i8mf2_m:
-case RISCV::BI__builtin_rvv_vlse8_v_i8mf4_m:
-case RISCV::BI__builtin_rvv_vlse8_v_i8mf8_m:
 case RISCV::BI__builtin_rvv_vlse8_v_u8m1_m:
 case RISCV::BI__builtin_rvv_vlse8_v_u8m2_m:
 case RISCV::BI__builtin_rvv_vlse8_v_u8m4_m:
@@ -5632,6 +6891,1610 @@ case RISCV::BI__builtin_rvv_vlse8_v_u8mf8_m:
         IntrinsicTypes = {ResultType, Ops[4]->getType()};
         Ops[1] = Builder.CreateBitCast(Ops[1], ResultType->getPointerTo());
       break;
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8m2:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8m4:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8m2:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8m4:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16m2:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16m4:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16m2:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16m4:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32m2:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32m4:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32m2:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32m4:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_i64m2:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_i64m4:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_u64m2:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_u64m4:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16m2:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16m4:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32m2:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32m4:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_f64m1:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_f64m2:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_f64m4:
+  ID = Intrinsic::riscv_vlseg2;
+  NF = 2;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 1]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 1]};
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_i64m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_i64m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_u64m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_u64m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_f64m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64_v_f64m4_m:
+  ID = Intrinsic::riscv_vlseg2_mask;
+  NF = 2;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 2]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 2]);
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16m2:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16m4:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16m2:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16m4:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32m2:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32m4:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32m2:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32m4:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_i64m2:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_i64m4:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_u64m2:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_u64m4:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8m2:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8m4:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16m2:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16m4:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8m2:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8m4:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32m2:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32m4:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_f64m1:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_f64m2:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_f64m4:
+  ID = Intrinsic::riscv_vlseg2ff;
+  NF = 2;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, new_vl, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 2]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 2]};
+      Value *NewVL = Ops[NF + 1];
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_i64m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_i64m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_u64m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_u64m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e16ff_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg2e8ff_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32m4_m:
+case RISCV::BI__builtin_rvv_vlseg2e32ff_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_f64m2_m:
+case RISCV::BI__builtin_rvv_vlseg2e64ff_v_f64m4_m:
+  ID = Intrinsic::riscv_vlseg2ff_mask;
+  NF = 2;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, new_vl, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 3]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 3]);
+      Value *NewVL = Ops[2 * NF + 2];
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8m2:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8m2:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16m2:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16m2:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_i32m2:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_u32m2:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_i64m2:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_u64m2:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16m2:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_f32m2:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_f64m1:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_f64m2:
+  ID = Intrinsic::riscv_vlseg3;
+  NF = 3;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 1]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 1]};
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e8_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_i64m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_u64m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_f32m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e64_v_f64m2_m:
+  ID = Intrinsic::riscv_vlseg3_mask;
+  NF = 3;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 2]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 2]);
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8m2:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8m2:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16m2:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16m2:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_i32m2:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_u32m2:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_i64m2:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_u64m2:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16m2:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_f32m2:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_f64m1:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_f64m2:
+  ID = Intrinsic::riscv_vlseg3ff;
+  NF = 3;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, new_vl, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 2]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 2]};
+      Value *NewVL = Ops[NF + 1];
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e8ff_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_i64m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_u64m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e16ff_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_f32m2_m:
+case RISCV::BI__builtin_rvv_vlseg3e32ff_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vlseg3e64ff_v_f64m2_m:
+  ID = Intrinsic::riscv_vlseg3ff_mask;
+  NF = 3;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, new_vl, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 3]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 3]);
+      Value *NewVL = Ops[2 * NF + 2];
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8m2:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8m2:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16m2:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16m2:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_i32m2:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_u32m2:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_i64m2:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_u64m2:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16m2:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_f32m2:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_f64m1:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_f64m2:
+  ID = Intrinsic::riscv_vlseg4;
+  NF = 4;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 1]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 1]};
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e8_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_i64m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_u64m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_f32m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e64_v_f64m2_m:
+  ID = Intrinsic::riscv_vlseg4_mask;
+  NF = 4;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 2]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 2]);
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8m2:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8m2:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16m2:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16m2:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_i32m2:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_u32m2:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_i64m2:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_u64m2:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16m2:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_f32m2:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_f64m1:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_f64m2:
+  ID = Intrinsic::riscv_vlseg4ff;
+  NF = 4;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, new_vl, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 2]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 2]};
+      Value *NewVL = Ops[NF + 1];
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e8ff_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_i32m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_u32m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_i64m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_u64m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e16ff_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_f32m2_m:
+case RISCV::BI__builtin_rvv_vlseg4e32ff_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vlseg4e64ff_v_f64m2_m:
+  ID = Intrinsic::riscv_vlseg4ff_mask;
+  NF = 4;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, new_vl, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 3]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 3]);
+      Value *NewVL = Ops[2 * NF + 2];
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg5e64_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg5e64_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg5e64_v_f64m1:
+  ID = Intrinsic::riscv_vlseg5;
+  NF = 5;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 1]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 1]};
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e8_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e64_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e64_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e32_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e64_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg5_mask;
+  NF = 5;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 2]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 2]);
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg5e64ff_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg5e64ff_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg5e64ff_v_f64m1:
+  ID = Intrinsic::riscv_vlseg5ff;
+  NF = 5;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, new_vl, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 2]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 2]};
+      Value *NewVL = Ops[NF + 1];
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e8ff_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e64ff_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e64ff_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e16ff_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg5e32ff_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg5e64ff_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg5ff_mask;
+  NF = 5;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, new_vl, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 3]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 3]);
+      Value *NewVL = Ops[2 * NF + 2];
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg6e64_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg6e64_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg6e64_v_f64m1:
+  ID = Intrinsic::riscv_vlseg6;
+  NF = 6;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 1]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 1]};
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e8_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e64_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e64_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e32_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e64_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg6_mask;
+  NF = 6;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 2]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 2]);
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg6e64ff_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg6e64ff_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg6e64ff_v_f64m1:
+  ID = Intrinsic::riscv_vlseg6ff;
+  NF = 6;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, new_vl, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 2]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 2]};
+      Value *NewVL = Ops[NF + 1];
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e8ff_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e64ff_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e64ff_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e16ff_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg6e32ff_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg6e64ff_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg6ff_mask;
+  NF = 6;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, new_vl, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 3]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 3]);
+      Value *NewVL = Ops[2 * NF + 2];
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg7e64_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg7e64_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg7e64_v_f64m1:
+  ID = Intrinsic::riscv_vlseg7;
+  NF = 7;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 1]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 1]};
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e8_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e64_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e64_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e32_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e64_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg7_mask;
+  NF = 7;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 2]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 2]);
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg7e64ff_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg7e64ff_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg7e64ff_v_f64m1:
+  ID = Intrinsic::riscv_vlseg7ff;
+  NF = 7;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, new_vl, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 2]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 2]};
+      Value *NewVL = Ops[NF + 1];
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e8ff_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e64ff_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e64ff_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e16ff_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg7e32ff_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg7e64ff_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg7ff_mask;
+  NF = 7;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, new_vl, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 3]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 3]);
+      Value *NewVL = Ops[2 * NF + 2];
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg8e64_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg8e64_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg8e64_v_f64m1:
+  ID = Intrinsic::riscv_vlseg8;
+  NF = 8;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 1]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 1]};
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e8_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e64_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e64_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e32_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e64_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg8_mask;
+  NF = 8;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 2]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 2]);
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      llvm::Value *V;
+      for (unsigned I = 0; I < NF; ++I) {
+        V = Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                                Address(Ops[I], Align));
+      }
+      return V;
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8m1:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8mf2:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8mf4:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8mf8:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8m1:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8mf2:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8mf4:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8mf8:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_i16m1:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_i16mf2:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_i16mf4:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_u16m1:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_u16mf2:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_u16mf4:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_i32m1:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_i32mf2:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_u32m1:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_u32mf2:
+case RISCV::BI__builtin_rvv_vlseg8e64ff_v_i64m1:
+case RISCV::BI__builtin_rvv_vlseg8e64ff_v_u64m1:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_f16m1:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_f16mf2:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_f16mf4:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_f32m1:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_f32mf2:
+case RISCV::BI__builtin_rvv_vlseg8e64ff_v_f64m1:
+  ID = Intrinsic::riscv_vlseg8ff;
+  NF = 8;
+
+    {
+      // builtin: (val0 address, val1 address, ..., ptr, new_vl, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[NF + 2]->getType()};
+      // intrinsic: (ptr, vl)
+      llvm::Value *Operands[] = {Ops[NF], Ops[NF + 2]};
+      Value *NewVL = Ops[NF + 1];
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e8ff_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_i32m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_i32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_u32m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_u32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e64ff_v_i64m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e64ff_v_u64m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e16ff_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_f32m1_m:
+case RISCV::BI__builtin_rvv_vlseg8e32ff_v_f32mf2_m:
+case RISCV::BI__builtin_rvv_vlseg8e64ff_v_f64m1_m:
+  ID = Intrinsic::riscv_vlseg8ff_mask;
+  NF = 8;
+
+    {
+      // builtin: (val0 address, ..., mask, maskedoff0, ..., ptr, new_vl, vl)
+      // intrinsic: (maskedoff0, ..., ptr, mask, vl)
+      IntrinsicTypes = {Ops[0]->getType()->getPointerElementType(),
+                        Ops[2 * NF + 3]->getType()};
+      SmallVector<llvm::Value*, 12> Operands;
+      for (unsigned I = 0; I < NF; ++I)
+        Operands.push_back(Ops[NF + I + 1]);
+      Operands.push_back(Ops[2 * NF + 1]);
+      Operands.push_back(Ops[NF]);
+      Operands.push_back(Ops[2 * NF + 3]);
+      Value *NewVL = Ops[2 * NF + 2];
+      assert(Operands.size() == NF + 3);
+      llvm::Function *F = CGM.getIntrinsic(ID, IntrinsicTypes);
+      llvm::Value *LoadValue = Builder.CreateCall(F, Operands, "");
+      clang::CharUnits Align = CharUnits::fromQuantity(
+                                 IntrinsicTypes[0]->getScalarSizeInBits() / 8);
+      for (unsigned I = 0; I < NF; ++I) {
+        Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {I}),
+                            Address(Ops[I], Align));
+      }
+      // Store new_vl.
+      return Builder.CreateStore(Builder.CreateExtractValue(LoadValue, {NF}),
+                                 Address(NewVL, Align));
+    }
+            break;
 case RISCV::BI__builtin_rvv_vluxei8_v_u8m1:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8m2:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8m4:
@@ -5639,82 +8502,6 @@ case RISCV::BI__builtin_rvv_vluxei8_v_u8m8:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8mf2:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8mf4:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8mf8:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m1:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m2:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m4:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m8:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m1:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m2:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m4:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m8:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m1:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m2:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m4:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m8:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8m1:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8m2:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8m4:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8mf2:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8mf4:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8mf8:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8m1:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8m2:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8m4:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8mf2:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8mf4:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8mf8:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8m1:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8m2:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8mf2:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8mf4:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8mf8:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8m1:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8m2:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8mf2:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8mf4:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8mf8:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8m1:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8mf2:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8mf4:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8mf8:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8m1:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8mf2:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8mf4:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8mf8:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m1:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m2:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m4:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m8:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16mf2:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16mf4:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m1:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m2:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m4:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m8:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16mf2:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16mf4:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m1:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m2:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m4:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m8:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16mf2:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16mf4:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m1:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m2:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m4:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m8:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16mf2:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16mf4:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16m1:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16m2:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16m4:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16mf2:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16mf4:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16m1:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16m2:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16m4:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16mf2:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16mf4:
 case RISCV::BI__builtin_rvv_vluxei64_v_i16m1:
 case RISCV::BI__builtin_rvv_vluxei64_v_i16m2:
 case RISCV::BI__builtin_rvv_vluxei64_v_i16mf2:
@@ -5773,13 +8560,6 @@ case RISCV::BI__builtin_rvv_vluxei16_v_i64m1:
 case RISCV::BI__builtin_rvv_vluxei16_v_i64m2:
 case RISCV::BI__builtin_rvv_vluxei16_v_i64m4:
 case RISCV::BI__builtin_rvv_vluxei16_v_i64m8:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m1:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m2:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m4:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m8:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8mf2:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8mf4:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8mf8:
 case RISCV::BI__builtin_rvv_vluxei16_v_u64m1:
 case RISCV::BI__builtin_rvv_vluxei16_v_u64m2:
 case RISCV::BI__builtin_rvv_vluxei16_v_u64m4:
@@ -5800,6 +8580,27 @@ case RISCV::BI__builtin_rvv_vluxei64_v_u64m1:
 case RISCV::BI__builtin_rvv_vluxei64_v_u64m2:
 case RISCV::BI__builtin_rvv_vluxei64_v_u64m4:
 case RISCV::BI__builtin_rvv_vluxei64_v_u64m8:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m1:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m2:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m4:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m8:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16mf2:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16mf4:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m1:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m2:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m4:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m8:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16m1:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16m2:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16m4:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16mf2:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16mf4:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16m1:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16m2:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16mf2:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16mf4:
 case RISCV::BI__builtin_rvv_vluxei8_v_f32m1:
 case RISCV::BI__builtin_rvv_vluxei8_v_f32m2:
 case RISCV::BI__builtin_rvv_vluxei8_v_f32m4:
@@ -5823,6 +8624,89 @@ case RISCV::BI__builtin_rvv_vluxei8_v_f64m1:
 case RISCV::BI__builtin_rvv_vluxei8_v_f64m2:
 case RISCV::BI__builtin_rvv_vluxei8_v_f64m4:
 case RISCV::BI__builtin_rvv_vluxei8_v_f64m8:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m1:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m2:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m4:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m8:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m1:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m2:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m4:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m8:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m1:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m2:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m4:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m8:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8m1:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8m2:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8m4:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8mf2:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8mf4:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8mf8:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8m1:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8m2:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8m4:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8mf2:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8mf4:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8mf8:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m1:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m2:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m4:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m8:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8mf2:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8mf4:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8mf8:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8m1:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8m2:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8mf2:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8mf4:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8mf8:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8m1:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8m2:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8mf2:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8mf4:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8mf8:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8m1:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8mf2:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8mf4:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8mf8:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8m1:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8mf2:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8mf4:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8mf8:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m1:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m2:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m4:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m8:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16mf2:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16mf4:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m1:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m2:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m4:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m8:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16mf2:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16mf4:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m1:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m2:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m4:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m8:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16mf2:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16mf4:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m1:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m2:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m4:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m8:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16mf2:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16m1:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16m2:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16m4:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16mf2:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16mf4:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16m1:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16m2:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16m4:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16mf2:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16mf4:
   ID = Intrinsic::riscv_vluxei;
 
         IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[2]->getType()};
@@ -5835,82 +8719,6 @@ case RISCV::BI__builtin_rvv_vluxei8_v_u8m8_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8mf2_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8mf4_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_u8mf8_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m1_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_f64m8_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m1_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m4_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_f64m8_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m1_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m2_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m4_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_f64m8_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8m1_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8m2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8m4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8mf2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8mf4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i8mf8_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8m1_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8m2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8m4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8mf2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8mf4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u8mf8_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8m1_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8m2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8mf2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8mf4_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i8mf8_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8m1_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8m2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8mf2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8mf4_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u8mf8_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8m1_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8mf2_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8mf4_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_i8mf8_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8m1_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8mf2_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8mf4_m:
-case RISCV::BI__builtin_rvv_vluxei64_v_u8mf8_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m1_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m2_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m4_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16m8_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16mf2_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i16mf4_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m1_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m2_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m4_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16m8_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16mf2_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_u16mf4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m1_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16m8_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16mf2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_i16mf4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m1_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m4_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16m8_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16mf2_m:
-case RISCV::BI__builtin_rvv_vluxei16_v_u16mf4_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16m1_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16m2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16m4_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16mf2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_i16mf4_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16m1_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16m2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16m4_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16mf2_m:
-case RISCV::BI__builtin_rvv_vluxei32_v_u16mf4_m:
 case RISCV::BI__builtin_rvv_vluxei64_v_i16m1_m:
 case RISCV::BI__builtin_rvv_vluxei64_v_i16m2_m:
 case RISCV::BI__builtin_rvv_vluxei64_v_i16mf2_m:
@@ -5969,13 +8777,6 @@ case RISCV::BI__builtin_rvv_vluxei16_v_i64m1_m:
 case RISCV::BI__builtin_rvv_vluxei16_v_i64m2_m:
 case RISCV::BI__builtin_rvv_vluxei16_v_i64m4_m:
 case RISCV::BI__builtin_rvv_vluxei16_v_i64m8_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m1_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m2_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m4_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8m8_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8mf2_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8mf4_m:
-case RISCV::BI__builtin_rvv_vluxei8_v_i8mf8_m:
 case RISCV::BI__builtin_rvv_vluxei16_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vluxei16_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vluxei16_v_u64m4_m:
@@ -5996,6 +8797,27 @@ case RISCV::BI__builtin_rvv_vluxei64_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vluxei64_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vluxei64_v_u64m4_m:
 case RISCV::BI__builtin_rvv_vluxei64_v_u64m8_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_f32m4_m:
@@ -6019,6 +8841,89 @@ case RISCV::BI__builtin_rvv_vluxei8_v_f64m1_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_f64m2_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_f64m4_m:
 case RISCV::BI__builtin_rvv_vluxei8_v_f64m8_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_f64m8_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_f64m8_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m1_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m2_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m4_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_f64m8_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8m4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8m4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m4_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8m8_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8m2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8m2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8m1_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8mf2_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8mf4_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_i8mf8_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8m1_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8mf2_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8mf4_m:
+case RISCV::BI__builtin_rvv_vluxei64_v_u8mf8_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m4_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16m8_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16m8_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei8_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16m8_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16m8_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16m1_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16m2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16m4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_i16mf4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16m1_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16m2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16m4_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16mf2_m:
+case RISCV::BI__builtin_rvv_vluxei32_v_u16mf4_m:
   ID = Intrinsic::riscv_vluxei_mask;
 
         // Move mask to right before vl.
@@ -6904,6 +9809,12 @@ case RISCV::BI__builtin_rvv_vmerge_vxm_u64m8:
       std::rotate(Ops.begin(), Ops.begin() + 1, Ops.begin() + 3);
       IntrinsicTypes = {ResultType, Ops[1]->getType(), Ops[3]->getType()};
     break;
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f32m4_b8:
@@ -6913,6 +9824,12 @@ case RISCV::BI__builtin_rvv_vmfeq_vv_f64m1_b64:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f64m2_b32:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f64m4_b16:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f64m8_b8:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfeq_vf_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfeq_vf_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfeq_vf_f32m4_b8:
@@ -6925,6 +9842,12 @@ case RISCV::BI__builtin_rvv_vmfeq_vf_f64m8_b8:
   ID = Intrinsic::riscv_vmfeq;
   IntrinsicTypes = {Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfeq_vv_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f32m4_b8_m:
@@ -6934,6 +9857,12 @@ case RISCV::BI__builtin_rvv_vmfeq_vv_f64m1_b64_m:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f64m2_b32_m:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f64m4_b16_m:
 case RISCV::BI__builtin_rvv_vmfeq_vv_f64m8_b8_m:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfeq_vf_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfeq_vf_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfeq_vf_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfeq_vf_f32m4_b8_m:
@@ -6947,6 +9876,12 @@ case RISCV::BI__builtin_rvv_vmfeq_vf_f64m8_b8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfge_vv_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfge_vv_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfge_vv_f32m4_b8:
@@ -6956,6 +9891,12 @@ case RISCV::BI__builtin_rvv_vmfge_vv_f64m1_b64:
 case RISCV::BI__builtin_rvv_vmfge_vv_f64m2_b32:
 case RISCV::BI__builtin_rvv_vmfge_vv_f64m4_b16:
 case RISCV::BI__builtin_rvv_vmfge_vv_f64m8_b8:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfge_vf_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfge_vf_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfge_vf_f32m4_b8:
@@ -6968,6 +9909,12 @@ case RISCV::BI__builtin_rvv_vmfge_vf_f64m8_b8:
   ID = Intrinsic::riscv_vmfge;
   IntrinsicTypes = {Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfge_vv_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfge_vv_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfge_vv_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfge_vv_f32m4_b8_m:
@@ -6977,6 +9924,12 @@ case RISCV::BI__builtin_rvv_vmfge_vv_f64m1_b64_m:
 case RISCV::BI__builtin_rvv_vmfge_vv_f64m2_b32_m:
 case RISCV::BI__builtin_rvv_vmfge_vv_f64m4_b16_m:
 case RISCV::BI__builtin_rvv_vmfge_vv_f64m8_b8_m:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfge_vf_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfge_vf_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfge_vf_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfge_vf_f32m4_b8_m:
@@ -6990,6 +9943,12 @@ case RISCV::BI__builtin_rvv_vmfge_vf_f64m8_b8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f32m4_b8:
@@ -6999,6 +9958,12 @@ case RISCV::BI__builtin_rvv_vmfgt_vv_f64m1_b64:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f64m2_b32:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f64m4_b16:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f64m8_b8:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfgt_vf_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfgt_vf_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfgt_vf_f32m4_b8:
@@ -7011,6 +9976,12 @@ case RISCV::BI__builtin_rvv_vmfgt_vf_f64m8_b8:
   ID = Intrinsic::riscv_vmfgt;
   IntrinsicTypes = {Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfgt_vv_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f32m4_b8_m:
@@ -7020,6 +9991,12 @@ case RISCV::BI__builtin_rvv_vmfgt_vv_f64m1_b64_m:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f64m2_b32_m:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f64m4_b16_m:
 case RISCV::BI__builtin_rvv_vmfgt_vv_f64m8_b8_m:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfgt_vf_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfgt_vf_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfgt_vf_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfgt_vf_f32m4_b8_m:
@@ -7033,6 +10010,12 @@ case RISCV::BI__builtin_rvv_vmfgt_vf_f64m8_b8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfle_vv_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfle_vv_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfle_vv_f32m4_b8:
@@ -7042,6 +10025,12 @@ case RISCV::BI__builtin_rvv_vmfle_vv_f64m1_b64:
 case RISCV::BI__builtin_rvv_vmfle_vv_f64m2_b32:
 case RISCV::BI__builtin_rvv_vmfle_vv_f64m4_b16:
 case RISCV::BI__builtin_rvv_vmfle_vv_f64m8_b8:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfle_vf_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfle_vf_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfle_vf_f32m4_b8:
@@ -7054,6 +10043,12 @@ case RISCV::BI__builtin_rvv_vmfle_vf_f64m8_b8:
   ID = Intrinsic::riscv_vmfle;
   IntrinsicTypes = {Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfle_vv_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfle_vv_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfle_vv_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfle_vv_f32m4_b8_m:
@@ -7063,6 +10058,12 @@ case RISCV::BI__builtin_rvv_vmfle_vv_f64m1_b64_m:
 case RISCV::BI__builtin_rvv_vmfle_vv_f64m2_b32_m:
 case RISCV::BI__builtin_rvv_vmfle_vv_f64m4_b16_m:
 case RISCV::BI__builtin_rvv_vmfle_vv_f64m8_b8_m:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfle_vf_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfle_vf_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfle_vf_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfle_vf_f32m4_b8_m:
@@ -7076,6 +10077,12 @@ case RISCV::BI__builtin_rvv_vmfle_vf_f64m8_b8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmflt_vv_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmflt_vv_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmflt_vv_f32m4_b8:
@@ -7085,6 +10092,12 @@ case RISCV::BI__builtin_rvv_vmflt_vv_f64m1_b64:
 case RISCV::BI__builtin_rvv_vmflt_vv_f64m2_b32:
 case RISCV::BI__builtin_rvv_vmflt_vv_f64m4_b16:
 case RISCV::BI__builtin_rvv_vmflt_vv_f64m8_b8:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmflt_vf_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmflt_vf_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmflt_vf_f32m4_b8:
@@ -7097,6 +10110,12 @@ case RISCV::BI__builtin_rvv_vmflt_vf_f64m8_b8:
   ID = Intrinsic::riscv_vmflt;
   IntrinsicTypes = {Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmflt_vv_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmflt_vv_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmflt_vv_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmflt_vv_f32m4_b8_m:
@@ -7106,6 +10125,12 @@ case RISCV::BI__builtin_rvv_vmflt_vv_f64m1_b64_m:
 case RISCV::BI__builtin_rvv_vmflt_vv_f64m2_b32_m:
 case RISCV::BI__builtin_rvv_vmflt_vv_f64m4_b16_m:
 case RISCV::BI__builtin_rvv_vmflt_vv_f64m8_b8_m:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmflt_vf_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmflt_vf_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmflt_vf_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmflt_vf_f32m4_b8_m:
@@ -7119,6 +10144,12 @@ case RISCV::BI__builtin_rvv_vmflt_vf_f64m8_b8_m:
   std::rotate(Ops.begin(), Ops.begin() + 1, Ops.end() - 1);
   IntrinsicTypes = {Ops[1]->getType(), Ops[2]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfne_vv_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfne_vv_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfne_vv_f32m4_b8:
@@ -7128,6 +10159,12 @@ case RISCV::BI__builtin_rvv_vmfne_vv_f64m1_b64:
 case RISCV::BI__builtin_rvv_vmfne_vv_f64m2_b32:
 case RISCV::BI__builtin_rvv_vmfne_vv_f64m4_b16:
 case RISCV::BI__builtin_rvv_vmfne_vv_f64m8_b8:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m1_b16:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m2_b8:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m4_b4:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m8_b2:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16mf2_b32:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16mf4_b64:
 case RISCV::BI__builtin_rvv_vmfne_vf_f32m1_b32:
 case RISCV::BI__builtin_rvv_vmfne_vf_f32m2_b16:
 case RISCV::BI__builtin_rvv_vmfne_vf_f32m4_b8:
@@ -7140,6 +10177,12 @@ case RISCV::BI__builtin_rvv_vmfne_vf_f64m8_b8:
   ID = Intrinsic::riscv_vmfne;
   IntrinsicTypes = {Ops[0]->getType(), Ops[1]->getType(), Ops.back()->getType()};
   break;
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfne_vv_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfne_vv_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfne_vv_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfne_vv_f32m4_b8_m:
@@ -7149,6 +10192,12 @@ case RISCV::BI__builtin_rvv_vmfne_vv_f64m1_b64_m:
 case RISCV::BI__builtin_rvv_vmfne_vv_f64m2_b32_m:
 case RISCV::BI__builtin_rvv_vmfne_vv_f64m4_b16_m:
 case RISCV::BI__builtin_rvv_vmfne_vv_f64m8_b8_m:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m1_b16_m:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m2_b8_m:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m4_b4_m:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16m8_b2_m:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16mf2_b32_m:
+case RISCV::BI__builtin_rvv_vmfne_vf_f16mf4_b64_m:
 case RISCV::BI__builtin_rvv_vmfne_vf_f32m1_b32_m:
 case RISCV::BI__builtin_rvv_vmfne_vf_f32m2_b16_m:
 case RISCV::BI__builtin_rvv_vmfne_vf_f32m4_b8_m:
@@ -9349,6 +12398,12 @@ case RISCV::BI__builtin_rvv_vmv_v_v_i64m1:
 case RISCV::BI__builtin_rvv_vmv_v_v_i64m2:
 case RISCV::BI__builtin_rvv_vmv_v_v_i64m4:
 case RISCV::BI__builtin_rvv_vmv_v_v_i64m8:
+case RISCV::BI__builtin_rvv_vmv_v_v_f16m1:
+case RISCV::BI__builtin_rvv_vmv_v_v_f16m2:
+case RISCV::BI__builtin_rvv_vmv_v_v_f16m4:
+case RISCV::BI__builtin_rvv_vmv_v_v_f16m8:
+case RISCV::BI__builtin_rvv_vmv_v_v_f16mf2:
+case RISCV::BI__builtin_rvv_vmv_v_v_f16mf4:
 case RISCV::BI__builtin_rvv_vmv_v_v_f32m1:
 case RISCV::BI__builtin_rvv_vmv_v_v_f32m2:
 case RISCV::BI__builtin_rvv_vmv_v_v_f32m4:
@@ -11219,6 +14274,12 @@ case RISCV::BI__builtin_rvv_vrgather_vv_i64m1:
 case RISCV::BI__builtin_rvv_vrgather_vv_i64m2:
 case RISCV::BI__builtin_rvv_vrgather_vv_i64m4:
 case RISCV::BI__builtin_rvv_vrgather_vv_i64m8:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m1:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m2:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m4:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m8:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vrgather_vv_f32m1:
 case RISCV::BI__builtin_rvv_vrgather_vv_f32m2:
 case RISCV::BI__builtin_rvv_vrgather_vv_f32m4:
@@ -11275,6 +14336,12 @@ case RISCV::BI__builtin_rvv_vrgather_vv_i64m1_m:
 case RISCV::BI__builtin_rvv_vrgather_vv_i64m2_m:
 case RISCV::BI__builtin_rvv_vrgather_vv_i64m4_m:
 case RISCV::BI__builtin_rvv_vrgather_vv_i64m8_m:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vrgather_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vrgather_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vrgather_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vrgather_vv_f32m4_m:
@@ -11332,6 +14399,12 @@ case RISCV::BI__builtin_rvv_vrgather_vx_i64m1:
 case RISCV::BI__builtin_rvv_vrgather_vx_i64m2:
 case RISCV::BI__builtin_rvv_vrgather_vx_i64m4:
 case RISCV::BI__builtin_rvv_vrgather_vx_i64m8:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m1:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m2:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m4:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m8:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16mf2:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16mf4:
 case RISCV::BI__builtin_rvv_vrgather_vx_f32m1:
 case RISCV::BI__builtin_rvv_vrgather_vx_f32m2:
 case RISCV::BI__builtin_rvv_vrgather_vx_f32m4:
@@ -11388,6 +14461,12 @@ case RISCV::BI__builtin_rvv_vrgather_vx_i64m1_m:
 case RISCV::BI__builtin_rvv_vrgather_vx_i64m2_m:
 case RISCV::BI__builtin_rvv_vrgather_vx_i64m4_m:
 case RISCV::BI__builtin_rvv_vrgather_vx_i64m8_m:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m1_m:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m2_m:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m4_m:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16m8_m:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16mf2_m:
+case RISCV::BI__builtin_rvv_vrgather_vx_f16mf4_m:
 case RISCV::BI__builtin_rvv_vrgather_vx_f32m1_m:
 case RISCV::BI__builtin_rvv_vrgather_vx_f32m2_m:
 case RISCV::BI__builtin_rvv_vrgather_vx_f32m4_m:
@@ -11444,6 +14523,12 @@ case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m1:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m2:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m4:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m8:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m1:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m2:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m4:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m8:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16mf2:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16mf4:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_f32m1:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_f32m2:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_f32m4:
@@ -11498,6 +14583,12 @@ case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m1_m:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m2_m:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m4_m:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_i64m8_m:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m1_m:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m2_m:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m4_m:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16m8_m:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16mf2_m:
+case RISCV::BI__builtin_rvv_vrgatherei16_vv_f16mf4_m:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_f32m1_m:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_f32m2_m:
 case RISCV::BI__builtin_rvv_vrgatherei16_vv_f32m4_m:
@@ -12001,6 +15092,12 @@ case RISCV::BI__builtin_rvv_vse16_v_u16m4:
 case RISCV::BI__builtin_rvv_vse16_v_u16m8:
 case RISCV::BI__builtin_rvv_vse16_v_u16mf2:
 case RISCV::BI__builtin_rvv_vse16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vse16_v_f16m1:
+case RISCV::BI__builtin_rvv_vse16_v_f16m2:
+case RISCV::BI__builtin_rvv_vse16_v_f16m4:
+case RISCV::BI__builtin_rvv_vse16_v_f16m8:
+case RISCV::BI__builtin_rvv_vse16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vse16_v_f16mf4:
 case RISCV::BI__builtin_rvv_vse32_v_i32m1:
 case RISCV::BI__builtin_rvv_vse32_v_i32m2:
 case RISCV::BI__builtin_rvv_vse32_v_i32m4:
@@ -12075,6 +15172,12 @@ case RISCV::BI__builtin_rvv_vse16_v_u16m4_m:
 case RISCV::BI__builtin_rvv_vse16_v_u16m8_m:
 case RISCV::BI__builtin_rvv_vse16_v_u16mf2_m:
 case RISCV::BI__builtin_rvv_vse16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vse16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vse16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vse16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vse16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vse16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vse16_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vse32_v_i32m1_m:
 case RISCV::BI__builtin_rvv_vse32_v_i32m2_m:
 case RISCV::BI__builtin_rvv_vse32_v_i32m4_m:
@@ -12390,6 +15493,12 @@ case RISCV::BI__builtin_rvv_vslidedown_vx_i64m1:
 case RISCV::BI__builtin_rvv_vslidedown_vx_i64m2:
 case RISCV::BI__builtin_rvv_vslidedown_vx_i64m4:
 case RISCV::BI__builtin_rvv_vslidedown_vx_i64m8:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m1:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m2:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m4:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m8:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16mf2:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16mf4:
 case RISCV::BI__builtin_rvv_vslidedown_vx_f32m1:
 case RISCV::BI__builtin_rvv_vslidedown_vx_f32m2:
 case RISCV::BI__builtin_rvv_vslidedown_vx_f32m4:
@@ -12446,6 +15555,12 @@ case RISCV::BI__builtin_rvv_vslidedown_vx_i64m1_m:
 case RISCV::BI__builtin_rvv_vslidedown_vx_i64m2_m:
 case RISCV::BI__builtin_rvv_vslidedown_vx_i64m4_m:
 case RISCV::BI__builtin_rvv_vslidedown_vx_i64m8_m:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m1_m:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m2_m:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m4_m:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16m8_m:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16mf2_m:
+case RISCV::BI__builtin_rvv_vslidedown_vx_f16mf4_m:
 case RISCV::BI__builtin_rvv_vslidedown_vx_f32m1_m:
 case RISCV::BI__builtin_rvv_vslidedown_vx_f32m2_m:
 case RISCV::BI__builtin_rvv_vslidedown_vx_f32m4_m:
@@ -12503,6 +15618,12 @@ case RISCV::BI__builtin_rvv_vslideup_vx_i64m1:
 case RISCV::BI__builtin_rvv_vslideup_vx_i64m2:
 case RISCV::BI__builtin_rvv_vslideup_vx_i64m4:
 case RISCV::BI__builtin_rvv_vslideup_vx_i64m8:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m1:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m2:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m4:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m8:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16mf2:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16mf4:
 case RISCV::BI__builtin_rvv_vslideup_vx_f32m1:
 case RISCV::BI__builtin_rvv_vslideup_vx_f32m2:
 case RISCV::BI__builtin_rvv_vslideup_vx_f32m4:
@@ -12559,6 +15680,12 @@ case RISCV::BI__builtin_rvv_vslideup_vx_i64m1_m:
 case RISCV::BI__builtin_rvv_vslideup_vx_i64m2_m:
 case RISCV::BI__builtin_rvv_vslideup_vx_i64m4_m:
 case RISCV::BI__builtin_rvv_vslideup_vx_i64m8_m:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m1_m:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m2_m:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m4_m:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16m8_m:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16mf2_m:
+case RISCV::BI__builtin_rvv_vslideup_vx_f16mf4_m:
 case RISCV::BI__builtin_rvv_vslideup_vx_f32m1_m:
 case RISCV::BI__builtin_rvv_vslideup_vx_f32m2_m:
 case RISCV::BI__builtin_rvv_vslideup_vx_f32m4_m:
@@ -13028,6 +16155,27 @@ case RISCV::BI__builtin_rvv_vsoxei64_v_u64m1:
 case RISCV::BI__builtin_rvv_vsoxei64_v_u64m2:
 case RISCV::BI__builtin_rvv_vsoxei64_v_u64m4:
 case RISCV::BI__builtin_rvv_vsoxei64_v_u64m8:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m1:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m2:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m4:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m8:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16mf4:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m1:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m2:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m4:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m8:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16m1:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16m2:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16m4:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16mf4:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16m1:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16m2:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16mf4:
 case RISCV::BI__builtin_rvv_vsoxei8_v_f32m1:
 case RISCV::BI__builtin_rvv_vsoxei8_v_f32m2:
 case RISCV::BI__builtin_rvv_vsoxei8_v_f32m4:
@@ -13226,6 +16374,27 @@ case RISCV::BI__builtin_rvv_vsoxei64_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vsoxei64_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vsoxei64_v_u64m4_m:
 case RISCV::BI__builtin_rvv_vsoxei64_v_u64m8_m:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsoxei8_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsoxei16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsoxei32_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsoxei64_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vsoxei8_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vsoxei8_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vsoxei8_v_f32m4_m:
@@ -13484,6 +16653,12 @@ case RISCV::BI__builtin_rvv_vsse16_v_u16m4:
 case RISCV::BI__builtin_rvv_vsse16_v_u16m8:
 case RISCV::BI__builtin_rvv_vsse16_v_u16mf2:
 case RISCV::BI__builtin_rvv_vsse16_v_u16mf4:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m1:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m2:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m4:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m8:
+case RISCV::BI__builtin_rvv_vsse16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsse16_v_f16mf4:
 case RISCV::BI__builtin_rvv_vsse32_v_i32m1:
 case RISCV::BI__builtin_rvv_vsse32_v_i32m2:
 case RISCV::BI__builtin_rvv_vsse32_v_i32m4:
@@ -13544,6 +16719,12 @@ case RISCV::BI__builtin_rvv_vsse16_v_u16m4_m:
 case RISCV::BI__builtin_rvv_vsse16_v_u16m8_m:
 case RISCV::BI__builtin_rvv_vsse16_v_u16mf2_m:
 case RISCV::BI__builtin_rvv_vsse16_v_u16mf4_m:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vsse16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vsse16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsse16_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vsse32_v_i32m1_m:
 case RISCV::BI__builtin_rvv_vsse32_v_i32m2_m:
 case RISCV::BI__builtin_rvv_vsse32_v_i32m4_m:
@@ -14283,6 +17464,27 @@ case RISCV::BI__builtin_rvv_vsuxei64_v_u64m1:
 case RISCV::BI__builtin_rvv_vsuxei64_v_u64m2:
 case RISCV::BI__builtin_rvv_vsuxei64_v_u64m4:
 case RISCV::BI__builtin_rvv_vsuxei64_v_u64m8:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m1:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m2:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m4:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m8:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16mf4:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m1:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m2:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m4:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m8:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16mf4:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16m1:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16m2:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16m4:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16mf4:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16m1:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16m2:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16mf2:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16mf4:
 case RISCV::BI__builtin_rvv_vsuxei8_v_f32m1:
 case RISCV::BI__builtin_rvv_vsuxei8_v_f32m2:
 case RISCV::BI__builtin_rvv_vsuxei8_v_f32m4:
@@ -14481,6 +17683,27 @@ case RISCV::BI__builtin_rvv_vsuxei64_v_u64m1_m:
 case RISCV::BI__builtin_rvv_vsuxei64_v_u64m2_m:
 case RISCV::BI__builtin_rvv_vsuxei64_v_u64m4_m:
 case RISCV::BI__builtin_rvv_vsuxei64_v_u64m8_m:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsuxei8_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16m8_m:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsuxei16_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16m4_m:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsuxei32_v_f16mf4_m:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16m1_m:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16m2_m:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16mf2_m:
+case RISCV::BI__builtin_rvv_vsuxei64_v_f16mf4_m:
 case RISCV::BI__builtin_rvv_vsuxei8_v_f32m1_m:
 case RISCV::BI__builtin_rvv_vsuxei8_v_f32m2_m:
 case RISCV::BI__builtin_rvv_vsuxei8_v_f32m4_m:
